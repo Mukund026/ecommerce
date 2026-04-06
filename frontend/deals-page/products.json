@@ -1,0 +1,134 @@
+[
+  {
+    "id": 1,
+    "title": "Godrej 1.5 Ton 5 Star Inverter Split AC",
+    "image": "https://images.unsplash.com/photo-1592856538-289336e29432?w=400&h=400&fit=crop",
+    "price": 35990,
+    "originalPrice": 54990,
+    "discount": 35,
+    "rating": 4.3,
+    "brand": "Godrej",
+    "category": "Appliances"
+  },
+  {
+    "id": 2,
+    "title": "iQOO Z10 5G (Phantom Black, 256GB)",
+    "image": "https://images.unsplash.com/photo-1590664863675-020c3e81e491?w=400&h=400&fit=crop",
+    "price": 19999,
+    "originalPrice": 29999,
+    "discount": 33,
+    "rating": 4.5,
+    "brand": "iQOO",
+    "category": "Mobiles"
+  },
+  {
+    "id": 3,
+    "title": "Panasonic 55 inch 4K Smart LED TV",
+    "image": "https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?w=400&h=400&fit=crop",
+    "price": 42990,
+    "originalPrice": 64990,
+    "discount": 34,
+    "rating": 4.4,
+    "brand": "Panasonic",
+    "category": "Electronics"
+  },
+  {
+    "id": 4,
+    "title": "OnePlus Buds Pro 3 TWS Earbuds",
+    "image": "https://images.unsplash.com/photo-1611593731755-7a6aa7411e93?w=400&h=400&fit=crop",
+    "price": 8999,
+    "originalPrice": 11999,
+    "discount": 25,
+    "rating": 4.2,
+    "brand": "OnePlus",
+    "category": "Electronics"
+  },
+  {
+    "id": 5,
+    "title": "LG 1 Ton 5 Star Window AC",
+    "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&h=400&fit=crop",
+    "price": 28990,
+    "originalPrice": 39990,
+    "discount": 28,
+    "rating": 4.1,
+    "brand": "LG",
+    "category": "Appliances"
+  },
+  {
+    "id": 6,
+    "title": "Samsung Galaxy S24 Ultra",
+    "image": "https://images.unsplash.com/photo-1702424616398-55b5d1c007b5?w=400&h=400&fit=crop",
+    "price": 84999,
+    "originalPrice": 109999,
+    "discount": 23,
+    "rating": 4.7,
+    "brand": "Samsung",
+    "category": "Mobiles"
+  },
+  {
+    "id": 7,
+    "title": "Sony Bravia 65 inch OLED TV",
+    "image": "https://images.unsplash.com/photo-1593642634367-d91a135587b5?w=400&h=400&fit=crop",
+    "price": 149990,
+    "originalPrice": 189990,
+    "discount": 21,
+    "rating": 4.6,
+    "brand": "Sony",
+    "category": "Electronics"
+  },
+  {
+    "id": 8,
+    "title": "Voltas 1.5 Ton 3 Star Inverter AC",
+    "image": "https://images.unsplash.com/photo-1620784044841-9b1b93368335?w=400&h=400&fit=crop",
+    "price": 30990,
+    "originalPrice": 45990,
+    "discount": 33,
+    "rating": 4.0,
+    "brand": "Voltas",
+    "category": "Appliances"
+  },
+  {
+    "id": 9,
+    "title": "Apple iPhone 15 Pro Max",
+    "image": "https://images.unsplash.com/photo-1695906326628-6986959ad67e?w=400&h=400&fit=crop",
+    "price": 119999,
+    "originalPrice": 139900,
+    "discount": 14,
+    "rating": 4.8,
+    "brand": "Apple",
+    "category": "Mobiles"
+  },
+  {
+    "id": 10,
+    "title": "Bose Soundbar 700",
+    "image": "https://images.unsplash.com/photo-1611040951329-071286f63841?w=400&h=400&fit=crop",
+    "price": 39990,
+    "originalPrice": 49990,
+    "discount": 20,
+    "rating": 4.4,
+    "brand": "Bose",
+    "category": "Electronics"
+  },
+  {
+    "id": 11,
+    "title": "Carrier 1.5 Ton 5 Star Inverter Split AC",
+    "image": "https://images.unsplash.com/photo-1588872657578-9b316656783e?w=400&h=400&fit=crop",
+    "price": 37990,
+    "originalPrice": 55990,
+    "discount": 32,
+    "rating": 4.3,
+    "brand": "Carrier",
+    "category": "Appliances"
+  },
+  {
+    "id": 12,
+    "title": "Mi Smart Band 9",
+    "image": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop",
+    "price": 3499,
+    "originalPrice": 4999,
+    "discount": 30,
+    "rating": 4.2,
+    "brand": "Xiaomi",
+    "category": "Electronics"
+  }
+]

@@ -1,0 +1,1 @@
+- [x] Step 3: Edit DynamicFreshSubcategory.jsx type 'chips' → 'chips-biscuits'\n- [x] Step 4: Test /fresh/chips-biscuits
