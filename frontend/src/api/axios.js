@@ -2,7 +2,7 @@ import axios from "axios";
 
 const API = axios.create({
     baseURL: "http://localhost:5000/api",
-    timeout: 30000, // 30s timeout for 2.1M dataset scans
+    timeout: 60000, // 👈 60s timeout for optimized large dataset queries
     paramsSerializer: (params) => {
         // Handle complex query params cleanly
         return Object.keys(params)
@@ -33,7 +33,10 @@ API.interceptors.response.use(
         return response;
     },
     (error) => {
-        console.error('API Error:', error.config?.url, error.response?.status, error.response?.data?.message);
+        const url = error.config?.url || 'unknown';
+        const status = error.response?.status || 'unknown';
+        const message = error.response?.data?.message || error.message || 'Unknown error';
+        console.error(`API Error: ${url} ${status} ${message}`);
         
         // Handle common errors
         if (error.response?.status === 401) {
@@ -41,9 +44,9 @@ API.interceptors.response.use(
             window.location.href = '/login';
         }
         
-        // Large dataset timeout handling
+        // Optimized timeout handling
         if (error.code === 'ECONNABORTED') {
-            console.error('Request timeout - dataset too large?');
+            console.error(`Request timeout (${error.config?.timeout || 60000}ms) - query too broad? Add category/search filters.`);
         }
         
         return Promise.reject(error);

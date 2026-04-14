@@ -86,8 +86,13 @@ exports.getProduct = asyncHandler(async (req, res) => {
     query.title = { $regex: "\\b(rice|basmati|sona masoori|brown rice)\\b", $options: "i" };
   }
 
-  if (type === "whole-grains") {
-    query.title = { $regex: "\\b(whole grain|grains|wheat|oats|barley|quinoa|millets?)\\b", $options: "i" };
+  if (type === "whole-grains" || type === "whole grains") {
+    query.$or = [
+      { title: /wheat|atta|oats|millet|quinoa|barley|multigrain|ragi/i },
+      { name: /wheat|atta|oats|millet|quinoa|barley|multigrain|ragi/i }
+    ];
+
+    query.categoryName = "Grocery";
   }
 
   if (type === "poha") {
@@ -107,13 +112,6 @@ exports.getProduct = asyncHandler(async (req, res) => {
   // ❗ IMPORTANT: Avoid conflict with regex
   if (search && search.trim() && !["atta-flour", "rice", "wholegrain", "whole-grains", "poha", "millet", "tea-coffee-drinks", "chips-biscuits"].includes(type)) {
     query.$text = { $search: search.trim() };
-  }
-
-  if (type === "wholegrain") {
-    query.title = {
-      $regex: "\\b(whole wheat|wholegrain|multigrain|oats|millet|ragi|quinoa|barley)\\b",
-      $options: "i"
-    };
   }
 
   if (type === "poha") {
@@ -143,6 +141,44 @@ exports.getProduct = asyncHandler(async (req, res) => {
       $options: "i"
     };
   }
+
+  if (type === "bath") {
+    query.categoryName = { $regex: /personal care|bath/i };
+
+    query.$or = [
+      { title: /soap|shampoo|conditioner|lotion|bodywash|facewash/i },
+      { name: /soap|shampoo|conditioner|lotion|bodywash|facewash/i }
+    ];
+  }
+
+  if (type === "organic") {
+    query.categoryName = "Grocery";
+
+    query.$or = [
+      { title: /organic|natural|bio|eco/i },
+      { name: /organic|natural|bio|eco/i }
+    ];
+  }
+
+  if (type === "supersaver") {
+    query.categoryName = "Grocery";
+
+    query.price = { $lte: 100 };
+
+    query.$or = [
+      { title: /combo|pack|save|offer|deal|value/i },
+      { name: /combo|pack|save|offer|deal|value/i }
+    ];
+  }
+
+  if (type === "featured") {
+  query.categoryName = "Grocery";
+
+  query.$and = [
+    { stars: { $gte: 4 } },
+    { reviews: { $gte: 50 } }
+  ];
+}
 
   // Pagination safety
   const pageNum = Math.max(1, parseInt(page));

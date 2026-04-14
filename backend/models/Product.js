@@ -62,5 +62,6 @@ productSchema.index({ categoryName: 1, subcategory: 1 });
 
 productSchema.index({ categoryName: 1, name: 1 });
 productSchema.index({ categoryName: 1, title: 1 });
+productSchema.index({ categoryName: 1, price: 1 }); // 👈 For price sorting
 
 module.exports = mongoose.model("Product", productSchema);
