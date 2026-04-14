@@ -2,7 +2,7 @@ import React from 'react';
 import ProductCard from './ProductCard';
 import { fashionProducts } from '../data/amazonFashion';
 
-const ProductGrid = ({ title, cols = 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4', loading = false }) => {
+const ProductGrid = ({ title, products = [], cols = 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4', loading = false }) => {
   if (loading) {
     return (
       <section className="mb-16">
@@ -27,9 +27,9 @@ const ProductGrid = ({ title, cols = 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 
         <h2 className="text-2xl font-bold text-gray-900 mb-8">{title}</h2>
       )}
       <div className={`grid ${cols} gap-6`}>
-        {fashionProducts.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+        {products?.map((product) => (
+          <ProductCard key={product._id || product.id} product={product} />
+        )) || <p className="col-span-full text-center text-gray-500 py-8">No products found</p>}
       </div>
     </section>
   );

@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Fresh from "./pages/Fresh/Fresh";
 import SellOnMarket from "./pages/SellOnMarket";
 import Bestsellers from "./pages/Bestsellers";
+import BestsellerCategory from "./pages/BestsellerCategory";
 import Login from "./pages/Login";
 import ProductDetails from "./pages/ProductDetails";
 import Register from "./pages/Register";
@@ -53,7 +54,8 @@ function App() {
         <Route path="/fresh/millets" element={<Millets/>}/>
         <Route path="/fresh/whole grains" element={<WholeGrains/>}/>
         <Route path="/sell" element={<SellOnMarket/>}/>
-        <Route path="/bestsellers" element={<Bestsellers/>}/>
+<Route path="/bestsellers" element={<Bestsellers/>}/>
+        <Route path="/bestsellers/:category" element={<BestsellerCategory />} />
         <Route path="/login" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/>
         <Route path="/product/:id" element={<ProductDetails/>}/>

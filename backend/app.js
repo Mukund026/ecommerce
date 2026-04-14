@@ -5,6 +5,7 @@ const cors = require("cors");
 const rateLimit = require("express-rate-limit");
 const swaggerUI = require("swagger-ui-express");
 const swaggerSpec = require("./config/swagger");
+const bestsellerRoutes = require("./routes/bestsellerRoutes");
 
 const app = express();
 
@@ -39,7 +40,7 @@ app.use("/api/products", require("./routes/productRoutes"));
 app.use("/api/orders", require("./routes/orderRoutes"));
 app.use("/api/admin", require("./routes/adminRoutes"));
 app.use("/api/cart", require("./routes/cartRoutes"));
-
+app.use("/api/bestsellers", bestsellerRoutes);
 
 
 
