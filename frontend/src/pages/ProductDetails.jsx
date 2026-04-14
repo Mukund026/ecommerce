@@ -1,7 +1,9 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useParams, Link } from "react-router-dom";
+import ProductCard from "../components/ProductCard";
 import { AuthContext } from "../context/AuthContext";
-import FreshProductCard from "../components/FreshProductCard";
+import ProductGrid from "../components/ProductGrid";
+import { useProducts } from "../hooks/useProducts";
 import toast from "react-hot-toast";
 import axios from "../api/axios";
 import { allFreshProducts } from "../data/products";
@@ -42,18 +44,25 @@ const ProductDetails = () => {
           rating: response.data.stars || response.data.data.stars,
           reviews: response.data.reviews || response.data.data.reviews,
           description: response.data.description || response.data.data.description,
+          categoryName: response.data.categoryName || response.data.data.categoryName,
           id: response.data._id || response.data.data._id
         };
         setProduct(productData);
 
-        const similarRes = await axios.get('/products');
-        const similar = (similarRes.data || similarRes.data.data || []).slice(0, 6).map(p => ({
+        // Fetch similar products AFTER product data is ready
+        const categoryName = productData.categoryName || 'Grocery';
+        const similarRes = await axios.get(`/products?categoryName=${encodeURIComponent(categoryName)}&limit=8`, { timeout: 5000 });
+        const similar = (similarRes.data?.products || similarRes.data || similarRes.data?.data || []).slice(0, 6).filter(p => p._id !== productData._id).map(p => ({
           ...p,
-          name: p.title || p.name,
+          name: p.title || p.name || p.name,
           image: p.image || p.imgUrl,
-          id: p._id
+          originalPrice: p.listPrice || p.originalPrice || p.price * 1.2,
+          id: p._id,
+          rating: p.stars || 4.2,
+          reviews: p.reviews || 127
         }));
         setSimilarProducts(similar);
+        console.log('Similar products loaded:', similar.length, 'from category:', categoryName);
       } catch (error) {
         console.error('Backend fetch failed:', error);
       } finally {
@@ -159,12 +168,12 @@ const ProductDetails = () => {
       {/* Similar Products */}
       {similarProducts.length > 0 && (
         <div className="mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">
-            Similar Products
+          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+            Similar Products You Might Like
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
             {similarProducts.map((similar) => (
-              <FreshProductCard key={similar.id} product={similar} />
+              <ProductCard key={similar._id || similar.id} product={similar} />
             ))}
           </div>
         </div>
