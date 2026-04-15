@@ -13,7 +13,7 @@ const Bestsellers = () => {
   const categoryMap = {
     "Jewellery": ["Women's Jewelry"],
     "Shoes & Handbags": ["Women's Handbags"],
-    "Beauty": ["Beauty"],
+    "Beauty": ["Skin Care Products"],
     "Electronics": ["Electronics"],
     "Garden & Outdoors": ["Garden Structures  Germination Equipment"],
     "Sports, Fitness & Outdoors": ["Sport Specific Clothing"]
@@ -33,7 +33,14 @@ const Bestsellers = () => {
     setSectionErrors(prev => ({ ...prev, [frontendCat]: null }));
 
     try {
-      const res = await axios.get(`/bestsellers?category=${encodeURIComponent(categoryMap[frontendCat])}&limit=5`, { timeout: 10000 });
+      const categories = categoryMap[frontendCat];
+      const res = await axios.get("/bestsellers", {
+        params: {
+          category: categories.join(","),
+          limit: 5
+        },
+        timeout: 10000
+      });
 
       setSectionData(prev => ({
         ...prev,
@@ -44,7 +51,8 @@ const Bestsellers = () => {
           rating: product.stars,
           id: product._id,
           isBestSeller: true,
-          originalPrice: product.listPrice || product.price * 1.2
+          originalPrice: (product.listPrice || product.price * 1.2) * 83,
+          price: product.price * 83
         }))
       }));
     } catch (err) {

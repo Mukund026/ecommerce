@@ -6,11 +6,11 @@ const { getDashboardStats } = require("../controllers/adminController");
 const express = require("express");
 const router = express.Router();
 const { createProduct, getProduct, updateProduct, deleteProduct, getProductById, getRiceProducts } = require("../controllers/productController");
-const { seedProducts, resetSeedProducts } = require("../controllers/seedController");
+/* const { seedProducts, resetSeedProducts } = require("../controllers/seedController"); */
 
 // Seed routes - for development only (no auth required)
-router.get("/seed", seedProducts);
-router.get("/seed/reset", resetSeedProducts);
+/* router.get("/seed", seedProducts); */
+/* router.get("/seed/reset", resetSeedProducts); */
 router.post("/", protect, adminOnly, createProduct);
 router.get("/", getProduct);
 router.get("/:id", getProductById);

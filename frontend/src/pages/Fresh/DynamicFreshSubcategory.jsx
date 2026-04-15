@@ -24,13 +24,21 @@ const DynamicFreshSubcategory = () => {
     'tea-coffee-drink-mixes': { type: 'tea-coffee-drinks', title: 'Tea, Coffee & Drink Mixes' },
     'chips-biscuits': { type: 'chips-biscuits', title: 'Chips & Biscuits' },
     'bath-body': { type: 'bath', title: 'Bath & Body' },
+    'fruits-vegetables': { type: 'fruits-vegetables', title: 'Fruits & Vegetables' },
+    'rice-atta-dal': { type: 'rice-atta-dal', title: 'Rice, Atta & Dal' },
+    'oil-ghee': { type: 'oil-ghee', title: 'Oil & Ghee' },
+    'milk-dairy': { type: 'milk-dairy', title: 'Milk & Dairy' },
+    'bakery-bread': { type: 'bakery-bread', title: 'Bakery & Bread' },
+    'eggs-meat-fish': { type: 'eggs-meat-fish', title: 'Eggs, Meat & Fish' },
+    'spices-seasonings': { type: 'spices-seasonings', title: 'Spices & Seasonings' },
+    'snacks-biscuits': { type: 'snacks-biscuits', title: 'Snacks & Biscuits' }
   };
 
-  const config = subcategoryMap[subcategory] || { type: subcategory.replace(/-/g, ' '), title: subcategory.replace(/-/g, ' ').toUpperCase() };
+  const config = subcategoryMap[subcategory] || { type: subcategory, title: subcategory.replace(/-/g, ' ').toUpperCase() };
 
   const { products, loading, error, refetch, totalPages, currentPage, fetchNext, fetchPrev } = useProducts({
     categoryName: 'Grocery',
-    type: config.type,
+    ...config,
     page: 1,
     limit: 20
   });

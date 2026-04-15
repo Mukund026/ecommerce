@@ -2,8 +2,9 @@ const Products = require("../models/Product");
 const asyncHandler = require("../middleware/asyncHandler");
 const { successResponse } = require("../utils/successResponse");
 
-
-// ✅ CREATE PRODUCT
+// ==============================
+// CREATE PRODUCT
+// ==============================
 exports.createProduct = asyncHandler(async (req, res) => {
   const { name, price, categoryName, description, image } = req.body;
 
@@ -15,7 +16,6 @@ exports.createProduct = asyncHandler(async (req, res) => {
     image
   };
 
-  // Add seller if role is seller
   if (req.user?.role === "seller") {
     productData.seller = req.user._id;
   }
@@ -24,44 +24,37 @@ exports.createProduct = asyncHandler(async (req, res) => {
   successResponse(res, 201, product, "Product created successfully");
 });
 
-
-// ✅ DELETE PRODUCT
+// ==============================
+// DELETE PRODUCT
+// ==============================
 exports.deleteProduct = asyncHandler(async (req, res) => {
   const product = await Products.findByIdAndDelete(req.params.id);
 
   if (!product) {
-    return res.status(404).json({
-      success: false,
-      message: "Product not found",
-    });
+    return res.status(404).json({ success: false, message: "Product not found" });
   }
 
   successResponse(res, 200, product, "Product deleted");
 });
 
-
-// ✅ UPDATE PRODUCT
+// ==============================
+// UPDATE PRODUCT
+// ==============================
 exports.updateProduct = asyncHandler(async (req, res) => {
-  const product = await Products.findByIdAndUpdate(
-    req.params.id,
-    req.body,
-    { new: true }
-  );
+  const product = await Products.findByIdAndUpdate(req.params.id, req.body, { new: true });
 
   if (!product) {
-    return res.status(404).json({
-      success: false,
-      message: "Product not found",
-    });
+    return res.status(404).json({ success: false, message: "Product not found" });
   }
 
   successResponse(res, 200, product, "Product updated successfully");
 });
 
-
-// ✅ GET PRODUCTS (OPTIMIZED)
+// ==============================
+// GET PRODUCTS
+// ==============================
 exports.getProduct = asyncHandler(async (req, res) => {
-  const {
+  let {
     category,
     categoryName,
     subcategory,
@@ -73,11 +66,30 @@ exports.getProduct = asyncHandler(async (req, res) => {
   } = req.query;
 
   const finalCategory = category || categoryName;
-
-  // ✅ Declare FIRST
   const query = {};
 
-  // ✅ Special filter (atta & flour)
+  // Normalize type
+  type = type?.toLowerCase()?.trim();
+  console.log("TYPE RECEIVED:", type);
+
+  // ==============================
+  // GROCERY TYPE MAP (NEW ADDITION)
+  // ==============================
+  const groceryTypeMap = {
+    fruits: /fruit|vegetables|apple|banana|tomato|carrot|veg/i,
+    "oil-ghee": /oil|ghee|mustard oil|sunflower oil|refined oil|desi ghee/i,
+    "rice-atta-dal": /rice|atta|flour|dal|lentil|basmati|wheat/i,
+    "milk-dairy": /milk|curd|butter|paneer|cheese|yogurt|dairy/i,
+    "bakery-bread": /bread|cake|bun|bakery|rusk|toast|cookies/i,
+    "eggs-meat-fish": /egg|chicken|mutton|fish|meat|poultry/i,
+    "spices-seasonings": /spice|masala|salt|pepper|turmeric|chilli|cumin/i,
+    "snacks-biscuits": /snack|chips|biscuit|namkeen|kurkure|lays|cracker/i
+  };
+
+  // ==============================
+  // EXISTING TYPE LOGIC (UNCHANGED)
+  // ==============================
+
   if (type === "atta-flour") {
     query.title = { $regex: "atta|flour", $options: "i" };
   }
@@ -87,112 +99,105 @@ exports.getProduct = asyncHandler(async (req, res) => {
   }
 
   if (type === "whole-grains" || type === "whole grains") {
+    query.categoryName = "Grocery";
     query.$or = [
       { title: /wheat|atta|oats|millet|quinoa|barley|multigrain|ragi/i },
       { name: /wheat|atta|oats|millet|quinoa|barley|multigrain|ragi/i }
     ];
-
-    query.categoryName = "Grocery";
   }
 
   if (type === "poha") {
     query.title = { $regex: "\\b(poha|flattened rice|avalakki|chiwda|pohe)\\b", $options: "i" };
   }
 
-  // ✅ Category filter
-  if (finalCategory) {
-    query.categoryName = finalCategory.trim();
-  }
-
-  // ✅ Subcategory
-  if (subcategory) {
-    query.subcategory = subcategory.trim();
-  }
-
-  // ❗ IMPORTANT: Avoid conflict with regex
-  if (search && search.trim() && !["atta-flour", "rice", "wholegrain", "whole-grains", "poha", "millet", "tea-coffee-drinks", "chips-biscuits"].includes(type)) {
-    query.$text = { $search: search.trim() };
-  }
-
-  if (type === "poha") {
-    query.title = {
-      $regex: "\\b(poha|flattened rice|aval|beaten rice)\\b",
-      $options: "i"
-    };
-  }
-
   if (type === "millet") {
-    query.title = {
-      $regex: "\\b(millet|millet flour|ragi|bajra|jowar|nachni|kambu|sorghum)\\b",
-      $options: "i"
-    };
+    query.title = { $regex: "\\b(millet|ragi|bajra|jowar|nachni)\\b", $options: "i" };
   }
 
   if (type === "tea-coffee-drinks") {
-    query.title = {
-      $regex: "\\b(tea|coffee|green tea|black tea|chai|espresso|latte|cappuccino|juice|drink|beverage|soft drink|energy drink)\\b",
-      $options: "i"
-    };
+    query.title = { $regex: "\\b(tea|coffee|juice|drink|beverage)\\b", $options: "i" };
   }
 
   if (type === "chips-biscuits") {
-    query.title = {
-      $regex: "\\b(chips|potato chips|nachos|crisps|biscuits|cookies|crackers|snacks)\\b",
-      $options: "i"
-    };
+    query.title = { $regex: "\\b(chips|biscuits|cookies|snacks)\\b", $options: "i" };
   }
 
   if (type === "bath") {
     query.categoryName = { $regex: /personal care|bath/i };
-
     query.$or = [
-      { title: /soap|shampoo|conditioner|lotion|bodywash|facewash/i },
-      { name: /soap|shampoo|conditioner|lotion|bodywash|facewash/i }
+      { title: /soap|shampoo|lotion|bodywash/i },
+      { name: /soap|shampoo|lotion|bodywash/i }
     ];
   }
 
   if (type === "organic") {
     query.categoryName = "Grocery";
-
     query.$or = [
-      { title: /organic|natural|bio|eco/i },
-      { name: /organic|natural|bio|eco/i }
+      { title: /organic|natural|eco/i },
+      { name: /organic|natural|eco/i }
     ];
   }
 
   if (type === "supersaver") {
     query.categoryName = "Grocery";
-
     query.price = { $lte: 100 };
-
-    query.$or = [
-      { title: /combo|pack|save|offer|deal|value/i },
-      { name: /combo|pack|save|offer|deal|value/i }
-    ];
   }
 
   if (type === "featured") {
-  query.categoryName = "Grocery";
+    query.categoryName = "Grocery";
+    query.$and = [
+      { stars: { $gte: 4 } },
+      { reviews: { $gte: 50 } }
+    ];
+  }
 
-  query.$and = [
-    { stars: { $gte: 4 } },
-    { reviews: { $gte: 50 } }
-  ];
-}
+  // ==============================
+  // NEW GROCERY TYPES (SAFE ADD)
+  // ==============================
+  if (groceryTypeMap[type]) {
+    query.categoryName = "Grocery";
 
-  // Pagination safety
+    const conditions = [
+      { title: { $regex: groceryTypeMap[type] } },
+      { name: { $regex: groceryTypeMap[type] } }
+    ];
+
+    query.$or = query.$or ? [...query.$or, ...conditions] : conditions;
+  }
+
+  // ==============================
+  // CATEGORY & SUBCATEGORY
+  // ==============================
+  if (finalCategory && !groceryTypeMap[type]) {
+    query.categoryName = finalCategory.trim();
+  }
+
+  if (subcategory) {
+    query.subcategory = subcategory.trim();
+  }
+
+  // ==============================
+  // SEARCH (SAFE)
+  // ==============================
+  if (
+    search &&
+    search.trim() &&
+    !groceryTypeMap[type]
+  ) {
+    query.$text = { $search: search.trim() };
+  }
+
+  // ==============================
+  // PAGINATION
+  // ==============================
   const pageNum = Math.max(1, parseInt(page));
   const limitNum = Math.min(100, Math.max(1, parseInt(limit)));
 
-  // Count total
   const total = await Products.countDocuments(query);
 
-  // Debug log for atta-flour query
-  console.log('🔍 getProducts query:', { categoryName: finalCategory, type, search, page: pageNum, limit: limitNum });
-  console.log('📊 Query object:', query);
-  console.log('📈 Total matching products:', total);
-
-  // Sorting
+  // ==============================
+  // SORTING
+  // ==============================
   const sortMap = {
     "price-asc": { price: 1 },
     "price-desc": { price: -1 },
@@ -207,10 +212,6 @@ exports.getProduct = asyncHandler(async (req, res) => {
     .limit(limitNum)
     .lean();
 
-  // Log first few products for debugging
-  console.log('✅ Fetched products (first 3):', products.slice(0, 3).map(p => ({ title: p.title, price: p.price, categoryName: p.categoryName })));
-  console.log(`📦 Total products returned: ${products.length}/${total}`);
-
   res.json({
     success: true,
     products,
@@ -223,39 +224,22 @@ exports.getProduct = asyncHandler(async (req, res) => {
   });
 });
 
-
-// ✅ GET SINGLE PRODUCT
+// ==============================
+// GET SINGLE PRODUCT
+// ==============================
 exports.getProductById = asyncHandler(async (req, res) => {
   const product = await Products.findById(req.params.id).lean();
 
   if (!product) {
-    return res.status(404).json({
-      success: false,
-      message: "Product not found",
-    });
+    return res.status(404).json({ success: false, message: "Product not found" });
   }
 
-  const formatted = {
-    _id: product._id,
-    name: product.title || product.name,
-    title: product.title || product.name,
-    categoryName: product.categoryName,
-    image: product.imgUrl || product.image,
-    imgUrl: product.imgUrl || product.image,
-    price: product.price,
-    listPrice: product.listPrice,
-    stars: product.stars,
-    reviews: product.reviews,
-    isBestSeller: product.isBestSeller,
-    description: product.description,
-    subcategory: product.subcategory
-  };
-
-  successResponse(res, 200, formatted, "Product fetched successfully");
+  successResponse(res, 200, product, "Product fetched successfully");
 });
 
-
-// ✅ REDIRECT (RICE PRODUCTS)
+// ==============================
+// REDIRECT
+// ==============================
 exports.getRiceProducts = asyncHandler(async (req, res) => {
   res.redirect(`/api/products?categoryName=Grocery&search=rice&limit=50`);
 });

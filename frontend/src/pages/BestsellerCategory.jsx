@@ -20,17 +20,22 @@ const BestsellerCategory = () => {
       try {
         setLoading(true);
         const categoryMap = {
-          "Jewellery": "Fashion",
-          "Shoes & Handbags": "Fashion",
-          "Beauty": "Beauty",
-          "Electronics": "Electronics",
-          "Garden & Outdoors": "Garden & Outdoors",
-          "Sports, Fitness & Outdoors": "Sports"
+          "Jewellery": ["Women's Jewelry"],
+          "Shoes & Handbags": ["Women's Handbags"],
+          "Beauty": ["Skin Care Products"],
+          "Electronics": ["Electronics"],
+          "Garden & Outdoors": ["Garden Structures  Germination Equipment"],
+          "Sports, Fitness & Outdoors": ["Sport Specific Clothing"]
         };
         const dbCategory = categoryMap[category] || category;
-        const res = await axios.get(
-          `/bestsellers?category=${encodeURIComponent(dbCategory)}&page=${page}&limit=${limit}`
-        );
+        const categories = categoryMap[category] || [category];
+        const res = await axios.get("/bestsellers", {
+          params: {
+            category: categories.join(","),
+            page,
+            limit
+          }
+        });
 
         setProducts(res.data.products.map(product => ({
           ...product,
@@ -39,7 +44,8 @@ const BestsellerCategory = () => {
           rating: product.stars,
           id: product._id,
           isBestSeller: true,
-          originalPrice: product.listPrice || product.price * 1.2
+          originalPrice: (product.listPrice || product.price * 1.2) * 83,
+          price: product.price * 83
         })));
         setTotalPages(res.data.totalPages);
         setTotal(res.data.total);
@@ -67,19 +73,19 @@ const BestsellerCategory = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-12">
-        <Link 
-          to="/bestsellers" 
+        <Link
+          to="/bestsellers"
           className="inline-block mb-8 text-orange-600 hover:text-orange-700 font-semibold flex items-center"
         >
           ← Back to Bestsellers
         </Link>
         <SectionTitle title={`Bestsellers in ${category}`} subtitle={`Showing ${total} results`} />
-        <ProductGrid 
-          products={products.map((product, index) => ({ ...product, rank: (page - 1) * limit + index + 1 }))} 
+        <ProductGrid
+          products={products.map((product, index) => ({ ...product, rank: (page - 1) * limit + index + 1 }))}
           cols="grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"
           loading={false}
         />
-{totalPages > 1 && (
+        {totalPages > 1 && (
           <div className="mt-12 flex justify-center items-center space-x-2 bg-white p-4 rounded-xl shadow-lg">
             <button
               onClick={() => setPage(p => Math.max(1, p - 1))}
@@ -88,19 +94,21 @@ const BestsellerCategory = () => {
             >
               Previous
             </button>
-            {Array.from({length: totalPages}, (_, i) => i + 1).map(p => (
-              <button
-                key={p}
-                onClick={() => setPage(p)}
-                className={`px-3 py-2 rounded-lg font-semibold transition-all ${
-                  page === p 
-                    ? 'bg-orange-500 text-white shadow-lg' 
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
-              >
-                {p}
-              </button>
-            ))}
+{Array.from({ length: Math.min(10, totalPages) }, (_, i) => {
+                const pageNum = i + 1;
+                return (
+                  <button
+                    key={pageNum}
+                    onClick={() => setPage(pageNum)}
+                    className={`px-3 py-2 rounded-lg font-semibold transition-all ${page === pageNum
+                      ? 'bg-orange-500 text-white shadow-lg'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      }`}
+                  >
+                    {pageNum}
+                  </button>
+                );
+              })}
             <button
               onClick={() => setPage(p => Math.min(totalPages, p + 1))}
               disabled={page === totalPages}
@@ -116,3 +124,4 @@ const BestsellerCategory = () => {
 };
 
 export default BestsellerCategory;
+
