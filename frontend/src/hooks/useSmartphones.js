@@ -1,0 +1,42 @@
+import { useState, useEffect } from 'react';
+import API from '../api/axios.js';
+import { useProducts } from './useProducts'; // Reuse normalization
+
+// Custom hook for /api/smartphones endpoint
+export const useSmartphones = (params = {}) => {
+  const [data, setData] = useState({ products: [], loading: true, error: null, totalPages: 0 });
+
+  const fetchSmartphones = async (pageParams = {}) => {
+    try {
+      setData(prev => ({ ...prev, loading: true, error: null }));
+      
+      const response = await API.get('/smartphones', { 
+        params: { 
+          ...params, 
+          ...pageParams,
+          limit: params.limit || 100 
+        } 
+      });
+
+      const { products, totalPages } = response.data;
+      setData({ products, totalPages, loading: false, error: null });
+    } catch (err) {
+      console.error('Smartphones fetch error:', err);
+      setData({ products: [], loading: false, error: err.response?.data?.message || 'Failed to fetch smartphones' });
+    }
+  };
+
+  useEffect(() => {
+    fetchSmartphones({ page: 1 });
+  }, []);
+
+  const refetch = () => fetchSmartphones();
+
+  return { 
+    smartphones: data.products, 
+    loading: data.loading, 
+    error: data.error, 
+    totalPages: data.totalPages, 
+    refetch 
+  };
+};

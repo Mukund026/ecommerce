@@ -87,9 +87,9 @@ const Cart = () => {
                 <div className="flex items-start gap-4 flex-1 min-w-0">
                   {/* Product Image & Badges */}
                   <div className="relative flex-shrink-0">
-                    <img 
-                      src={item.product?.image || item.product?.imgUrl || 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=200&h=200&fit=crop'}
-                      alt={item.product?.name || item.product?.title || 'Product'}
+                      <img 
+                      src={item.product?.image || item.product?.imgUrl || item.product?.images_links?.[0] || 'https://via.placeholder.com/96x96/6B7280/FFFFFF?text=?'}
+                      alt={item.product?.name || item.product?.title || item.product?.names || 'Product'}
                       className="w-24 h-24 object-cover rounded-xl shadow-md"
                       onError={(e) => { 
                         e.target.src = 'https://via.placeholder.com/96x96/6B7280/FFFFFF?text=?'; 
@@ -105,8 +105,8 @@ const Cart = () => {
                   
                   {/* Product Details */}
                   <div className="flex-1 min-w-0 space-y-1">
-                    <h3 className="font-bold text-gray-900 line-clamp-2 leading-tight hover:text-orange-600 transition-colors">
-                      {item.product?.name || item.product?.title || 'Product Name'}
+                      <h3 className="font-bold text-gray-900 line-clamp-2 leading-tight hover:text-orange-600 transition-colors">
+                      {item.product?.name || item.product?.title || item.product?.names || 'Product Name'}
                     </h3>
                     
                     {/* Rating */}

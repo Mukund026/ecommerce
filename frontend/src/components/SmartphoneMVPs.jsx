@@ -1,6 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
-import { smartphoneMVPs } from "../data/smartphones";
 import { Link } from "react-router-dom";
 
 import "swiper/css";
@@ -24,7 +23,20 @@ const RatingStars = ({ rating }) => {
   );
 };
 
-const SmartphoneMVPs = () => {
+const SmartphoneMVPs = ({ products = [] }) => {
+  const displayProducts = products || [];
+  if (!displayProducts.length) {
+    return (
+      <div className="bg-white rounded-lg shadow-sm p-4 mb-6">
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-xl font-bold text-gray-800">SMARTPHONES MVPs</h2>
+          <Link to="/" className="text-sm text-blue-600 hover:underline">See all offers</Link>
+        </div>
+        <div className="text-gray-500 text-center py-8">No smartphones available at the moment</div>
+      </div>
+    );
+  }
+
   return (
     <div className="bg-white rounded-lg shadow-sm p-4 mb-6">
       <div className="flex items-center justify-between mb-4">
@@ -46,46 +58,35 @@ const SmartphoneMVPs = () => {
         }}
         className="pb-8"
       >
-        {smartphoneMVPs.map((phone) => (
-          <SwiperSlide key={phone.id}>
-            <Link to={`/product/${phone.id}`} className="block group">
+        {displayProducts.slice(0, 6).map((phone) => (
+          <SwiperSlide key={phone._id || phone.id}>
+            <Link to={`/product/${phone._id || phone.id}`} className="block group">
               <div className="border rounded p-3 hover:border-orange-400 transition-colors h-full">
-                {/* Discount Badge */}
                 <div className="mb-2">
                   <span className="bg-orange-500 text-white text-xs font-bold px-2 py-0.5 rounded-sm">
-                    {phone.discount}% off
+                    {Math.round(phone.discount)}% off
                   </span>
                 </div>
-                
-                {/* Image */}
                 <div className="h-32 md:h-40 mb-3 flex items-center justify-center">
                   <img
-                    src={phone.image}
-                    alt={phone.name}
-                    className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform"
+                    src={phone.image || phone.imgUrl}
+                    alt={phone.name || phone.title}
+                    className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-200"
                   />
                 </div>
-                
-                {/* Brand */}
-                <p className="text-xs text-gray-500 mb-1">{phone.brand}</p>
-                
-                {/* Name */}
+                <p className="text-xs text-gray-500 mb-1 uppercase tracking-wide">{phone.brand}</p>
                 <p className="text-sm font-medium text-gray-800 line-clamp-2 mb-2 group-hover:text-blue-600">
-                  {phone.name}
+                  {phone.name || phone.title}
                 </p>
-                
-                {/* Rating */}
                 <div className="mb-2">
-                  <RatingStars rating={phone.rating} />
+                  <RatingStars rating={phone.stars || phone.rating || 4.5} />
                 </div>
-                
-                {/* Price */}
                 <div className="flex items-center gap-2">
                   <span className="text-lg font-bold text-gray-900">
-                    ₹{phone.price.toLocaleString('en-IN')}
+                    ₹{phone.price?.toLocaleString('en-IN') || '0'}
                   </span>
                   <span className="text-sm text-gray-500 line-through">
-                    ₹{phone.originalPrice.toLocaleString('en-IN')}
+                    ₹{(phone.originalPrice || phone.listPrice)?.toLocaleString('en-IN') || '0'}
                   </span>
                 </div>
               </div>
@@ -98,4 +99,3 @@ const SmartphoneMVPs = () => {
 };
 
 export default SmartphoneMVPs;
-

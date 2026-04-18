@@ -2,8 +2,8 @@
   {
     "name": "Aashirvaad Premium Atta 1kg",
     "title": "Aashirvaad Premium Atta 1kg",
-    "price": 89,
-    "listPrice": 120,
+    "price": 7387,
+    "listPrice": 826680,
     "category": "Atta",
     "categoryName": "Atta",
     "image": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=250&h=250&fit=crop&crop=center",
@@ -11,13 +11,14 @@
     "stars": 4.6,
     "reviews": 1245,
     "isBestSeller": true,
-    "description": ""
+    "description": "",
+    "originalPrice": 826680
   },
   {
     "name": "Bansi Refined Flour 1kg",
     "title": "Bansi Refined Flour 1kg",
-    "price": 95,
-    "listPrice": 130,
+    "price": 7885,
+    "listPrice": 895570,
     "category": "Atta",
     "categoryName": "Atta",
     "image": "https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=250&h=250&fit=crop&crop=center",
@@ -25,13 +26,14 @@
     "stars": 4.3,
     "reviews": 856,
     "isBestSeller": false,
-    "description": ""
+    "description": "",
+    "originalPrice": 895570
   },
   {
     "name": "Nature's Best Whole Wheat 1kg",
     "title": "Nature's Best Whole Wheat 1kg",
-    "price": 112,
-    "listPrice": 150,
+    "price": 9296,
+    "listPrice": 1033350,
     "category": "Atta",
     "categoryName": "Atta",
     "image": "https://cdn.shopify.com/s/files/1/0619/6514/0218/files/flour-6-slider.png?v=1641301889",
@@ -39,13 +41,14 @@
     "stars": 4.5,
     "reviews": 2034,
     "isBestSeller": true,
-    "description": ""
+    "description": "",
+    "originalPrice": 1033350
   },
   {
     "name": "Organic Wheat Flour 1kg",
     "title": "Organic Wheat Flour 1kg",
-    "price": 129,
-    "listPrice": 180,
+    "price": 10707,
+    "listPrice": 1240020,
     "category": "Atta",
     "categoryName": "Atta",
     "image": "https://sunlightindiangrocery.com/wp-content/uploads/2023/05/whole-wheat-flour-near-me-ceres-Indian-grocery.jpg",
@@ -53,13 +56,14 @@
     "stars": 4.7,
     "reviews": 1678,
     "isBestSeller": false,
-    "description": ""
+    "description": "",
+    "originalPrice": 1240020
   },
   {
     "name": "Premium Chakki Atta 1kg",
     "title": "Premium Chakki Atta 1kg",
-    "price": 78,
-    "listPrice": 110,
+    "price": 6474,
+    "listPrice": 757790,
     "category": "Atta",
     "categoryName": "Atta",
     "image": "https://th.bing.com/th/id/OIP.WNJr64R7pUnksbd7HDovXQHaHH?w=218&h=210&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3",
@@ -67,13 +71,14 @@
     "stars": 4.4,
     "reviews": 945,
     "isBestSeller": true,
-    "description": ""
+    "description": "",
+    "originalPrice": 757790
   },
   {
     "name": "Superfine Wheat Flour 1kg",
     "title": "Superfine Wheat Flour 1kg",
-    "price": 102,
-    "listPrice": 140,
+    "price": 8466,
+    "listPrice": 964460,
     "category": "Atta",
     "categoryName": "Atta",
     "image": "https://mir-s3-cdn-cf.behance.net/project_modules/fs/873ba076917223.5c77e2603967c.jpg",
@@ -81,13 +86,14 @@
     "stars": 4.2,
     "reviews": 1123,
     "isBestSeller": false,
-    "description": ""
+    "description": "",
+    "originalPrice": 964460
   },
   {
     "name": "Fortune Premium Atta 1kg",
     "title": "Fortune Premium Atta 1kg",
-    "price": 98,
-    "listPrice": 135,
+    "price": 8134,
+    "listPrice": 930015,
     "category": "Atta",
     "categoryName": "Atta",
     "image": "https://images-eu.ssl-images-amazon.com/images/I/61j9O-TjvRL.AC_SL240_.jpg",
@@ -95,13 +101,14 @@
     "stars": 4.6,
     "reviews": 2345,
     "isBestSeller": true,
-    "description": ""
+    "description": "",
+    "originalPrice": 930015
   },
   {
     "name": "Aashirvaad Select Atta 5kg",
     "title": "Aashirvaad Select Atta 5kg",
-    "price": 380,
-    "listPrice": 500,
+    "price": 31540,
+    "listPrice": 3444500,
     "category": "Atta",
     "categoryName": "Atta",
     "image": "https://th.bing.com/th/id/OIP.Si_CTr7torIxJw4TmbS2rgHaG8?w=228&h=213&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3",
@@ -109,13 +116,14 @@
     "stars": 4.8,
     "reviews": 4567,
     "isBestSeller": true,
-    "description": ""
+    "description": "",
+    "originalPrice": 3444500
   },
   {
     "name": "Bajaj Wheat Flour 1kg",
     "title": "Bajaj Wheat Flour 1kg",
-    "price": 72,
-    "listPrice": 100,
+    "price": 5976,
+    "listPrice": 688900,
     "category": "Atta",
     "categoryName": "Atta",
     "image": "https://images.unsplash.com/photo-1621939514649-280e2ee25f60?w=250&h=250&fit=crop&crop=center",
@@ -123,13 +131,14 @@
     "stars": 4.1,
     "reviews": 789,
     "isBestSeller": false,
-    "description": ""
+    "description": "",
+    "originalPrice": 688900
   },
   {
     "name": "Organic Multigrain Flour 1kg",
     "title": "Organic Multigrain Flour 1kg",
-    "price": 145,
-    "listPrice": 200,
+    "price": 12035,
+    "listPrice": 1377800,
     "category": "Atta",
     "categoryName": "Atta",
     "image": "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=250&h=250&fit=crop&crop=center",
@@ -137,13 +146,14 @@
     "stars": 4.7,
     "reviews": 1890,
     "isBestSeller": true,
-    "description": ""
+    "description": "",
+    "originalPrice": 1377800
   },
   {
     "name": "India Gate Basmati Rice 1kg",
     "title": "India Gate Basmati Rice 1kg",
-    "price": 199,
-    "listPrice": 250,
+    "price": 16517,
+    "listPrice": 1722250,
     "category": "Rice",
     "categoryName": "Rice",
     "image": "https://images-eu.ssl-images-amazon.com/images/I/71DxlWUHWUL.AC_SL240_.jpg",
@@ -151,6 +161,7 @@
     "stars": 4.5,
     "reviews": 3456,
     "isBestSeller": true,
-    "description": ""
+    "description": "",
+    "originalPrice": 1722250
   }
 ]

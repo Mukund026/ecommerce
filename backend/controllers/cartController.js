@@ -4,7 +4,7 @@ const { successResponse } = require("../utils/successResponse");
 
 // Get user cart
 exports.getCart = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.user._id).populate("cart.product");
+  const user = await User.findById(req.user._id).populate("cart.product", "name title image imgUrl price listPrice stars reviews");
   successResponse(res, 200, user.cart, "Cart fetched successfully");
 });
 
@@ -28,8 +28,8 @@ exports.addToCart = asyncHandler(async (req, res) => {
 
   await user.save();
   
-  // Populate the cart to return full product details
-  const updatedUser = await User.findById(req.user._id).populate("cart.product");
+// Populate the cart to return full product details (name, image, price)
+  const updatedUser = await User.findById(req.user._id).populate("cart.product", "name title image imgUrl price listPrice stars reviews");
   successResponse(res, 200, updatedUser.cart, "Item added to cart successfully");
 });
 
@@ -44,7 +44,7 @@ exports.removeFromCart = asyncHandler(async (req, res) => {
 
   await user.save();
   
-  const updatedUser = await User.findById(req.user._id).populate("cart.product");
+  const updatedUser = await User.findById(req.user._id).populate("cart.product", "name title image imgUrl price listPrice stars reviews");
   successResponse(res, 200, updatedUser.cart, "Item removed from cart successfully");
 });
 
@@ -73,7 +73,7 @@ exports.updateCartItem = asyncHandler(async (req, res) => {
 
   await user.save();
   
-  const updatedUser = await User.findById(req.user._id).populate("cart.product");
+  const updatedUser = await User.findById(req.user._id).populate("cart.product", "name title image imgUrl price listPrice stars reviews");
   successResponse(res, 200, updatedUser.cart, "Cart updated successfully");
 });
 

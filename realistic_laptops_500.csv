@@ -1,0 +1,501 @@
+id,name,brand,price,processor,ram,storage,screen,image
+1,Apple MacBook Air M2,Apple,155675,M2,16GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Apple+laptop
+2,Lenovo Yoga Slim 7,Lenovo,46244,Intel i5,16GB,256GB SSD,14 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+3,Apple MacBook Pro 14,Apple,109956,M2,32GB,512GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Apple+laptop
+4,HP Victus Gaming,HP,128298,Intel i5,8GB,1TB SSD,16 inch,https://source.unsplash.com/400x300/?HP+laptop
+5,Acer Aspire 7,Acer,61059,Ryzen 7,8GB,512GB SSD,16 inch,https://source.unsplash.com/400x300/?Acer+laptop
+6,MSI Modern 14,MSI,77496,Ryzen 5,16GB,256GB SSD,13.3 inch,https://source.unsplash.com/400x300/?MSI+laptop
+7,Lenovo Yoga Slim 7,Lenovo,127866,Ryzen 5,16GB,512GB SSD,14 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+8,Lenovo ThinkPad E14,Lenovo,79425,Ryzen 7,8GB,1TB SSD,14 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+9,Asus VivoBook 15,Asus,118844,Ryzen 5,8GB,256GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Asus+laptop
+10,Lenovo ThinkPad E14,Lenovo,140671,Intel i7,16GB,1TB SSD,14 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+11,MSI Modern 14,MSI,176881,Intel i5,8GB,512GB SSD,16 inch,https://source.unsplash.com/400x300/?MSI+laptop
+12,HP Pavilion 15,HP,159546,Intel i7,32GB,1TB SSD,16 inch,https://source.unsplash.com/400x300/?HP+laptop
+13,Acer Nitro 5,Acer,138347,Intel i7,32GB,1TB SSD,16 inch,https://source.unsplash.com/400x300/?Acer+laptop
+14,Apple MacBook Air M2,Apple,69067,M2,32GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Apple+laptop
+15,Lenovo Legion 5,Lenovo,168279,Intel i7,32GB,1TB SSD,16 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+16,Lenovo ThinkPad E14,Lenovo,51465,Ryzen 7,32GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+17,Dell G15 Gaming,Dell,98455,Ryzen 7,32GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?Dell+laptop
+18,Apple MacBook Pro 13,Apple,78157,M1,32GB,1TB SSD,14 inch,https://source.unsplash.com/400x300/?Apple+laptop
+19,Apple MacBook Pro 13,Apple,86485,M2,16GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?Apple+laptop
+20,Asus ZenBook 14,Asus,81106,Ryzen 5,32GB,512GB SSD,16 inch,https://source.unsplash.com/400x300/?Asus+laptop
+21,MSI Katana GF66,MSI,92239,Intel i5,16GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?MSI+laptop
+22,MSI GF63 Thin,MSI,53820,Intel i5,16GB,256GB SSD,14 inch,https://source.unsplash.com/400x300/?MSI+laptop
+23,HP Pavilion 15,HP,154586,Ryzen 7,32GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?HP+laptop
+24,Asus ZenBook 14,Asus,125014,Ryzen 5,8GB,1TB SSD,16 inch,https://source.unsplash.com/400x300/?Asus+laptop
+25,HP Victus Gaming,HP,175547,Intel i7,32GB,1TB SSD,16 inch,https://source.unsplash.com/400x300/?HP+laptop
+26,Apple MacBook Pro 14,Apple,164653,M1,16GB,1TB SSD,16 inch,https://source.unsplash.com/400x300/?Apple+laptop
+27,Acer Aspire 7,Acer,78426,Intel i7,16GB,512GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Acer+laptop
+28,Dell Inspiron 15 3511,Dell,65314,Ryzen 5,32GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?Dell+laptop
+29,HP Envy x360,HP,47590,Ryzen 5,32GB,1TB SSD,14 inch,https://source.unsplash.com/400x300/?HP+laptop
+30,Asus ZenBook 14,Asus,176988,Ryzen 5,8GB,256GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Asus+laptop
+31,Acer Predator Helios 300,Acer,75573,Intel i5,32GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?Acer+laptop
+32,HP Envy x360,HP,135227,Ryzen 5,32GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?HP+laptop
+33,Acer Swift 3,Acer,135906,Ryzen 7,32GB,256GB SSD,14 inch,https://source.unsplash.com/400x300/?Acer+laptop
+34,Lenovo Legion 5,Lenovo,47081,Ryzen 5,8GB,1TB SSD,14 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+35,Apple MacBook Air M1,Apple,42977,M1,16GB,512GB SSD,14 inch,https://source.unsplash.com/400x300/?Apple+laptop
+36,Dell G15 Gaming,Dell,124257,Ryzen 7,32GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Dell+laptop
+37,Acer Swift 3,Acer,148202,Ryzen 5,32GB,512GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Acer+laptop
+38,Acer Predator Helios 300,Acer,45610,Intel i7,32GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Acer+laptop
+39,Dell XPS 13,Dell,139354,Ryzen 7,32GB,1TB SSD,16 inch,https://source.unsplash.com/400x300/?Dell+laptop
+40,Dell G15 Gaming,Dell,143673,Intel i7,8GB,1TB SSD,14 inch,https://source.unsplash.com/400x300/?Dell+laptop
+41,Apple MacBook Pro 14,Apple,58048,M2,32GB,1TB SSD,16 inch,https://source.unsplash.com/400x300/?Apple+laptop
+42,MSI Stealth 15M,MSI,109339,Ryzen 5,8GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?MSI+laptop
+43,Dell XPS 13,Dell,81607,Intel i7,16GB,512GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Dell+laptop
+44,HP Pavilion 15,HP,112198,Intel i5,8GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?HP+laptop
+45,Asus ROG Strix G15,Asus,108025,Ryzen 5,8GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?Asus+laptop
+46,Lenovo Legion 5,Lenovo,88271,Intel i7,16GB,1TB SSD,16 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+47,MSI Stealth 15M,MSI,148582,Intel i5,32GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?MSI+laptop
+48,Dell G15 Gaming,Dell,137490,Intel i7,32GB,1TB SSD,16 inch,https://source.unsplash.com/400x300/?Dell+laptop
+49,Lenovo IdeaPad 3,Lenovo,75477,Intel i5,32GB,512GB SSD,16 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+50,Lenovo Yoga Slim 7,Lenovo,50099,Ryzen 7,8GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+51,MSI Katana GF66,MSI,65809,Ryzen 7,8GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?MSI+laptop
+52,Lenovo IdeaPad 3,Lenovo,103339,Ryzen 5,32GB,512GB SSD,14 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+53,MSI Katana GF66,MSI,127558,Intel i5,8GB,512GB SSD,16 inch,https://source.unsplash.com/400x300/?MSI+laptop
+54,Lenovo ThinkPad E14,Lenovo,160599,Intel i7,8GB,1TB SSD,14 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+55,Apple MacBook Pro 14,Apple,149984,M2,8GB,512GB SSD,14 inch,https://source.unsplash.com/400x300/?Apple+laptop
+56,Lenovo Legion 5,Lenovo,53629,Intel i5,8GB,1TB SSD,16 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+57,HP Victus Gaming,HP,177200,Ryzen 5,8GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?HP+laptop
+58,Lenovo Yoga Slim 7,Lenovo,118703,Ryzen 7,16GB,512GB SSD,14 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+59,Dell XPS 13,Dell,130969,Intel i5,8GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?Dell+laptop
+60,MSI GF63 Thin,MSI,85664,Intel i7,32GB,512GB SSD,15.6 inch,https://source.unsplash.com/400x300/?MSI+laptop
+61,Dell Vostro 14 3400,Dell,97104,Ryzen 7,32GB,512GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Dell+laptop
+62,Apple MacBook Pro 14,Apple,96078,M2,8GB,512GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Apple+laptop
+63,Dell G15 Gaming,Dell,43575,Ryzen 5,32GB,512GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Dell+laptop
+64,Acer Aspire 7,Acer,96847,Intel i7,8GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Acer+laptop
+65,HP Envy x360,HP,89961,Ryzen 7,32GB,256GB SSD,13.3 inch,https://source.unsplash.com/400x300/?HP+laptop
+66,Lenovo ThinkPad E14,Lenovo,176232,Intel i7,16GB,512GB SSD,16 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+67,MSI Katana GF66,MSI,147232,Intel i7,16GB,512GB SSD,16 inch,https://source.unsplash.com/400x300/?MSI+laptop
+68,MSI Katana GF66,MSI,146893,Intel i7,8GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?MSI+laptop
+69,HP Victus Gaming,HP,144926,Intel i7,32GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?HP+laptop
+70,Apple MacBook Air M2,Apple,102686,M1,16GB,256GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Apple+laptop
+71,Apple MacBook Air M1,Apple,90092,M1,16GB,512GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Apple+laptop
+72,Lenovo Legion 5,Lenovo,49918,Intel i5,32GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+73,Dell G15 Gaming,Dell,71668,Ryzen 5,16GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?Dell+laptop
+74,HP Envy x360,HP,143607,Intel i5,16GB,512GB SSD,13.3 inch,https://source.unsplash.com/400x300/?HP+laptop
+75,Lenovo Legion 5,Lenovo,176128,Intel i5,32GB,1TB SSD,14 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+76,Dell Inspiron 15 3511,Dell,102665,Intel i5,16GB,256GB SSD,14 inch,https://source.unsplash.com/400x300/?Dell+laptop
+77,HP Victus Gaming,HP,79625,Intel i5,8GB,1TB SSD,14 inch,https://source.unsplash.com/400x300/?HP+laptop
+78,MSI Katana GF66,MSI,84395,Ryzen 5,16GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?MSI+laptop
+79,HP Victus Gaming,HP,102651,Intel i7,32GB,256GB SSD,13.3 inch,https://source.unsplash.com/400x300/?HP+laptop
+80,Apple MacBook Air M1,Apple,173265,M2,16GB,256GB SSD,14 inch,https://source.unsplash.com/400x300/?Apple+laptop
+81,Apple MacBook Air M1,Apple,140796,M2,8GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?Apple+laptop
+82,Apple MacBook Pro 13,Apple,125689,M2,8GB,256GB SSD,14 inch,https://source.unsplash.com/400x300/?Apple+laptop
+83,Dell Vostro 14 3400,Dell,166446,Intel i5,8GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Dell+laptop
+84,Asus VivoBook 15,Asus,106011,Ryzen 5,8GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?Asus+laptop
+85,Lenovo Legion 5,Lenovo,130415,Intel i5,32GB,256GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+86,MSI GF63 Thin,MSI,59627,Ryzen 7,8GB,512GB SSD,15.6 inch,https://source.unsplash.com/400x300/?MSI+laptop
+87,Asus ZenBook 14,Asus,113560,Intel i5,32GB,256GB SSD,14 inch,https://source.unsplash.com/400x300/?Asus+laptop
+88,Dell Inspiron 15 3511,Dell,45378,Ryzen 7,32GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Dell+laptop
+89,Acer Aspire 7,Acer,131788,Ryzen 5,8GB,1TB SSD,16 inch,https://source.unsplash.com/400x300/?Acer+laptop
+90,Apple MacBook Pro 14,Apple,45292,M2,16GB,1TB SSD,14 inch,https://source.unsplash.com/400x300/?Apple+laptop
+91,Apple MacBook Pro 14,Apple,148487,M1,8GB,512GB SSD,16 inch,https://source.unsplash.com/400x300/?Apple+laptop
+92,Asus TUF F15,Asus,137712,Ryzen 5,16GB,512GB SSD,16 inch,https://source.unsplash.com/400x300/?Asus+laptop
+93,Asus ZenBook 14,Asus,70650,Ryzen 5,32GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?Asus+laptop
+94,Apple MacBook Pro 13,Apple,176775,M2,32GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?Apple+laptop
+95,Lenovo Yoga Slim 7,Lenovo,154702,Ryzen 5,16GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+96,Dell XPS 13,Dell,57954,Ryzen 7,8GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?Dell+laptop
+97,HP Victus Gaming,HP,135169,Ryzen 5,16GB,256GB SSD,13.3 inch,https://source.unsplash.com/400x300/?HP+laptop
+98,Lenovo Legion 5,Lenovo,120648,Ryzen 5,8GB,256GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+99,Acer Aspire 7,Acer,49146,Ryzen 5,32GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?Acer+laptop
+100,HP Spectre x360,HP,133581,Ryzen 5,8GB,256GB SSD,13.3 inch,https://source.unsplash.com/400x300/?HP+laptop
+101,Asus TUF F15,Asus,176917,Ryzen 5,8GB,512GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Asus+laptop
+102,MSI Stealth 15M,MSI,149310,Ryzen 7,16GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?MSI+laptop
+103,Dell Vostro 14 3400,Dell,102299,Intel i5,16GB,256GB SSD,14 inch,https://source.unsplash.com/400x300/?Dell+laptop
+104,MSI GF63 Thin,MSI,50828,Ryzen 5,8GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?MSI+laptop
+105,Dell XPS 13,Dell,170960,Intel i5,32GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?Dell+laptop
+106,Dell XPS 13,Dell,54010,Intel i5,8GB,256GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Dell+laptop
+107,MSI Stealth 15M,MSI,86813,Intel i5,32GB,1TB SSD,14 inch,https://source.unsplash.com/400x300/?MSI+laptop
+108,Dell G15 Gaming,Dell,45716,Intel i5,16GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?Dell+laptop
+109,Acer Predator Helios 300,Acer,131815,Ryzen 5,16GB,256GB SSD,14 inch,https://source.unsplash.com/400x300/?Acer+laptop
+110,Apple MacBook Pro 14,Apple,52666,M1,16GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?Apple+laptop
+111,Apple MacBook Air M1,Apple,88183,M1,16GB,512GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Apple+laptop
+112,Lenovo Yoga Slim 7,Lenovo,47899,Intel i7,8GB,512GB SSD,16 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+113,Acer Swift 3,Acer,106342,Ryzen 5,32GB,512GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Acer+laptop
+114,Acer Swift 3,Acer,81680,Intel i5,32GB,512GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Acer+laptop
+115,Lenovo ThinkPad E14,Lenovo,121111,Ryzen 5,32GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+116,Lenovo ThinkPad E14,Lenovo,168039,Ryzen 5,8GB,512GB SSD,14 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+117,Dell XPS 13,Dell,143113,Ryzen 5,32GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Dell+laptop
+118,HP Pavilion 15,HP,74994,Ryzen 7,8GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?HP+laptop
+119,Lenovo IdeaPad 3,Lenovo,134797,Intel i5,16GB,1TB SSD,16 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+120,Apple MacBook Pro 14,Apple,134169,M1,16GB,1TB SSD,14 inch,https://source.unsplash.com/400x300/?Apple+laptop
+121,Apple MacBook Air M2,Apple,59695,M2,8GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Apple+laptop
+122,Asus ZenBook 14,Asus,82881,Ryzen 7,8GB,1TB SSD,16 inch,https://source.unsplash.com/400x300/?Asus+laptop
+123,Asus ZenBook 14,Asus,119395,Ryzen 7,16GB,256GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Asus+laptop
+124,Asus VivoBook 15,Asus,104378,Intel i7,8GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?Asus+laptop
+125,HP Spectre x360,HP,114720,Ryzen 5,32GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?HP+laptop
+126,Dell XPS 13,Dell,162254,Intel i7,8GB,1TB SSD,16 inch,https://source.unsplash.com/400x300/?Dell+laptop
+127,Apple MacBook Air M1,Apple,146185,M1,32GB,512GB SSD,14 inch,https://source.unsplash.com/400x300/?Apple+laptop
+128,Apple MacBook Air M1,Apple,88899,M1,8GB,1TB SSD,14 inch,https://source.unsplash.com/400x300/?Apple+laptop
+129,Dell G15 Gaming,Dell,156042,Intel i7,32GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?Dell+laptop
+130,MSI GF63 Thin,MSI,44606,Intel i5,8GB,1TB SSD,14 inch,https://source.unsplash.com/400x300/?MSI+laptop
+131,Asus VivoBook 15,Asus,75009,Ryzen 5,32GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?Asus+laptop
+132,Apple MacBook Air M1,Apple,44063,M1,16GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?Apple+laptop
+133,Apple MacBook Air M1,Apple,121507,M1,16GB,512GB SSD,14 inch,https://source.unsplash.com/400x300/?Apple+laptop
+134,MSI GF63 Thin,MSI,133523,Ryzen 5,8GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?MSI+laptop
+135,Asus VivoBook 15,Asus,129266,Intel i5,32GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Asus+laptop
+136,Asus ZenBook 14,Asus,153215,Ryzen 5,16GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?Asus+laptop
+137,MSI GF63 Thin,MSI,99700,Ryzen 7,32GB,1TB SSD,16 inch,https://source.unsplash.com/400x300/?MSI+laptop
+138,Acer Predator Helios 300,Acer,89697,Ryzen 5,8GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?Acer+laptop
+139,Apple MacBook Air M2,Apple,165767,M1,32GB,1TB SSD,14 inch,https://source.unsplash.com/400x300/?Apple+laptop
+140,Asus VivoBook 15,Asus,96816,Ryzen 5,32GB,512GB SSD,16 inch,https://source.unsplash.com/400x300/?Asus+laptop
+141,Acer Predator Helios 300,Acer,162229,Ryzen 5,32GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?Acer+laptop
+142,Lenovo Legion 5,Lenovo,143240,Intel i5,16GB,1TB SSD,14 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+143,Asus ZenBook 14,Asus,96785,Intel i7,8GB,512GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Asus+laptop
+144,HP Victus Gaming,HP,117683,Intel i7,32GB,1TB SSD,14 inch,https://source.unsplash.com/400x300/?HP+laptop
+145,HP Pavilion 15,HP,41711,Intel i7,16GB,512GB SSD,14 inch,https://source.unsplash.com/400x300/?HP+laptop
+146,Asus TUF F15,Asus,166751,Intel i7,8GB,1TB SSD,14 inch,https://source.unsplash.com/400x300/?Asus+laptop
+147,Dell Inspiron 15 3511,Dell,135864,Ryzen 5,8GB,256GB SSD,14 inch,https://source.unsplash.com/400x300/?Dell+laptop
+148,MSI Katana GF66,MSI,83768,Ryzen 5,32GB,512GB SSD,16 inch,https://source.unsplash.com/400x300/?MSI+laptop
+149,Acer Aspire 7,Acer,102560,Ryzen 5,16GB,512GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Acer+laptop
+150,MSI Stealth 15M,MSI,124599,Ryzen 5,8GB,512GB SSD,14 inch,https://source.unsplash.com/400x300/?MSI+laptop
+151,MSI Modern 14,MSI,55661,Ryzen 5,32GB,512GB SSD,16 inch,https://source.unsplash.com/400x300/?MSI+laptop
+152,Dell Vostro 14 3400,Dell,150947,Intel i5,16GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Dell+laptop
+153,Apple MacBook Air M2,Apple,98453,M2,16GB,256GB SSD,14 inch,https://source.unsplash.com/400x300/?Apple+laptop
+154,Asus ROG Strix G15,Asus,53153,Intel i7,8GB,1TB SSD,14 inch,https://source.unsplash.com/400x300/?Asus+laptop
+155,Dell Inspiron 15 3511,Dell,116851,Ryzen 5,8GB,256GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Dell+laptop
+156,Lenovo Legion 5,Lenovo,81684,Ryzen 7,8GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+157,Asus VivoBook 15,Asus,164187,Ryzen 5,16GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?Asus+laptop
+158,Asus TUF F15,Asus,178239,Intel i5,8GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?Asus+laptop
+159,Dell Vostro 14 3400,Dell,54496,Intel i7,32GB,512GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Dell+laptop
+160,Acer Nitro 5,Acer,133443,Intel i5,16GB,1TB SSD,16 inch,https://source.unsplash.com/400x300/?Acer+laptop
+161,Acer Nitro 5,Acer,118241,Ryzen 7,16GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?Acer+laptop
+162,MSI Modern 14,MSI,156850,Ryzen 7,16GB,256GB SSD,14 inch,https://source.unsplash.com/400x300/?MSI+laptop
+163,Apple MacBook Air M1,Apple,80417,M2,8GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?Apple+laptop
+164,MSI GF63 Thin,MSI,80668,Intel i7,16GB,1TB SSD,16 inch,https://source.unsplash.com/400x300/?MSI+laptop
+165,Acer Nitro 5,Acer,107330,Intel i5,8GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?Acer+laptop
+166,Lenovo Yoga Slim 7,Lenovo,135842,Intel i7,16GB,512GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+167,HP Victus Gaming,HP,46556,Intel i7,8GB,512GB SSD,13.3 inch,https://source.unsplash.com/400x300/?HP+laptop
+168,Acer Aspire 7,Acer,93366,Ryzen 5,32GB,256GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Acer+laptop
+169,MSI Stealth 15M,MSI,137679,Ryzen 7,32GB,512GB SSD,15.6 inch,https://source.unsplash.com/400x300/?MSI+laptop
+170,Apple MacBook Pro 13,Apple,162730,M2,16GB,1TB SSD,14 inch,https://source.unsplash.com/400x300/?Apple+laptop
+171,Dell XPS 13,Dell,72418,Ryzen 5,8GB,512GB SSD,16 inch,https://source.unsplash.com/400x300/?Dell+laptop
+172,Acer Swift 3,Acer,160666,Ryzen 5,8GB,256GB SSD,14 inch,https://source.unsplash.com/400x300/?Acer+laptop
+173,Asus VivoBook 15,Asus,122533,Ryzen 7,32GB,1TB SSD,14 inch,https://source.unsplash.com/400x300/?Asus+laptop
+174,HP Envy x360,HP,95011,Ryzen 7,16GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?HP+laptop
+175,Asus VivoBook 15,Asus,169156,Ryzen 7,16GB,512GB SSD,16 inch,https://source.unsplash.com/400x300/?Asus+laptop
+176,HP Pavilion 15,HP,56389,Ryzen 5,16GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?HP+laptop
+177,Acer Predator Helios 300,Acer,100812,Intel i7,8GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Acer+laptop
+178,MSI Katana GF66,MSI,74621,Ryzen 7,32GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?MSI+laptop
+179,Dell XPS 13,Dell,177271,Ryzen 5,8GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?Dell+laptop
+180,Dell Vostro 14 3400,Dell,146350,Ryzen 5,8GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?Dell+laptop
+181,Lenovo ThinkPad E14,Lenovo,102558,Ryzen 7,16GB,256GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+182,HP Victus Gaming,HP,78731,Ryzen 7,8GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?HP+laptop
+183,Apple MacBook Air M1,Apple,126427,M1,16GB,512GB SSD,14 inch,https://source.unsplash.com/400x300/?Apple+laptop
+184,HP Envy x360,HP,71683,Ryzen 5,8GB,512GB SSD,14 inch,https://source.unsplash.com/400x300/?HP+laptop
+185,Dell XPS 13,Dell,62749,Intel i7,8GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?Dell+laptop
+186,Asus ZenBook 14,Asus,166615,Ryzen 5,8GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?Asus+laptop
+187,MSI Katana GF66,MSI,75335,Intel i7,16GB,512GB SSD,15.6 inch,https://source.unsplash.com/400x300/?MSI+laptop
+188,Asus VivoBook 15,Asus,65384,Ryzen 7,8GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Asus+laptop
+189,MSI Katana GF66,MSI,160513,Intel i7,16GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?MSI+laptop
+190,HP Pavilion 15,HP,167567,Ryzen 5,8GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?HP+laptop
+191,Asus VivoBook 15,Asus,152830,Ryzen 5,8GB,256GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Asus+laptop
+192,Asus TUF F15,Asus,100898,Intel i5,8GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?Asus+laptop
+193,Dell G15 Gaming,Dell,76244,Ryzen 5,8GB,1TB SSD,14 inch,https://source.unsplash.com/400x300/?Dell+laptop
+194,HP Pavilion 15,HP,82572,Ryzen 7,8GB,512GB SSD,15.6 inch,https://source.unsplash.com/400x300/?HP+laptop
+195,Acer Aspire 7,Acer,173653,Ryzen 7,8GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?Acer+laptop
+196,Asus VivoBook 15,Asus,54102,Ryzen 5,32GB,512GB SSD,14 inch,https://source.unsplash.com/400x300/?Asus+laptop
+197,Lenovo Yoga Slim 7,Lenovo,148797,Ryzen 7,32GB,1TB SSD,16 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+198,Acer Nitro 5,Acer,68131,Intel i7,32GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?Acer+laptop
+199,HP Spectre x360,HP,124469,Intel i7,32GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?HP+laptop
+200,Apple MacBook Air M2,Apple,91761,M1,32GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?Apple+laptop
+201,Lenovo ThinkPad E14,Lenovo,111911,Ryzen 7,16GB,256GB SSD,14 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+202,Dell G15 Gaming,Dell,153508,Ryzen 5,32GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Dell+laptop
+203,Lenovo IdeaPad 3,Lenovo,149808,Ryzen 7,8GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+204,Dell Inspiron 15 3511,Dell,75942,Ryzen 5,8GB,512GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Dell+laptop
+205,Dell Inspiron 15 3511,Dell,49646,Intel i7,16GB,512GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Dell+laptop
+206,HP Spectre x360,HP,55324,Ryzen 5,16GB,512GB SSD,13.3 inch,https://source.unsplash.com/400x300/?HP+laptop
+207,Asus TUF F15,Asus,42142,Ryzen 5,16GB,512GB SSD,14 inch,https://source.unsplash.com/400x300/?Asus+laptop
+208,Asus ZenBook 14,Asus,142375,Ryzen 7,32GB,512GB SSD,14 inch,https://source.unsplash.com/400x300/?Asus+laptop
+209,Asus ZenBook 14,Asus,110995,Intel i5,16GB,1TB SSD,14 inch,https://source.unsplash.com/400x300/?Asus+laptop
+210,Acer Swift 3,Acer,174240,Ryzen 5,16GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?Acer+laptop
+211,Asus TUF F15,Asus,76700,Ryzen 5,16GB,512GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Asus+laptop
+212,Asus TUF F15,Asus,45773,Ryzen 5,32GB,512GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Asus+laptop
+213,Asus TUF F15,Asus,68378,Intel i5,16GB,1TB SSD,14 inch,https://source.unsplash.com/400x300/?Asus+laptop
+214,Apple MacBook Pro 14,Apple,175856,M1,32GB,256GB SSD,14 inch,https://source.unsplash.com/400x300/?Apple+laptop
+215,Dell Vostro 14 3400,Dell,171606,Intel i7,32GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?Dell+laptop
+216,MSI GF63 Thin,MSI,112954,Ryzen 5,8GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?MSI+laptop
+217,Lenovo ThinkPad E14,Lenovo,167788,Ryzen 7,8GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+218,Acer Predator Helios 300,Acer,50734,Intel i7,32GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?Acer+laptop
+219,Acer Nitro 5,Acer,76163,Ryzen 7,32GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Acer+laptop
+220,Lenovo Yoga Slim 7,Lenovo,128061,Intel i5,8GB,512GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+221,Lenovo Legion 5,Lenovo,172006,Intel i7,32GB,512GB SSD,16 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+222,Apple MacBook Pro 14,Apple,46051,M1,8GB,256GB SSD,14 inch,https://source.unsplash.com/400x300/?Apple+laptop
+223,Asus ZenBook 14,Asus,163664,Intel i7,8GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?Asus+laptop
+224,Asus VivoBook 15,Asus,138208,Intel i7,8GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?Asus+laptop
+225,Acer Nitro 5,Acer,62712,Ryzen 5,16GB,512GB SSD,14 inch,https://source.unsplash.com/400x300/?Acer+laptop
+226,Apple MacBook Pro 13,Apple,50090,M1,32GB,512GB SSD,14 inch,https://source.unsplash.com/400x300/?Apple+laptop
+227,Apple MacBook Pro 13,Apple,64218,M1,16GB,512GB SSD,14 inch,https://source.unsplash.com/400x300/?Apple+laptop
+228,Lenovo Legion 5,Lenovo,104998,Ryzen 7,8GB,1TB SSD,14 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+229,Lenovo Legion 5,Lenovo,75046,Intel i5,32GB,512GB SSD,14 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+230,Apple MacBook Pro 13,Apple,177838,M1,8GB,1TB SSD,14 inch,https://source.unsplash.com/400x300/?Apple+laptop
+231,Dell Vostro 14 3400,Dell,85815,Intel i7,16GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?Dell+laptop
+232,Apple MacBook Pro 14,Apple,86506,M1,32GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?Apple+laptop
+233,Dell Inspiron 15 3511,Dell,112276,Ryzen 5,16GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?Dell+laptop
+234,HP Pavilion 15,HP,125123,Intel i5,8GB,512GB SSD,16 inch,https://source.unsplash.com/400x300/?HP+laptop
+235,Asus ROG Strix G15,Asus,72981,Intel i5,16GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?Asus+laptop
+236,Apple MacBook Air M1,Apple,147132,M2,32GB,1TB SSD,14 inch,https://source.unsplash.com/400x300/?Apple+laptop
+237,Dell XPS 13,Dell,116293,Ryzen 7,32GB,512GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Dell+laptop
+238,Asus ROG Strix G15,Asus,123279,Intel i5,16GB,256GB SSD,14 inch,https://source.unsplash.com/400x300/?Asus+laptop
+239,Asus TUF F15,Asus,175821,Ryzen 7,8GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?Asus+laptop
+240,Asus ZenBook 14,Asus,163934,Intel i7,8GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?Asus+laptop
+241,Apple MacBook Air M1,Apple,104066,M2,16GB,256GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Apple+laptop
+242,Lenovo IdeaPad 3,Lenovo,88503,Ryzen 7,32GB,512GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+243,Asus ZenBook 14,Asus,156380,Ryzen 7,8GB,256GB SSD,14 inch,https://source.unsplash.com/400x300/?Asus+laptop
+244,Acer Predator Helios 300,Acer,118518,Ryzen 5,8GB,256GB SSD,14 inch,https://source.unsplash.com/400x300/?Acer+laptop
+245,HP Spectre x360,HP,138765,Ryzen 7,32GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?HP+laptop
+246,Dell XPS 13,Dell,122216,Ryzen 5,16GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Dell+laptop
+247,MSI Katana GF66,MSI,179922,Ryzen 7,8GB,512GB SSD,14 inch,https://source.unsplash.com/400x300/?MSI+laptop
+248,Dell Vostro 14 3400,Dell,54585,Ryzen 7,32GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Dell+laptop
+249,Apple MacBook Pro 14,Apple,89108,M2,16GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?Apple+laptop
+250,Dell G15 Gaming,Dell,110267,Ryzen 7,8GB,256GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Dell+laptop
+251,MSI Modern 14,MSI,174598,Ryzen 5,16GB,256GB SSD,14 inch,https://source.unsplash.com/400x300/?MSI+laptop
+252,MSI Katana GF66,MSI,40823,Intel i7,16GB,512GB SSD,14 inch,https://source.unsplash.com/400x300/?MSI+laptop
+253,Apple MacBook Air M2,Apple,89681,M1,16GB,512GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Apple+laptop
+254,Dell Vostro 14 3400,Dell,105009,Ryzen 5,16GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?Dell+laptop
+255,Dell Vostro 14 3400,Dell,156056,Ryzen 5,16GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?Dell+laptop
+256,Dell Inspiron 15 3511,Dell,154234,Ryzen 5,16GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?Dell+laptop
+257,Asus ROG Strix G15,Asus,110684,Intel i5,16GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Asus+laptop
+258,MSI GF63 Thin,MSI,80700,Intel i5,16GB,512GB SSD,15.6 inch,https://source.unsplash.com/400x300/?MSI+laptop
+259,Apple MacBook Air M2,Apple,77589,M1,8GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?Apple+laptop
+260,HP Envy x360,HP,103709,Ryzen 5,16GB,1TB SSD,14 inch,https://source.unsplash.com/400x300/?HP+laptop
+261,Asus TUF F15,Asus,131736,Ryzen 7,32GB,512GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Asus+laptop
+262,MSI Modern 14,MSI,97353,Intel i5,8GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?MSI+laptop
+263,HP Spectre x360,HP,138160,Intel i7,8GB,256GB SSD,13.3 inch,https://source.unsplash.com/400x300/?HP+laptop
+264,Lenovo IdeaPad 3,Lenovo,61620,Ryzen 5,8GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+265,Asus TUF F15,Asus,143690,Intel i7,8GB,512GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Asus+laptop
+266,Dell Inspiron 15 3511,Dell,151738,Intel i7,32GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?Dell+laptop
+267,Acer Nitro 5,Acer,59278,Ryzen 5,8GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?Acer+laptop
+268,MSI GF63 Thin,MSI,131332,Ryzen 5,16GB,1TB SSD,16 inch,https://source.unsplash.com/400x300/?MSI+laptop
+269,Dell XPS 13,Dell,102154,Intel i5,32GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?Dell+laptop
+270,HP Envy x360,HP,47807,Ryzen 7,8GB,512GB SSD,14 inch,https://source.unsplash.com/400x300/?HP+laptop
+271,Apple MacBook Pro 14,Apple,153905,M2,8GB,512GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Apple+laptop
+272,Dell Inspiron 15 3511,Dell,48411,Ryzen 5,16GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?Dell+laptop
+273,Dell Inspiron 15 3511,Dell,57196,Intel i5,8GB,512GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Dell+laptop
+274,Asus TUF F15,Asus,141998,Ryzen 7,16GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Asus+laptop
+275,Dell XPS 13,Dell,76986,Intel i7,32GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?Dell+laptop
+276,MSI GF63 Thin,MSI,73485,Intel i7,32GB,512GB SSD,15.6 inch,https://source.unsplash.com/400x300/?MSI+laptop
+277,Dell Vostro 14 3400,Dell,63889,Ryzen 5,32GB,512GB SSD,14 inch,https://source.unsplash.com/400x300/?Dell+laptop
+278,MSI Katana GF66,MSI,42651,Intel i7,32GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?MSI+laptop
+279,Acer Aspire 7,Acer,150470,Intel i7,32GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?Acer+laptop
+280,Apple MacBook Air M2,Apple,75726,M2,16GB,512GB SSD,14 inch,https://source.unsplash.com/400x300/?Apple+laptop
+281,Asus ROG Strix G15,Asus,168047,Ryzen 7,16GB,1TB SSD,14 inch,https://source.unsplash.com/400x300/?Asus+laptop
+282,MSI Katana GF66,MSI,115756,Intel i7,32GB,512GB SSD,15.6 inch,https://source.unsplash.com/400x300/?MSI+laptop
+283,MSI Katana GF66,MSI,98128,Intel i7,16GB,1TB SSD,16 inch,https://source.unsplash.com/400x300/?MSI+laptop
+284,Lenovo IdeaPad 3,Lenovo,110751,Intel i5,16GB,1TB SSD,16 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+285,MSI GF63 Thin,MSI,154599,Intel i5,8GB,512GB SSD,15.6 inch,https://source.unsplash.com/400x300/?MSI+laptop
+286,HP Victus Gaming,HP,161116,Ryzen 7,32GB,512GB SSD,15.6 inch,https://source.unsplash.com/400x300/?HP+laptop
+287,Acer Nitro 5,Acer,52761,Intel i5,32GB,256GB SSD,14 inch,https://source.unsplash.com/400x300/?Acer+laptop
+288,MSI Stealth 15M,MSI,44194,Intel i5,8GB,512GB SSD,14 inch,https://source.unsplash.com/400x300/?MSI+laptop
+289,Lenovo IdeaPad 3,Lenovo,115732,Intel i7,32GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+290,Lenovo ThinkPad E14,Lenovo,130612,Ryzen 7,8GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+291,Dell G15 Gaming,Dell,65553,Ryzen 7,16GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?Dell+laptop
+292,Acer Swift 3,Acer,71145,Ryzen 5,16GB,256GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Acer+laptop
+293,Acer Aspire 7,Acer,49365,Intel i5,16GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?Acer+laptop
+294,MSI Modern 14,MSI,68476,Ryzen 5,16GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?MSI+laptop
+295,HP Pavilion 15,HP,48542,Intel i7,32GB,512GB SSD,14 inch,https://source.unsplash.com/400x300/?HP+laptop
+296,Lenovo ThinkPad E14,Lenovo,167037,Ryzen 7,8GB,512GB SSD,16 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+297,Asus ZenBook 14,Asus,100578,Intel i7,32GB,512GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Asus+laptop
+298,Lenovo Legion 5,Lenovo,115432,Intel i7,8GB,256GB SSD,14 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+299,Acer Predator Helios 300,Acer,78976,Intel i7,8GB,512GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Acer+laptop
+300,MSI GF63 Thin,MSI,92873,Ryzen 7,32GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?MSI+laptop
+301,Apple MacBook Pro 14,Apple,110312,M2,16GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?Apple+laptop
+302,Apple MacBook Air M1,Apple,172142,M1,16GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?Apple+laptop
+303,Apple MacBook Pro 13,Apple,65728,M1,8GB,1TB SSD,16 inch,https://source.unsplash.com/400x300/?Apple+laptop
+304,Lenovo Yoga Slim 7,Lenovo,96939,Ryzen 5,32GB,1TB SSD,16 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+305,MSI Modern 14,MSI,167638,Ryzen 5,8GB,512GB SSD,13.3 inch,https://source.unsplash.com/400x300/?MSI+laptop
+306,Lenovo ThinkPad E14,Lenovo,151329,Ryzen 5,32GB,512GB SSD,14 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+307,HP Pavilion 15,HP,105383,Intel i5,16GB,1TB SSD,14 inch,https://source.unsplash.com/400x300/?HP+laptop
+308,Asus ROG Strix G15,Asus,171335,Intel i7,8GB,256GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Asus+laptop
+309,Asus ZenBook 14,Asus,179654,Intel i5,32GB,512GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Asus+laptop
+310,Asus ZenBook 14,Asus,112854,Intel i7,8GB,1TB SSD,16 inch,https://source.unsplash.com/400x300/?Asus+laptop
+311,Lenovo IdeaPad 3,Lenovo,83175,Ryzen 5,8GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+312,Dell Inspiron 15 3511,Dell,179494,Intel i7,32GB,1TB SSD,16 inch,https://source.unsplash.com/400x300/?Dell+laptop
+313,MSI GF63 Thin,MSI,101546,Ryzen 7,8GB,256GB SSD,14 inch,https://source.unsplash.com/400x300/?MSI+laptop
+314,Lenovo Legion 5,Lenovo,128295,Intel i5,16GB,512GB SSD,16 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+315,Apple MacBook Air M1,Apple,81058,M1,8GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Apple+laptop
+316,Acer Predator Helios 300,Acer,66812,Intel i7,32GB,512GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Acer+laptop
+317,HP Victus Gaming,HP,99408,Intel i5,8GB,512GB SSD,16 inch,https://source.unsplash.com/400x300/?HP+laptop
+318,Apple MacBook Pro 14,Apple,147337,M2,16GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?Apple+laptop
+319,Acer Predator Helios 300,Acer,175278,Intel i5,32GB,256GB SSD,14 inch,https://source.unsplash.com/400x300/?Acer+laptop
+320,Acer Predator Helios 300,Acer,104332,Ryzen 5,8GB,512GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Acer+laptop
+321,Dell XPS 13,Dell,116098,Intel i5,16GB,256GB SSD,14 inch,https://source.unsplash.com/400x300/?Dell+laptop
+322,HP Spectre x360,HP,42571,Intel i5,16GB,512GB SSD,14 inch,https://source.unsplash.com/400x300/?HP+laptop
+323,MSI Katana GF66,MSI,139273,Intel i7,16GB,512GB SSD,14 inch,https://source.unsplash.com/400x300/?MSI+laptop
+324,MSI Stealth 15M,MSI,133448,Ryzen 7,8GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?MSI+laptop
+325,HP Victus Gaming,HP,176872,Intel i5,8GB,1TB SSD,14 inch,https://source.unsplash.com/400x300/?HP+laptop
+326,Dell Inspiron 15 3511,Dell,59182,Intel i7,8GB,512GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Dell+laptop
+327,Acer Aspire 7,Acer,99785,Ryzen 5,32GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?Acer+laptop
+328,Asus TUF F15,Asus,63287,Intel i7,8GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Asus+laptop
+329,MSI Modern 14,MSI,122859,Ryzen 5,32GB,512GB SSD,16 inch,https://source.unsplash.com/400x300/?MSI+laptop
+330,MSI Modern 14,MSI,67730,Intel i7,16GB,1TB SSD,16 inch,https://source.unsplash.com/400x300/?MSI+laptop
+331,Lenovo Legion 5,Lenovo,126326,Ryzen 7,16GB,1TB SSD,16 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+332,Apple MacBook Pro 14,Apple,108314,M1,8GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?Apple+laptop
+333,Dell Inspiron 15 3511,Dell,48590,Ryzen 5,16GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Dell+laptop
+334,HP Envy x360,HP,86677,Intel i5,16GB,512GB SSD,13.3 inch,https://source.unsplash.com/400x300/?HP+laptop
+335,Acer Nitro 5,Acer,143545,Intel i5,16GB,512GB SSD,16 inch,https://source.unsplash.com/400x300/?Acer+laptop
+336,MSI GF63 Thin,MSI,53930,Ryzen 7,8GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?MSI+laptop
+337,Apple MacBook Air M1,Apple,96787,M2,8GB,512GB SSD,14 inch,https://source.unsplash.com/400x300/?Apple+laptop
+338,Asus ZenBook 14,Asus,141485,Intel i5,16GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?Asus+laptop
+339,Asus ZenBook 14,Asus,124443,Ryzen 7,16GB,512GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Asus+laptop
+340,Lenovo ThinkPad E14,Lenovo,53467,Intel i5,32GB,1TB SSD,14 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+341,MSI Stealth 15M,MSI,117116,Ryzen 5,8GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?MSI+laptop
+342,Asus ROG Strix G15,Asus,106342,Ryzen 5,32GB,1TB SSD,16 inch,https://source.unsplash.com/400x300/?Asus+laptop
+343,Acer Nitro 5,Acer,62681,Ryzen 7,32GB,256GB SSD,14 inch,https://source.unsplash.com/400x300/?Acer+laptop
+344,Lenovo Legion 5,Lenovo,40706,Ryzen 7,32GB,256GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+345,HP Envy x360,HP,56196,Ryzen 5,8GB,256GB SSD,13.3 inch,https://source.unsplash.com/400x300/?HP+laptop
+346,Apple MacBook Air M1,Apple,58053,M2,32GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Apple+laptop
+347,Acer Aspire 7,Acer,56432,Ryzen 5,8GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?Acer+laptop
+348,Asus ZenBook 14,Asus,42918,Ryzen 5,32GB,256GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Asus+laptop
+349,Acer Aspire 7,Acer,53577,Ryzen 7,32GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?Acer+laptop
+350,MSI Katana GF66,MSI,118219,Ryzen 7,32GB,512GB SSD,14 inch,https://source.unsplash.com/400x300/?MSI+laptop
+351,MSI Katana GF66,MSI,48351,Intel i5,32GB,1TB SSD,14 inch,https://source.unsplash.com/400x300/?MSI+laptop
+352,Asus ZenBook 14,Asus,122902,Ryzen 7,32GB,512GB SSD,14 inch,https://source.unsplash.com/400x300/?Asus+laptop
+353,HP Pavilion 15,HP,158878,Ryzen 5,8GB,512GB SSD,13.3 inch,https://source.unsplash.com/400x300/?HP+laptop
+354,Apple MacBook Pro 13,Apple,84681,M2,32GB,512GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Apple+laptop
+355,Asus ROG Strix G15,Asus,98138,Intel i5,8GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?Asus+laptop
+356,Asus ZenBook 14,Asus,154037,Intel i7,32GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?Asus+laptop
+357,MSI Modern 14,MSI,154638,Intel i7,8GB,512GB SSD,16 inch,https://source.unsplash.com/400x300/?MSI+laptop
+358,MSI GF63 Thin,MSI,75760,Intel i5,16GB,256GB SSD,13.3 inch,https://source.unsplash.com/400x300/?MSI+laptop
+359,Dell Vostro 14 3400,Dell,106681,Ryzen 5,16GB,256GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Dell+laptop
+360,Apple MacBook Pro 13,Apple,165419,M1,8GB,256GB SSD,14 inch,https://source.unsplash.com/400x300/?Apple+laptop
+361,Apple MacBook Air M2,Apple,161726,M2,8GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Apple+laptop
+362,HP Victus Gaming,HP,118805,Intel i7,16GB,1TB SSD,16 inch,https://source.unsplash.com/400x300/?HP+laptop
+363,HP Spectre x360,HP,172191,Intel i7,32GB,1TB SSD,16 inch,https://source.unsplash.com/400x300/?HP+laptop
+364,Apple MacBook Air M2,Apple,111093,M2,8GB,256GB SSD,14 inch,https://source.unsplash.com/400x300/?Apple+laptop
+365,Lenovo IdeaPad 3,Lenovo,42020,Ryzen 5,16GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+366,Apple MacBook Air M1,Apple,136805,M2,16GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?Apple+laptop
+367,HP Victus Gaming,HP,145756,Intel i7,16GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?HP+laptop
+368,MSI Modern 14,MSI,171914,Intel i5,32GB,256GB SSD,14 inch,https://source.unsplash.com/400x300/?MSI+laptop
+369,Acer Predator Helios 300,Acer,67439,Intel i5,8GB,512GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Acer+laptop
+370,Apple MacBook Pro 14,Apple,48001,M1,8GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?Apple+laptop
+371,Asus ROG Strix G15,Asus,133646,Intel i5,32GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?Asus+laptop
+372,Acer Swift 3,Acer,89809,Ryzen 5,16GB,1TB SSD,14 inch,https://source.unsplash.com/400x300/?Acer+laptop
+373,Acer Nitro 5,Acer,58278,Ryzen 7,32GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?Acer+laptop
+374,Lenovo Legion 5,Lenovo,86322,Ryzen 7,32GB,1TB SSD,14 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+375,Asus ZenBook 14,Asus,44852,Ryzen 5,32GB,512GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Asus+laptop
+376,Apple MacBook Air M1,Apple,169941,M1,32GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?Apple+laptop
+377,MSI Katana GF66,MSI,166529,Ryzen 5,16GB,256GB SSD,14 inch,https://source.unsplash.com/400x300/?MSI+laptop
+378,Acer Swift 3,Acer,131746,Ryzen 7,32GB,512GB SSD,16 inch,https://source.unsplash.com/400x300/?Acer+laptop
+379,Acer Nitro 5,Acer,168902,Intel i7,16GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Acer+laptop
+380,Dell XPS 13,Dell,99743,Intel i5,16GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Dell+laptop
+381,MSI Stealth 15M,MSI,75999,Ryzen 5,32GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?MSI+laptop
+382,MSI Katana GF66,MSI,155311,Ryzen 5,32GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?MSI+laptop
+383,Dell Inspiron 15 3511,Dell,88907,Ryzen 5,32GB,512GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Dell+laptop
+384,HP Victus Gaming,HP,131022,Ryzen 5,8GB,512GB SSD,14 inch,https://source.unsplash.com/400x300/?HP+laptop
+385,Dell XPS 13,Dell,81692,Intel i7,16GB,512GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Dell+laptop
+386,MSI Modern 14,MSI,91923,Ryzen 5,16GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?MSI+laptop
+387,Asus ZenBook 14,Asus,113736,Ryzen 5,32GB,1TB SSD,16 inch,https://source.unsplash.com/400x300/?Asus+laptop
+388,HP Envy x360,HP,106659,Ryzen 7,16GB,1TB SSD,14 inch,https://source.unsplash.com/400x300/?HP+laptop
+389,HP Envy x360,HP,48984,Intel i7,8GB,512GB SSD,14 inch,https://source.unsplash.com/400x300/?HP+laptop
+390,Asus ZenBook 14,Asus,83235,Intel i5,32GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?Asus+laptop
+391,Acer Nitro 5,Acer,55320,Intel i5,16GB,256GB SSD,14 inch,https://source.unsplash.com/400x300/?Acer+laptop
+392,Apple MacBook Air M2,Apple,102826,M2,8GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?Apple+laptop
+393,HP Envy x360,HP,76729,Intel i7,16GB,512GB SSD,14 inch,https://source.unsplash.com/400x300/?HP+laptop
+394,HP Pavilion 15,HP,127441,Intel i5,32GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?HP+laptop
+395,Apple MacBook Pro 13,Apple,91148,M1,16GB,1TB SSD,16 inch,https://source.unsplash.com/400x300/?Apple+laptop
+396,HP Spectre x360,HP,126562,Ryzen 5,32GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?HP+laptop
+397,HP Pavilion 15,HP,170122,Ryzen 7,8GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?HP+laptop
+398,MSI GF63 Thin,MSI,167713,Ryzen 5,16GB,512GB SSD,15.6 inch,https://source.unsplash.com/400x300/?MSI+laptop
+399,Lenovo Yoga Slim 7,Lenovo,160145,Intel i7,32GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+400,Acer Nitro 5,Acer,138880,Ryzen 7,16GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?Acer+laptop
+401,Lenovo Yoga Slim 7,Lenovo,110217,Ryzen 7,32GB,512GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+402,HP Victus Gaming,HP,109190,Intel i7,16GB,256GB SSD,14 inch,https://source.unsplash.com/400x300/?HP+laptop
+403,Asus VivoBook 15,Asus,142236,Ryzen 7,8GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?Asus+laptop
+404,Asus ROG Strix G15,Asus,139698,Intel i7,16GB,256GB SSD,14 inch,https://source.unsplash.com/400x300/?Asus+laptop
+405,Apple MacBook Air M2,Apple,157637,M1,16GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Apple+laptop
+406,MSI Stealth 15M,MSI,172638,Intel i5,16GB,256GB SSD,13.3 inch,https://source.unsplash.com/400x300/?MSI+laptop
+407,HP Spectre x360,HP,173231,Intel i7,8GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?HP+laptop
+408,MSI GF63 Thin,MSI,140347,Ryzen 5,8GB,512GB SSD,15.6 inch,https://source.unsplash.com/400x300/?MSI+laptop
+409,Dell G15 Gaming,Dell,133513,Ryzen 7,8GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?Dell+laptop
+410,Asus ROG Strix G15,Asus,177468,Ryzen 5,8GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?Asus+laptop
+411,Lenovo Legion 5,Lenovo,125675,Ryzen 5,8GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+412,MSI Katana GF66,MSI,52724,Intel i7,32GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?MSI+laptop
+413,Asus TUF F15,Asus,164169,Ryzen 5,32GB,1TB SSD,16 inch,https://source.unsplash.com/400x300/?Asus+laptop
+414,HP Spectre x360,HP,113409,Intel i7,32GB,256GB SSD,14 inch,https://source.unsplash.com/400x300/?HP+laptop
+415,Dell Vostro 14 3400,Dell,127100,Intel i5,32GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?Dell+laptop
+416,Dell Inspiron 15 3511,Dell,104027,Intel i7,16GB,512GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Dell+laptop
+417,MSI Modern 14,MSI,119335,Ryzen 7,16GB,512GB SSD,14 inch,https://source.unsplash.com/400x300/?MSI+laptop
+418,Dell G15 Gaming,Dell,146777,Ryzen 7,32GB,512GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Dell+laptop
+419,Asus VivoBook 15,Asus,89366,Ryzen 5,32GB,512GB SSD,16 inch,https://source.unsplash.com/400x300/?Asus+laptop
+420,Dell Inspiron 15 3511,Dell,66682,Ryzen 5,16GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?Dell+laptop
+421,Asus ZenBook 14,Asus,47293,Intel i5,32GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?Asus+laptop
+422,HP Spectre x360,HP,79631,Ryzen 7,8GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?HP+laptop
+423,Dell Inspiron 15 3511,Dell,70595,Intel i5,8GB,256GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Dell+laptop
+424,Apple MacBook Air M1,Apple,122994,M1,16GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Apple+laptop
+425,Lenovo ThinkPad E14,Lenovo,142764,Intel i7,32GB,512GB SSD,16 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+426,HP Victus Gaming,HP,139096,Intel i7,16GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?HP+laptop
+427,Acer Predator Helios 300,Acer,142463,Ryzen 7,32GB,512GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Acer+laptop
+428,HP Spectre x360,HP,102456,Intel i7,8GB,512GB SSD,13.3 inch,https://source.unsplash.com/400x300/?HP+laptop
+429,Asus TUF F15,Asus,154922,Intel i5,16GB,512GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Asus+laptop
+430,Apple MacBook Air M1,Apple,129890,M2,32GB,256GB SSD,14 inch,https://source.unsplash.com/400x300/?Apple+laptop
+431,Lenovo ThinkPad E14,Lenovo,76331,Intel i5,32GB,256GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+432,MSI GF63 Thin,MSI,150488,Ryzen 5,32GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?MSI+laptop
+433,Acer Predator Helios 300,Acer,116809,Intel i5,32GB,512GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Acer+laptop
+434,HP Envy x360,HP,44563,Ryzen 7,8GB,1TB SSD,16 inch,https://source.unsplash.com/400x300/?HP+laptop
+435,Asus TUF F15,Asus,44100,Ryzen 5,16GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Asus+laptop
+436,Dell XPS 13,Dell,77570,Intel i5,32GB,1TB SSD,14 inch,https://source.unsplash.com/400x300/?Dell+laptop
+437,Asus TUF F15,Asus,102523,Ryzen 7,16GB,512GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Asus+laptop
+438,Acer Predator Helios 300,Acer,61724,Ryzen 5,8GB,512GB SSD,16 inch,https://source.unsplash.com/400x300/?Acer+laptop
+439,Lenovo Yoga Slim 7,Lenovo,148189,Ryzen 5,8GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+440,Apple MacBook Pro 14,Apple,121197,M1,16GB,512GB SSD,16 inch,https://source.unsplash.com/400x300/?Apple+laptop
+441,HP Envy x360,HP,71363,Ryzen 7,16GB,256GB SSD,14 inch,https://source.unsplash.com/400x300/?HP+laptop
+442,Asus ZenBook 14,Asus,137087,Ryzen 7,16GB,256GB SSD,14 inch,https://source.unsplash.com/400x300/?Asus+laptop
+443,HP Victus Gaming,HP,59139,Ryzen 5,32GB,256GB SSD,13.3 inch,https://source.unsplash.com/400x300/?HP+laptop
+444,MSI Stealth 15M,MSI,46138,Ryzen 7,32GB,512GB SSD,14 inch,https://source.unsplash.com/400x300/?MSI+laptop
+445,MSI Modern 14,MSI,85112,Ryzen 5,32GB,256GB SSD,13.3 inch,https://source.unsplash.com/400x300/?MSI+laptop
+446,Apple MacBook Pro 13,Apple,67126,M2,16GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?Apple+laptop
+447,Asus ROG Strix G15,Asus,134522,Intel i5,16GB,512GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Asus+laptop
+448,MSI Katana GF66,MSI,52384,Ryzen 5,8GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?MSI+laptop
+449,Lenovo Legion 5,Lenovo,82983,Ryzen 5,16GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+450,Lenovo Yoga Slim 7,Lenovo,87448,Ryzen 7,16GB,256GB SSD,14 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+451,Acer Predator Helios 300,Acer,175614,Intel i7,32GB,1TB SSD,16 inch,https://source.unsplash.com/400x300/?Acer+laptop
+452,Lenovo Legion 5,Lenovo,42960,Intel i7,16GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+453,Dell G15 Gaming,Dell,123361,Ryzen 7,16GB,1TB SSD,14 inch,https://source.unsplash.com/400x300/?Dell+laptop
+454,MSI Modern 14,MSI,134439,Ryzen 5,16GB,512GB SSD,14 inch,https://source.unsplash.com/400x300/?MSI+laptop
+455,Acer Aspire 7,Acer,81411,Ryzen 5,16GB,256GB SSD,14 inch,https://source.unsplash.com/400x300/?Acer+laptop
+456,MSI Modern 14,MSI,161560,Intel i5,32GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?MSI+laptop
+457,HP Pavilion 15,HP,89784,Intel i7,8GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?HP+laptop
+458,Acer Predator Helios 300,Acer,179391,Intel i7,8GB,1TB SSD,14 inch,https://source.unsplash.com/400x300/?Acer+laptop
+459,Apple MacBook Air M1,Apple,176940,M1,16GB,256GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Apple+laptop
+460,Acer Swift 3,Acer,42758,Intel i7,32GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?Acer+laptop
+461,Acer Aspire 7,Acer,80576,Intel i7,16GB,512GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Acer+laptop
+462,Dell XPS 13,Dell,74617,Ryzen 5,16GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Dell+laptop
+463,Acer Aspire 7,Acer,50602,Ryzen 7,16GB,512GB SSD,14 inch,https://source.unsplash.com/400x300/?Acer+laptop
+464,Apple MacBook Air M2,Apple,160388,M2,32GB,512GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Apple+laptop
+465,Asus VivoBook 15,Asus,172044,Intel i5,8GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Asus+laptop
+466,HP Pavilion 15,HP,100851,Intel i7,16GB,512GB SSD,15.6 inch,https://source.unsplash.com/400x300/?HP+laptop
+467,Acer Aspire 7,Acer,62251,Intel i7,16GB,256GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Acer+laptop
+468,MSI Modern 14,MSI,114829,Ryzen 7,16GB,256GB SSD,13.3 inch,https://source.unsplash.com/400x300/?MSI+laptop
+469,Apple MacBook Air M2,Apple,42244,M2,8GB,256GB SSD,14 inch,https://source.unsplash.com/400x300/?Apple+laptop
+470,Apple MacBook Pro 13,Apple,64144,M1,8GB,1TB SSD,13.3 inch,https://source.unsplash.com/400x300/?Apple+laptop
+471,Apple MacBook Air M2,Apple,94335,M1,16GB,1TB SSD,16 inch,https://source.unsplash.com/400x300/?Apple+laptop
+472,MSI Stealth 15M,MSI,59483,Ryzen 5,8GB,1TB SSD,14 inch,https://source.unsplash.com/400x300/?MSI+laptop
+473,MSI Katana GF66,MSI,64728,Ryzen 7,16GB,1TB SSD,14 inch,https://source.unsplash.com/400x300/?MSI+laptop
+474,Apple MacBook Air M1,Apple,80403,M2,8GB,512GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Apple+laptop
+475,Lenovo Legion 5,Lenovo,136358,Intel i5,16GB,512GB SSD,14 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+476,Apple MacBook Air M1,Apple,125313,M2,8GB,512GB SSD,16 inch,https://source.unsplash.com/400x300/?Apple+laptop
+477,Acer Swift 3,Acer,177671,Intel i7,32GB,256GB SSD,13.3 inch,https://source.unsplash.com/400x300/?Acer+laptop
+478,Dell G15 Gaming,Dell,150965,Intel i5,16GB,512GB SSD,14 inch,https://source.unsplash.com/400x300/?Dell+laptop
+479,Apple MacBook Pro 13,Apple,58976,M2,32GB,256GB SSD,14 inch,https://source.unsplash.com/400x300/?Apple+laptop
+480,HP Spectre x360,HP,108567,Intel i5,16GB,512GB SSD,15.6 inch,https://source.unsplash.com/400x300/?HP+laptop
+481,Dell Vostro 14 3400,Dell,146997,Intel i7,16GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?Dell+laptop
+482,HP Envy x360,HP,129832,Ryzen 7,32GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?HP+laptop
+483,Asus TUF F15,Asus,146671,Ryzen 7,16GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?Asus+laptop
+484,Lenovo ThinkPad E14,Lenovo,52937,Ryzen 5,32GB,512GB SSD,16 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+485,Dell XPS 13,Dell,54259,Ryzen 7,16GB,1TB SSD,16 inch,https://source.unsplash.com/400x300/?Dell+laptop
+486,Dell G15 Gaming,Dell,127780,Intel i5,8GB,1TB SSD,14 inch,https://source.unsplash.com/400x300/?Dell+laptop
+487,Apple MacBook Air M1,Apple,73974,M2,32GB,256GB SSD,14 inch,https://source.unsplash.com/400x300/?Apple+laptop
+488,Asus VivoBook 15,Asus,126499,Intel i7,16GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Asus+laptop
+489,Dell XPS 13,Dell,150391,Intel i7,8GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?Dell+laptop
+490,Acer Swift 3,Acer,107641,Intel i7,32GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?Acer+laptop
+491,HP Envy x360,HP,66583,Intel i7,16GB,512GB SSD,15.6 inch,https://source.unsplash.com/400x300/?HP+laptop
+492,Lenovo Legion 5,Lenovo,118972,Intel i5,8GB,1TB SSD,14 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+493,Acer Aspire 7,Acer,168733,Intel i7,32GB,512GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Acer+laptop
+494,Apple MacBook Pro 13,Apple,157843,M2,8GB,1TB SSD,14 inch,https://source.unsplash.com/400x300/?Apple+laptop
+495,Acer Aspire 7,Acer,115425,Ryzen 7,16GB,256GB SSD,14 inch,https://source.unsplash.com/400x300/?Acer+laptop
+496,Lenovo ThinkPad E14,Lenovo,63240,Intel i5,8GB,256GB SSD,15.6 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+497,Lenovo ThinkPad E14,Lenovo,145325,Intel i5,8GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+498,HP Spectre x360,HP,59545,Intel i5,16GB,256GB SSD,16 inch,https://source.unsplash.com/400x300/?HP+laptop
+499,Lenovo Yoga Slim 7,Lenovo,151006,Intel i5,32GB,1TB SSD,15.6 inch,https://source.unsplash.com/400x300/?Lenovo+laptop
+500,MSI Modern 14,MSI,107808,Intel i7,16GB,512GB SSD,13.3 inch,https://source.unsplash.com/400x300/?MSI+laptop

@@ -6,24 +6,16 @@ const rateLimit = require("express-rate-limit");
 const swaggerUI = require("swagger-ui-express");
 const swaggerSpec = require("./config/swagger");
 const bestsellerRoutes = require("./routes/bestsellerRoutes");
+const smartphoneRoutes = require("./routes/smartphoneRoutes");
 
 const app = express();
-
-
-
 
 app.use(helmet());
 app.use(morgan("dev"));
 app.use(cors());
 app.use(express.json());
 
-
-
-
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerSpec));
-
-
-
 
 const loginLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -31,18 +23,14 @@ const loginLimiter = rateLimit({
   message: "Too many login attempts, please try again later",
 });
 
-
-
-
 app.use("/api/auth/login", loginLimiter);
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/products", require("./routes/productRoutes"));
 app.use("/api/orders", require("./routes/orderRoutes"));
 app.use("/api/admin", require("./routes/adminRoutes"));
 app.use("/api/cart", require("./routes/cartRoutes"));
+app.use("/api/smartphones", smartphoneRoutes);
 app.use("/api/bestsellers", bestsellerRoutes);
-
-
 
 const errorController = require("./middleware/errorMiddleware");
 app.use(errorController);

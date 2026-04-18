@@ -8,20 +8,24 @@ const FreshProductCard = ({ product }) => {
 
   const USD_TO_INR = 40;
 
-  // Fallback prices for zero-price products based on similar items (USD base)
-  let basePrice = product.price;
-  if (basePrice === 0 || !basePrice) {
+  // Fallback INR prices for zero-price DB products
+  let displayPrice = product.price || 0;
+  if (displayPrice === 0) {
     const nameLower = (product.name || '').toLowerCase();
-    if (nameLower.includes('atta') || nameLower.includes('flour')) basePrice = 1;
-    else if (nameLower.includes('rice')) basePrice = 2.4;
-    else if (nameLower.includes('milk') || nameLower.includes('dairy')) basePrice = 0.8;
-    else if (nameLower.includes('apple') || nameLower.includes('fruit')) basePrice = 2.4;
-    else if (nameLower.includes('chips') || nameLower.includes('biscuit') || nameLower.includes('snack')) basePrice = 0.47;
-    else basePrice = 1.2; // default
+    if (nameLower.includes('atta') || nameLower.includes('flour')) displayPrice = 85;
+    else if (nameLower.includes('rice')) displayPrice = 120;
+    else if (nameLower.includes('milk') || nameLower.includes('dairy')) displayPrice = 65;
+    else if (nameLower.includes('apple') || nameLower.includes('fruit') || nameLower.includes('vegetable')) displayPrice = 80;
+    else if (nameLower.includes('oil') || nameLower.includes('ghee')) displayPrice = 220;
+    else if (nameLower.includes('egg') || nameLower.includes('meat') || nameLower.includes('fish')) displayPrice = 280;
+    else if (nameLower.includes('spice') || nameLower.includes('seasoning')) displayPrice = 45;
+    else if (nameLower.includes('chip') || nameLower.includes('biscuit') || nameLower.includes('snack')) displayPrice = 35;
+    else if (nameLower.includes('bread') || nameLower.includes('bakery')) displayPrice = 55;
+    else displayPrice = 75; // default grocery
   }
-  const displayPrice = Math.round(basePrice * USD_TO_INR);
-  const displayOriginalPrice = product.originalPrice ? Math.round(product.originalPrice * USD_TO_INR) : Math.round(displayPrice * 1.2);
+  const displayOriginalPrice = product.originalPrice || Math.round(displayPrice * 1.15);
   const discount = displayOriginalPrice > displayPrice ? Math.round(((displayOriginalPrice - displayPrice) / displayOriginalPrice) * 100) : 0;
+
 
   const handleAddToCart = async (e) => {
     e.preventDefault();
@@ -41,7 +45,7 @@ const FreshProductCard = ({ product }) => {
   };
 
   return (
-    <Link to={`/product/${product.slug || 'fresh-milk-1l'}`} className="block">
+<Link to={`/product/${product._id || product.slug || product.id || 'fresh-milk-1l'}`} className="block">
 
       <div className="bg-white rounded-lg shadow-sm border p-4 hover:shadow-md transition-all duration-200 hover:-translate-y-1 group relative">
         {/* Best Seller Badge */}

@@ -5,7 +5,7 @@ import { AuthContext } from "../context/AuthContext";
 import ProductGrid from "../components/ProductGrid";
 import { useProducts } from "../hooks/useProducts";
 import toast from "react-hot-toast";
-import axios from "../api/axios";
+import API from "../api/axios";
 import { allFreshProducts } from "../data/products";
 
 const ProductDetails = () => {
@@ -30,41 +30,49 @@ const ProductDetails = () => {
       return;
     }
 
-    // Backend fetch only for ObjectIds
+    // Backend fetch - prefer /smartphones/:id first, fallback to /products/:id
     const fetchProduct = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`/products/${id}`);
+        let response;
+        try {
+          response = await API.get(`/smartphones/${id}`);
+        } catch {
+          response = await API.get(`/products/${id}`);
+        }
+        const apiData = response.data.product || response.data;
         const productData = {
-          _id: response.data._id || response.data.data._id,
-          name: response.data.name || response.data.data.title || response.data.data.name,
-          image: response.data.image || response.data.data.imgUrl,
-          price: response.data.price || response.data.data.price,
-          originalPrice: response.data.originalPrice || response.data.data.listPrice,
-          rating: response.data.stars || response.data.data.stars,
-          reviews: response.data.reviews || response.data.data.reviews,
-          description: response.data.description || response.data.data.description,
-          categoryName: response.data.categoryName || response.data.data.categoryName,
-          id: response.data._id || response.data.data._id
+          _id: apiData._id,
+          name: apiData.name || apiData.names,
+          image: Array.isArray(apiData.images_links)
+            ? apiData.images_links[0]
+            : apiData.image || apiData.imgUrl,
+          price: apiData.price,
+          originalPrice: apiData.listPrice,
+          rating: apiData.stars,
+          reviews: apiData.reviews,
+          description: apiData.description,
+          categoryName: apiData.categoryName,
+          id: apiData._id
         };
         setProduct(productData);
 
-        // Fetch similar products AFTER product data is ready
-        const categoryName = productData.categoryName || 'Grocery';
-        const similarRes = await axios.get(`/products?categoryName=${encodeURIComponent(categoryName)}&limit=8`, { timeout: 5000 });
-        const similar = (similarRes.data?.products || similarRes.data || similarRes.data?.data || []).slice(0, 6).filter(p => p._id !== productData._id).map(p => ({
+        // Fetch similar products
+        const categoryName = productData.categoryName || 'Smartphones';
+        const similarRes = await API.get(`/smartphones?category=${encodeURIComponent(categoryName)}&limit=8`);
+        const similarProductsRaw = similarRes.data?.products || [];
+        const similar = similarProductsRaw.slice(0, 6).filter(p => p._id !== productData._id).map(p => ({
           ...p,
-          name: p.title || p.name || p.name,
-          image: p.image || p.imgUrl,
-          originalPrice: p.listPrice || p.originalPrice || p.price * 1.2,
+          name: p.name || p.names,
+          image: p.image || p.images_links,
+          originalPrice: p.listPrice,
           id: p._id,
-          rating: p.stars || 4.2,
+          rating: p.stars || 4.5,
           reviews: p.reviews || 127
         }));
         setSimilarProducts(similar);
-        console.log('Similar products loaded:', similar.length, 'from category:', categoryName);
       } catch (error) {
-        console.error('Backend fetch failed:', error);
+        console.error('Product fetch failed:', error);
       } finally {
         setLoading(false);
       }
@@ -105,8 +113,8 @@ const ProductDetails = () => {
           </div>
           <h1 className="text-3xl font-bold text-gray-900 mb-4">Product not found</h1>
           <p className="text-lg text-gray-600 mb-8">The product you're looking for doesn't exist or has been removed.</p>
-          <Link 
-            to="/" 
+          <Link
+            to="/"
             className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-xl text-lg shadow-lg transition-all duration-200 hover:shadow-xl"
           >
             Continue Shopping
@@ -124,7 +132,7 @@ const ProductDetails = () => {
           <img
             src={product.image}
             alt={product.name}
-            className="w-full max-w-md h-auto rounded-xl shadow-2xl"
+            className="w-full max-w-2xl h-[500px] object-contain rounded-xl shadow-2xl"
           />
         </div>
 
@@ -132,7 +140,7 @@ const ProductDetails = () => {
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
             {product.name}
           </h1>
-          
+
           <div className="flex items-baseline gap-4 mb-6">
             <span className="text-4xl font-bold text-gray-900">₹{product.price}</span>
             {product.originalPrice && (
@@ -152,7 +160,7 @@ const ProductDetails = () => {
           )}
 
           <div className="flex gap-4">
-            <button 
+            <button
               onClick={handleAddToCart}
               className="flex-1 bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-8 rounded-xl text-lg shadow-lg transition-all duration-200 hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]"
             >
@@ -183,4 +191,3 @@ const ProductDetails = () => {
 };
 
 export default ProductDetails;
-

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useProducts } from '../../hooks/useProducts';
-import FreshCategoryNav from '../../components/FreshCategoryNav';
+import FreshNavbar from '../../components/FreshNavbar';
 import SectionTitle from '../../components/SectionTitle';
 import FreshProductCard from '../../components/FreshProductCard';
 import Footer from '../../components/Footer';
@@ -68,7 +68,7 @@ const DynamicFreshSubcategory = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <FreshCategoryNav />
+<FreshNavbar activeSlug={subcategory} />
 
       <main className="max-w-6xl mx-auto px-4 py-8">
         <h1 className="text-4xl font-bold text-gray-900 mb-12">

@@ -1,9 +1,7 @@
-# Fresh Category Fixes TODO
+# Task: Update smartphones page to fetch DB with db.products.find({name: /smartphones/i})
 
-## Plan Steps (Approved)
-- [x] Step 1: Edit frontend/src/pages/Fresh/DynamicFreshSubcategory.jsx (FIX1 + FIX2: update config fallback to use raw subcategory slug for type, complete subcategoryMap with all 8 required slugs matching backend groceryTypeMap keys)
-
-- [x] Step 2: Edit backend/controllers/productController.js (FIX3: conditional categoryName set only if !groceryTypeMap[type]; FIX4: add console.log("TYPE RECEIVED:", type))
-- [x] Step 3: Verify changes, test (restart backend, navigate frontend routes, check logs/filtering)
-- [ ] Complete: attempt_completion
-
+## Steps:
+- [x] 1. Edit backend/controllers/smartphoneController.js to change default query to { name: { $regex: /smartphones/i } }
+- [x] 2. Restart backend server if running
+- [x] 3. Verify at http://localhost:5173/smartphones: page loads smartphones from DB
+- [x] 4. Complete task
