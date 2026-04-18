@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { useSmartphones } from '../hooks/useSmartphones';
 import SmartphoneHeroCarousel from '../components/SmartphoneHeroCarousel';
 import SmartphoneMVPs from '../components/SmartphoneMVPs';
@@ -9,10 +10,18 @@ import CuratedStores from '../components/CuratedStores';
 import FavouriteBrands from '../components/FavouriteBrands';
 import AccessoriesGrid from '../components/AccessoriesGrid';
 import BuyingGuide from '../components/BuyingGuide';
+import { useParams } from 'react-router-dom';
+import Pagination from '../components/Pagination';
 import Footer from '../components/Footer';
 
 const SmartphoneDealsPage = () => {
-  const { smartphones, loading, error } = useSmartphones({ limit: 100 });
+  const [searchParams] = useSearchParams();
+  const { page: pageParam } = useParams();
+  let page = parseInt(pageParam || searchParams.get('page')) || 1;
+  if (pageParam === 'more') page = 2;
+  const limit = 20;
+  
+  const { smartphones, loading, error, totalPages } = useSmartphones({ limit, page });
   console.log("SMARTPHONES:", smartphones);
 
   if (loading) return <div className="min-h-screen flex items-center justify-center text-xl">Loading smartphones...</div>;
@@ -20,13 +29,13 @@ const SmartphoneDealsPage = () => {
 
   const productsWithDiscount = smartphones.map(p => ({
     ...p,
-    discount: p.listPrice > p.price ? Math.round(((p.listPrice - p.price) / p.listPrice) * 100) : 0,
-    originalPrice: p.listPrice,
-    brand: (p.name || p.title || '').split(' ')[0] || 'Brand',
+    discount: p.originalPrice > p.price ? Math.round(((p.originalPrice - p.price) / p.originalPrice) * 100) : 0,
+    originalPrice: p.originalPrice,
+    brand: (p.name || '').split(' ')[0] || 'Brand',
     rating: p.stars || 4.5
   }));
 
-  const mvpProducts = smartphones.slice(0,6);
+  const mvpProducts = productsWithDiscount.slice(0,6);
   const fairPlayProducts = productsWithDiscount.filter(p => p.price < 25000).slice(0,4);
   const accessoryProducts = productsWithDiscount.filter(p => p.price < 5000).slice(0,12);
 
@@ -42,6 +51,7 @@ const SmartphoneDealsPage = () => {
         <FavouriteBrands products={productsWithDiscount} />
         <AccessoriesGrid products={accessoryProducts} />
         <BuyingGuide />
+        <Pagination currentPage={page} totalPages={totalPages || 1} basePath="/smartphones" />
       </main>
       <Footer />
     </div>

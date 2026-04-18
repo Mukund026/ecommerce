@@ -3,7 +3,7 @@
     "name": "Organic Apples 1kg",
     "title": "Organic Apples 1kg",
     "price": 12450,
-    "listPrice": 1240020,
+    "listPrice": 102921660,
     "category": "Grocery",
     "categoryName": "Grocery",
     "image": "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=250&h=250&fit=crop&crop=center",
@@ -12,13 +12,13 @@
     "reviews": 2345,
     "isBestSeller": true,
     "description": "Fresh organic apples straight from the farm",
-    "originalPrice": 1240020
+    "originalPrice": 102921660
   },
   {
     "name": "Fresh Milk 1L",
     "title": "Fresh Milk 1L",
     "price": 5395,
-    "listPrice": 516675,
+    "listPrice": 42884025,
     "category": "Grocery",
     "categoryName": "Grocery",
     "image": "https://images.unsplash.com/photo-1579586140626-598811330a61?w=250&h=250&fit=crop&crop=center",
@@ -27,13 +27,13 @@
     "reviews": 4567,
     "isBestSeller": true,
     "description": "Pure fresh milk from local dairy",
-    "originalPrice": 516675
+    "originalPrice": 42884025
   },
   {
     "name": "Whole Wheat Bread 400g",
     "title": "Whole Wheat Bread 400g",
     "price": 3735,
-    "listPrice": 378895,
+    "listPrice": 31448285,
     "category": "Grocery",
     "categoryName": "Grocery",
     "image": "https://images.unsplash.com/photo-1546833999-10f71c0e66f1?w=250&h=250&fit=crop&crop=center",
@@ -42,13 +42,13 @@
     "reviews": 1234,
     "isBestSeller": false,
     "description": "Healthy whole wheat bread baked fresh daily",
-    "originalPrice": 378895
+    "originalPrice": 31448285
   },
   {
     "name": "Fresh Eggs 6pcs",
     "title": "Fresh Eggs 6pcs",
     "price": 2905,
-    "listPrice": 289338,
+    "listPrice": 24015054,
     "category": "Grocery",
     "categoryName": "Grocery",
     "image": "https://images.unsplash.com/photo-1546548970-146fdb0116b9?w=250&h=250&fit=crop&crop=center",
@@ -57,13 +57,13 @@
     "reviews": 3456,
     "isBestSeller": true,
     "description": "Free range fresh eggs",
-    "originalPrice": 289338
+    "originalPrice": 24015054
   },
   {
     "name": "Dalda Vanaspati 1L",
     "title": "Dalda Vanaspati 1L",
     "price": 9960,
-    "listPrice": 964460,
+    "listPrice": 80050180,
     "category": "Grocery",
     "categoryName": "Grocery",
     "image": "https://images.unsplash.com/photo-1615716502106-8618596c2b92?w=250&h=250&fit=crop&crop=center",
@@ -72,13 +72,13 @@
     "reviews": 2345,
     "isBestSeller": false,
     "description": "Premium cooking oil alternative",
-    "originalPrice": 964460
+    "originalPrice": 80050180
   },
   {
     "name": "Sunpure Sunflower Oil 1L",
     "title": "Sunpure Sunflower Oil 1L",
     "price": 7885,
-    "listPrice": 757790,
+    "listPrice": 62896570,
     "category": "Grocery",
     "categoryName": "Grocery",
     "image": "https://images.unsplash.com/photo-1617083937777-7f5bc95aa3e3?w=250&h=250&fit=crop&crop=center",
@@ -87,6 +87,6 @@
     "reviews": 4567,
     "isBestSeller": true,
     "description": "Healthy sunflower cooking oil",
-    "originalPrice": 757790
+    "originalPrice": 62896570
   }
 ]

@@ -2,10 +2,41 @@ const User = require("../models/User");
 const asyncHandler = require("../middleware/asyncHandler");
 const { successResponse } = require("../utils/successResponse");
 
+function extractPrice(priceStr) {
+  if (!priceStr) return 0;
+  const match = priceStr.match(/₹\\s?([\\d,]+)/);
+  return match ? parseInt(match[1].replace(/,/g, "")) : 0;
+}
+
+function extractOriginalPrice(priceStr) {
+  if (!priceStr) return null;
+  const matches = priceStr.match(/₹\\s?[\d,]+/g);
+  if (matches && matches.length > 1) {
+    return parseInt(matches[1].replace(/[₹,]/g, ""));
+  }
+  return null;
+}
+
+const formatProduct = (product) => ({
+  _id: product._id,
+  name: product.names,
+  image: Array.isArray(product.images_links) ? product.images_links[0] : product.images_links,
+  price: extractPrice(product.price_details),
+  originalPrice: extractOriginalPrice(product.price_details),
+  rating: product.stars,
+  reviews: product["rating&reviews"]
+});
+
 // Get user cart
 exports.getCart = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.user._id).populate("cart.product", "name title image imgUrl price listPrice stars reviews");
-  successResponse(res, 200, user.cart, "Cart fetched successfully");
+  const user = await User.findById(req.user._id).populate("cart.product", "names images_links price_details stars \"rating&reviews\"").lean();
+
+  const formattedCart = user.cart.map(item => ({
+    ...item,
+    product: formatProduct(item.product)
+  }));
+
+  successResponse(res, 200, formattedCart, "Cart fetched successfully");
 });
 
 // Add item to cart
@@ -13,24 +44,26 @@ exports.addToCart = asyncHandler(async (req, res) => {
   const { productId, quantity = 1 } = req.body;
   const user = await User.findById(req.user._id);
 
-  // Check if product already in cart
   const existingItem = user.cart.find(
     (item) => item.product.toString() === productId
   );
 
   if (existingItem) {
-    // Update quantity if already in cart
     existingItem.quantity += quantity;
   } else {
-    // Add new item to cart
     user.cart.push({ product: productId, quantity });
   }
 
   await user.save();
-  
-// Populate the cart to return full product details (name, image, price)
-  const updatedUser = await User.findById(req.user._id).populate("cart.product", "name title image imgUrl price listPrice stars reviews");
-  successResponse(res, 200, updatedUser.cart, "Item added to cart successfully");
+
+  const updatedUser = await User.findById(req.user._id).populate("cart.product", "names images_links price_details stars \"rating&reviews\"").lean();
+
+  const formattedCart = updatedUser.cart.map(item => ({
+    ...item,
+    product: formatProduct(item.product)
+  }));
+
+  successResponse(res, 200, formattedCart, "Item added to cart successfully");
 });
 
 // Remove item from cart
@@ -43,9 +76,15 @@ exports.removeFromCart = asyncHandler(async (req, res) => {
   );
 
   await user.save();
-  
-  const updatedUser = await User.findById(req.user._id).populate("cart.product", "name title image imgUrl price listPrice stars reviews");
-  successResponse(res, 200, updatedUser.cart, "Item removed from cart successfully");
+
+  const updatedUser = await User.findById(req.user._id).populate("cart.product", "names images_links price_details stars \"rating&reviews\"").lean();
+
+  const formattedCart = updatedUser.cart.map(item => ({
+    ...item,
+    product: formatProduct(item.product)
+  }));
+
+  successResponse(res, 200, formattedCart, "Item removed from cart successfully");
 });
 
 // Update cart item quantity
@@ -63,18 +102,23 @@ exports.updateCartItem = asyncHandler(async (req, res) => {
   }
 
   if (quantity <= 0) {
-    // Remove item if quantity is 0 or less
     user.cart = user.cart.filter(
-      (item) => item.product.toString() !== productId
+      (item) => item.product.toString() === productId
     );
   } else {
     cartItem.quantity = quantity;
   }
 
   await user.save();
-  
-  const updatedUser = await User.findById(req.user._id).populate("cart.product", "name title image imgUrl price listPrice stars reviews");
-  successResponse(res, 200, updatedUser.cart, "Cart updated successfully");
+
+  const updatedUser = await User.findById(req.user._id).populate("cart.product", "names images_links price_details stars \"rating&reviews\"").lean();
+
+  const formattedCart = updatedUser.cart.map(item => ({
+    ...item,
+    product: formatProduct(item.product)
+  }));
+
+  successResponse(res, 200, formattedCart, "Cart updated successfully");
 });
 
 // Clear cart
@@ -84,4 +128,3 @@ exports.clearCart = asyncHandler(async (req, res) => {
   await user.save();
   successResponse(res, 200, [], "Cart cleared successfully");
 });
-

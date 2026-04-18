@@ -14,12 +14,18 @@ export const useSmartphones = (params = {}) => {
         params: { 
           ...params, 
           ...pageParams,
-          limit: params.limit || 100 
+          limit: params.limit || 20 
         } 
       });
 
-      const { products, totalPages } = response.data;
-      setData({ products, totalPages, loading: false, error: null });
+      const resData = response.data;
+      setData({ 
+        products: resData.products, 
+        totalPages: resData.totalPages || 1, 
+        loading: false, 
+        error: null 
+      });
+    
     } catch (err) {
       console.error('Smartphones fetch error:', err);
       setData({ products: [], loading: false, error: err.response?.data?.message || 'Failed to fetch smartphones' });
@@ -27,8 +33,8 @@ export const useSmartphones = (params = {}) => {
   };
 
   useEffect(() => {
-    fetchSmartphones({ page: 1 });
-  }, []);
+    fetchSmartphones(params);
+  }, [params.page, params.limit]);
 
   const refetch = () => fetchSmartphones();
 

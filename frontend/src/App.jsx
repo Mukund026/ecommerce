@@ -14,6 +14,7 @@ import Cart from "./pages/Cart";
 import Account from "./pages/Account";
 import Dashboard from "./pages/Dashboard";
 import SmartphoneDealsPage from "./pages/SmartphoneDealsPage";
+import SmartphonesListPage from "./pages/SmartphonesListPage";
 import PrimePage from "./pages/PrimePage";
 import BooksBazaar from "./pages/BooksBazaar";
 import ComputerAccessories from "./pages/ComputerAccessories";
@@ -44,7 +45,8 @@ function App() {
 
         <Route path="/" element={<Home/>}/>
         <Route path="/books" element={<BooksBazaar/>}/>
-        <Route path="/smartphones" element={<SmartphoneDealsPage/>}/>
+        <Route path="/smartphones" element={<SmartphoneDealsPage />} />
+        <Route path="/smartphones/more" element={<SmartphonesListPage />} />
         <Route path="/computers" element={<ComputerAccessories/>}/>
         <Route path="/prime" element={<PrimePage/>}/>
         <Route path="/fresh" element={<Fresh/>}/>\n        <Route path="/fresh/:subcategory" element={<DynamicFreshSubcategory />} />\n        <Route path="/fresh/atta-rice-grains" element={<AttaRiceGrains/>}/>

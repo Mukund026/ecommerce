@@ -28,9 +28,9 @@ const SmartphoneMVPs = ({ products = [] }) => {
   if (!displayProducts.length) {
     return (
       <div className="bg-white rounded-lg shadow-sm p-4 mb-6">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-bold text-gray-800">SMARTPHONES MVPs</h2>
-          <Link to="/" className="text-sm text-blue-600 hover:underline">See all offers</Link>
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-xl font-bold text-gray-800">SMARTPHONES MVPs</h2>
+          <Link to="/smartphones/more" className="text-sm text-blue-600 hover:underline">See all offers</Link>
         </div>
         <div className="text-gray-500 text-center py-8">No smartphones available at the moment</div>
       </div>
@@ -39,10 +39,10 @@ const SmartphoneMVPs = ({ products = [] }) => {
 
   return (
     <div className="bg-white rounded-lg shadow-sm p-4 mb-6">
-      <div className="flex items-center justify-between mb-4">
-        <h2 className="text-xl font-bold text-gray-800">SMARTPHONES MVPs</h2>
-        <Link to="/" className="text-sm text-blue-600 hover:underline">See all offers</Link>
-      </div>
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-xl font-bold text-gray-800">SMARTPHONES MVPs</h2>
+          <Link to="/smartphones/more" className="text-sm text-blue-600 hover:underline">See all offers</Link>
+        </div>
       
       <Swiper
         modules={[Navigation]}
@@ -63,9 +63,11 @@ const SmartphoneMVPs = ({ products = [] }) => {
             <Link to={`/product/${phone._id || phone.id}`} className="block group">
               <div className="border rounded p-3 hover:border-orange-400 transition-colors h-full">
                 <div className="mb-2">
-                  <span className="bg-orange-500 text-white text-xs font-bold px-2 py-0.5 rounded-sm">
-                    {Math.round(phone.discount)}% off
-                  </span>
+                  {phone.discount > 0 && (
+                    <span className="bg-orange-500 text-white text-xs font-bold px-2 py-0.5 rounded-sm">
+                      {Math.round(phone.discount)}% off
+                    </span>
+                  )}
                 </div>
                 <div className="h-32 md:h-40 mb-3 flex items-center justify-center">
                   <img
