@@ -43,7 +43,7 @@ const AccessoriesGrid = () => {
             {/* Image */}
             <div className="h-28 mb-3 flex items-center justify-center">
               <img
-                src={product.image}
+                src={`http://localhost:5000${product.image}`}
                 alt={product.name}
                 className="max-h-full max-w-full object-contain hover:scale-105 transition-transform"
               />

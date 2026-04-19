@@ -14,6 +14,7 @@ export const useSmartphones = (params = {}) => {
         params: { 
           ...params, 
           ...pageParams,
+          ...(params.maxPrice && { maxPrice: params.maxPrice }),
           limit: params.limit || 20 
         } 
       });

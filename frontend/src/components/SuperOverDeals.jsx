@@ -1,17 +1,18 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { Link } from "react-router-dom";
-import { smartphoneMVPs, accessoriesDeals } from "../data/smartphones";
+import { useSmartphones } from "../hooks/useSmartphones";
 
 import "swiper/css";
 import "swiper/css/navigation";
 
 const SuperOverDeals = () => {
-  // Combine smartphones and accessories for the slider
-  const dealProducts = [
-    ...smartphoneMVPs.slice(0, 4),
-    ...accessoriesDeals.slice(0, 4)
-  ];
+  const { smartphones } = useSmartphones({ limit: 20 });
+  const hotDealsProducts = smartphones.slice(0, 8).map(p => ({
+    ...p,
+    discount: p.originalPrice && p.originalPrice > p.price ? Math.round(((p.originalPrice - p.price) / p.originalPrice) * 100) : 0,
+    originalPrice: p.originalPrice || p.price * 1.2
+  })); 
 
   return (
     <div className="mb-6">
@@ -51,7 +52,7 @@ const SuperOverDeals = () => {
       <div className="bg-white rounded-lg shadow-sm p-4">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-bold text-gray-800">Hot Deals</h3>
-          <Link to="/" className="text-sm text-blue-600 hover:underline">See all</Link>
+          <Link to="/smartphones/hotdeals" className="text-sm text-blue-600 hover:underline" data-discover="true">See all</Link>
         </div>
         
         <Swiper
@@ -68,15 +69,17 @@ const SuperOverDeals = () => {
           }}
           className="pb-8"
         >
-          {dealProducts.map((item, index) => (
+{hotDealsProducts.map((item, index) => (
             <SwiperSlide key={`${item.id}-${index}`}>
-              <Link to={`/product/${item.id}`} className="block group">
+              <Link to={`/product/${item._id || item.id}`} className="block group">
                 <div className="border rounded p-3 hover:border-orange-400 transition-colors h-full">
                   {/* Discount Badge */}
                   <div className="mb-2">
-                    <span className="bg-orange-500 text-white text-xs font-bold px-2 py-0.5 rounded-sm">
-                      {item.discount}% off
-                    </span>
+                    {item.discount > 0 && (
+                      <span className="bg-orange-500 text-white text-xs font-bold px-2 py-0.5 rounded-sm">
+                        {item.discount}% off
+                      </span>
+                    )}
                   </div>
                   
                   {/* Image */}
@@ -113,4 +116,3 @@ const SuperOverDeals = () => {
 };
 
 export default SuperOverDeals;
-

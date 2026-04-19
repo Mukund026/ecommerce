@@ -29,7 +29,7 @@ const AccessoriesDealsRow = () => {
     <div className="bg-white rounded-lg shadow-sm p-4 mb-6">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-xl font-bold text-gray-800">Limited Accessories Deals</h2>
-        <Link to="/smartphones" className="text-sm text-blue-600 hover:underline">See all offers</Link>
+        <Link to="/smartphones/accessories-deals" className="text-sm text-blue-600 hover:underline">See all offers</Link>
       </div>
       
       <Swiper

@@ -1,11 +1,1 @@
-# Smartphone Deals Page Fixes - Progress Tracker
-
-## Completed: 3/3 ✅
-
-### ✅ Step 1: Create TODO.md 
-### ✅ Step 2: Fix SmartphoneDealsPage.jsx 
-- Updated discount calculation: `p.listPrice` → `p.originalPrice`  
-- Updated mvpProducts: `smartphones.slice(0,6)` → `productsWithDiscount.slice(0,6)`
-### ✅ Step 3: Fix SmartphoneMVPs.jsx
-- Added safe discount render: `{phone.discount > 0 && ...}`
-### ✅ Step 4: All fixes applied
+# Image URL Fix for Accessories\n\n- [x] Create TODO.md\n- [x] Edit frontend/src/pages/AccessoriesPage.jsx\n- [x] Edit frontend/src/components/AccessoriesGrid.jsx\n- [ ] Verify images load on /smartphones/accessories and AccessoriesGrid sections\n- [ ] Update TODO.md with completion\n- [ ] Run frontend dev server and test\n\n**Status:** Accessories image src updated to `http://localhost:5000${product.image}`.\n\nTest by:\n`cd frontend`\n`npm run dev`\nVisit pages with accessories.

@@ -30,6 +30,8 @@ import WholeGrains from "./pages/Fresh/WholeGrains.jsx";
 import Poha from "./pages/Fresh/Poha.jsx";
 import DynamicFreshSubcategory from "./pages/Fresh/DynamicFreshSubcategory.jsx";
 import Millets from "./pages/Fresh/Millets.jsx";
+import AccessoriesPage from "./pages/AccessoriesPage.jsx";
+import LimitedAccessoriesDeals from "./pages/LimitedAccessoriesDeals.jsx";
 
 import { AuthProvider } from "./context/AuthContext.jsx";
 import LocationProvider from "./context/LocationContext.jsx";
@@ -46,7 +48,12 @@ function App() {
         <Route path="/" element={<Home/>}/>
         <Route path="/books" element={<BooksBazaar/>}/>
         <Route path="/smartphones" element={<SmartphoneDealsPage />} />
+        <Route path="/smartphones/budget" element={<SmartphonesListPage isBudget={true} />} />
+        <Route path="/smartphones/accessories" element={<AccessoriesPage />} />
+        <Route path="/smartphones/accessories-deals" element={<LimitedAccessoriesDeals />} />
+
         <Route path="/smartphones/more" element={<SmartphonesListPage />} />
+        <Route path="/smartphones/hotdeals" element={<SmartphonesListPage />} />
         <Route path="/computers" element={<ComputerAccessories/>}/>
         <Route path="/prime" element={<PrimePage/>}/>
         <Route path="/fresh" element={<Fresh/>}/>\n        <Route path="/fresh/:subcategory" element={<DynamicFreshSubcategory />} />\n        <Route path="/fresh/atta-rice-grains" element={<AttaRiceGrains/>}/>

@@ -21,7 +21,7 @@ const Fresh = () => {
       try {
         setLoading(true);
         setError(null);
-        const response = await API.get('/products?category=Grocery&page=1&limit=20');
+const response = await API.get('/products?page=1&limit=20');
         const data = response.data.products || [];
 
         // Debug logs as requested
@@ -45,7 +45,7 @@ const Fresh = () => {
         });
 
         const groceryItems = data;
-        console.log("GROCERY PRODUCTS:", groceryItems);
+        console.log("PRODUCTS:", groceryItems);
         const productsWithSlug = groceryItems.map((p) => ({
           ...p,
           section: 'grocery',
@@ -61,7 +61,7 @@ const Fresh = () => {
         console.log('Products with images:', productsWithSlug.slice(0, 3));
       } catch (error) {
         console.error("Error fetching products:", error);
-        setError('Failed to load grocery products');
+        setError('Failed to load products');
       } finally {
         setLoading(false);
       }
@@ -75,7 +75,7 @@ const Fresh = () => {
       return (
         <div className="col-span-full flex flex-col items-center justify-center py-12">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-500 mb-4"></div>
-          <p className="text-gray-500">Loading grocery products...</p>
+        <p className="text-gray-500">Loading products...</p>
         </div>
       );
     }
@@ -97,7 +97,7 @@ const Fresh = () => {
     if (groceryProducts.length === 0) {
       return (
         <div className="col-span-full text-center py-12">
-          <p className="text-gray-500 text-lg">"No grocery items available"</p>
+          <p className="text-gray-500 text-lg">"No products available"</p>
         </div>
       );
     }

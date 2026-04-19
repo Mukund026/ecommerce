@@ -41,14 +41,16 @@ const ProductDetails = () => {
           response = await API.get(`/products/${id}`);
         }
         const apiData = response.data.product || response.data;
+        const { price, originalPrice } = apiData.price_details ? extractPrices(apiData.price_details) : { price: apiData.price || 0, originalPrice: apiData.originalPrice || 0 };
         const productData = {
           _id: apiData._id,
           name: apiData.name || apiData.names,
           image: Array.isArray(apiData.images_links)
             ? apiData.images_links[0]
             : apiData.image || apiData.imgUrl,
-          price: apiData.price,
-          originalPrice: apiData.listPrice,
+          price,
+          originalPrice,
+          listPrice: originalPrice,
           rating: apiData.stars,
           reviews: apiData.reviews,
           description: apiData.description,

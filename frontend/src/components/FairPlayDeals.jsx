@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { fairPlayDeals } from "../data/smartphones";
+import { useSmartphones } from "../hooks/useSmartphones";
 
 const RatingStars = ({ rating }) => {
   return (
@@ -19,6 +19,13 @@ const RatingStars = ({ rating }) => {
 };
 
 const FairPlayDeals = () => {
+  const { smartphones } = useSmartphones({ limit: 20 });
+  const fairPlayProducts = smartphones.filter(p => p.price < 25000).slice(0,4).map(p => ({
+    ...p,
+    discount: p.originalPrice > p.price ? Math.round(((p.originalPrice - p.price) / p.originalPrice) * 100) : 0,
+    brand: (p.name || '').split(' ')[0] || 'Xiaomi',
+    rating: p.stars || 4.4
+  }));
   return (
     <div className="mb-6">
       {/* Large Promotional Banner */}
@@ -45,14 +52,14 @@ const FairPlayDeals = () => {
       <div className="bg-white rounded-lg shadow-sm p-4">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-bold text-gray-800">Budget Smartphones</h3>
-          <Link to="/" className="text-sm text-blue-600 hover:underline">See all</Link>
+          <Link to="/smartphones/budget" className="text-sm text-blue-600 hover:underline" data-discover="true">See all</Link>
         </div>
         
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {fairPlayDeals.map((phone) => (
+{fairPlayProducts.map((phone) => (
             <Link 
-              key={phone.id} 
-              to={`/product/${phone.id}`}
+              key={phone._id || phone.id || Math.random()} 
+              to={`/product/${phone._id || phone.id}`}
               className="border rounded p-3 hover:border-orange-400 transition-colors block"
             >
               {/* Discount Badge */}

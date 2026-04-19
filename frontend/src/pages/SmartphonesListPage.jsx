@@ -4,7 +4,7 @@ import { useSmartphones } from "../hooks/useSmartphones";
 import Pagination from "../components/Pagination";
 import Footer from "../components/Footer";
 
-const SmartphonesListPage = () => {
+const SmartphonesListPage = ({ isBudget = false }) => {
   const [searchParams] = useSearchParams();
   const page = parseInt(searchParams.get("page")) || 1;
   const [brand, setBrand] = useState("");
@@ -13,6 +13,7 @@ const SmartphonesListPage = () => {
   const { smartphones, loading, error, totalPages } = useSmartphones({
     limit: 20,
     page,
+    ...(isBudget && { maxPrice: 25000 }),
   });
 
   const brands = [...new Set(
@@ -39,7 +40,7 @@ const SmartphonesListPage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-6xl mx-auto px-4 py-6">
-        <h1 className="text-2xl font-bold mb-6">All Smartphones</h1>
+        <h1 className="text-2xl font-bold mb-6">{isBudget ? 'Budget Smartphones (Under ₹25,000)' : 'All Smartphones'}</h1>
 
         <div className="flex flex-wrap gap-4 mb-6">
           {/* Brand Filter */}

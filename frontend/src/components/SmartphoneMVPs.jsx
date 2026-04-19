@@ -63,11 +63,6 @@ const SmartphoneMVPs = ({ products = [] }) => {
             <Link to={`/product/${phone._id || phone.id}`} className="block group">
               <div className="border rounded p-3 hover:border-orange-400 transition-colors h-full">
                 <div className="mb-2">
-                  {phone.discount > 0 && (
-                    <span className="bg-orange-500 text-white text-xs font-bold px-2 py-0.5 rounded-sm">
-                      {Math.round(phone.discount)}% off
-                    </span>
-                  )}
                 </div>
                 <div className="h-32 md:h-40 mb-3 flex items-center justify-center">
                   <img
