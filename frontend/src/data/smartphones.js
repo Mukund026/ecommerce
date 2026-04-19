@@ -148,7 +148,7 @@ export const accessoriesDeals = [
     price: 1499,
     originalPrice: 2499,
     discount: 40,
-    image: 'https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=200&h=200&fit=crop',
+    image: '/accessoriesimages/charger.jpeg',
     rating: 4.3,
     reviews: 45321
   },
@@ -158,7 +158,7 @@ export const accessoriesDeals = [
     price: 1299,
     originalPrice: 1999,
     discount: 35,
-    image: 'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=200&h=200&fit=crop',
+    image: '/accessoriesimages/charger.jpeg',
     rating: 4.5,
     reviews: 23451
   },
@@ -168,7 +168,7 @@ export const accessoriesDeals = [
     price: 199,
     originalPrice: 499,
     discount: 60,
-    image: 'https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=200&h=200&fit=crop',
+    image: '/accessoriesimages/screenguard.jpeg',
     rating: 4.1,
     reviews: 67832
   },
@@ -207,229 +207,38 @@ export const accessoriesDeals = [
 // Curated stores categories
 export const curatedStores = [
   {
-    id: 1,
-    name: 'Luxury Phones',
-    image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=300&h=300&fit=crop',
-    description: 'Premium flagship devices'
-  },
-  {
-    id: 2,
-    name: 'Gaming Phones',
-    image: 'https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=300&h=300&fit=crop',
-    description: 'Best for mobile gaming'
-  },
+  id: 1,
+  name: 'Luxury Phones',
+  image: '/curatedphoneoffers/luxury.webp',
+  description: 'Premium flagship devices'
+},
+{
+  id: 2,
+  name: 'Gaming Phones',
+  image: '/curatedphoneoffers/gaming.jpg',
+  description: 'Best for mobile gaming'
+},
   {
     id: 3,
     name: 'Camera Phones',
-    image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=300&h=300&fit=crop',
+    image: '/curatedphoneoffers/best_camera.jpeg',
     description: 'Professional photography'
   },
   {
     id: 4,
     name: '5G Phones',
-    image: 'https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=300&h=300&fit=crop',
+    image: '/curatedphoneoffers/5g.jpeg',
     description: 'Future-ready connectivity'
   },
   {
     id: 5,
     name: 'Budget Phones',
-    image: 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=300&h=300&fit=crop',
+    image: '/curatedphoneoffers/budget.jpeg',
     description: 'Value for money'
   }
 ];
 
-// Favourite brands with products
-export const brands = [
-  {
-    id: 1,
-    name: 'Samsung',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg',
-    products: [
-      {
-        id: 101,
-        name: 'Samsung Galaxy S24',
-        price: 79999,
-        originalPrice: 99999,
-        discount: 20,
-        image: 'https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=300&h=300&fit=crop',
-        rating: 4.5
-      },
-      {
-        id: 102,
-        name: 'Samsung Galaxy A54 5G',
-        price: 28999,
-        originalPrice: 40999,
-        discount: 29,
-        image: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=300&h=300&fit=crop',
-        rating: 4.3
-      },
-      {
-        id: 103,
-        name: 'Samsung Galaxy M14 5G',
-        price: 14999,
-        originalPrice: 21999,
-        discount: 32,
-        image: 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=300&h=300&fit=crop',
-        rating: 4.2
-      },
-      {
-        id: 104,
-        name: 'Samsung Galaxy Z Fold 5',
-        price: 149999,
-        originalPrice: 179999,
-        discount: 17,
-        image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=300&h=300&fit=crop',
-        rating: 4.6
-      }
-    ]
-  },
-  {
-    id: 2,
-    name: 'Apple',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg',
-    products: [
-      {
-        id: 201,
-        name: 'iPhone 15',
-        price: 79900,
-        originalPrice: 89900,
-        discount: 11,
-        image: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=300&h=300&fit=crop',
-        rating: 4.7
-      },
-      {
-        id: 202,
-        name: 'iPhone 14',
-        price: 54900,
-        originalPrice: 69900,
-        discount: 21,
-        image: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=300&h=300&fit=crop',
-        rating: 4.6
-      },
-      {
-        id: 203,
-        name: 'iPhone 13',
-        price: 42900,
-        originalPrice: 59900,
-        discount: 28,
-        image: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=300&h=300&fit=crop',
-        rating: 4.5
-      },
-      {
-        id: 204,
-        name: 'iPhone SE (2022)',
-        price: 35900,
-        originalPrice: 43900,
-        discount: 18,
-        image: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=300&h=300&fit=crop',
-        rating: 4.4
-      }
-    ]
-  },
-  {
-    id: 3,
-    name: 'iQOO',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/b/b9/IQOO_Logo.svg',
-    products: [
-      {
-        id: 301,
-        name: 'iQOO 12 5G',
-        price: 52999,
-        originalPrice: 69999,
-        discount: 24,
-        image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=300&h=300&fit=crop',
-        rating: 4.5
-      },
-      {
-        id: 302,
-        name: 'iQOO Neo 7 Pro',
-        price: 32999,
-        originalPrice: 45999,
-        discount: 28,
-        image: 'https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=300&h=300&fit=crop',
-        rating: 4.4
-      },
-      {
-        id: 303,
-        name: 'iQOO Z7 Pro 5G',
-        price: 23999,
-        originalPrice: 32999,
-        discount: 27,
-        image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=300&h=300&fit=crop',
-        rating: 4.3
-      }
-    ]
-  },
-  {
-    id: 4,
-    name: 'OnePlus',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/OnePlus_Logo.svg',
-    products: [
-      {
-        id: 401,
-        name: 'OnePlus 12R',
-        price: 44999,
-        originalPrice: 59999,
-        discount: 25,
-        image: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=300&h=300&fit=crop',
-        rating: 4.5
-      },
-      {
-        id: 402,
-        name: 'OnePlus Nord CE 3',
-        price: 26999,
-        originalPrice: 36999,
-        discount: 27,
-        image: 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=300&h=300&fit=crop',
-        rating: 4.3
-      },
-      {
-        id: 403,
-        name: 'OnePlus Nord 3',
-        price: 36999,
-        originalPrice: 49999,
-        discount: 26,
-        image: 'https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=300&h=300&fit=crop',
-        rating: 4.4
-      }
-    ]
-  },
-  {
-    id: 5,
-    name: 'realme',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/e/e8/Realme_logo.svg',
-    products: [
-      {
-        id: 501,
-        name: 'realme 12 Pro+ 5G',
-        price: 29999,
-        originalPrice: 42999,
-        discount: 30,
-        image: 'https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=300&h=300&fit=crop',
-        rating: 4.4
-      },
-      {
-        id: 502,
-        name: 'realme Narzo 60',
-        price: 17999,
-        originalPrice: 24999,
-        discount: 28,
-        image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=300&h=300&fit=crop',
-        rating: 4.2
-      },
-      {
-        id: 503,
-        name: 'realme C53',
-        price: 9999,
-        originalPrice: 14999,
-        discount: 33,
-        image: 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=300&h=300&fit=crop',
-        rating: 4.1
-      }
-    ]
-  }
-];
-
+// Brands data removed - now fetched dynamically from API
 // Accessories grid products
 export const accessoriesProducts = [
   {

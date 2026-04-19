@@ -30,6 +30,7 @@ app.use((req, res, next) => {
 });
 
 // Static images
+
 app.use(
   "/accessoriesimages",
   express.static(path.join(__dirname, "accessoriesimages")),
@@ -39,6 +40,12 @@ app.use(
 app.use(
   "/accessoriesimages",
   express.static(path.join(__dirname, "accessoriesimages")),
+);
+
+// Serve curated phone offers
+app.use(
+  '/curatedphoneoffers',
+  express.static(path.join(__dirname, 'curatedphoneoffers'))
 );
 
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerSpec));

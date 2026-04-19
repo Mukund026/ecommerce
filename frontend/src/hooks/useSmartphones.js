@@ -15,13 +15,15 @@ export const useSmartphones = (params = {}) => {
           ...params, 
           ...pageParams,
           ...(params.maxPrice && { maxPrice: params.maxPrice }),
+          includeBrands: true,
           limit: params.limit || 20 
         } 
       });
 
       const resData = response.data;
       setData({ 
-        products: resData.products, 
+        products: resData.products || [], 
+        brands: resData.brands || [], 
         totalPages: resData.totalPages || 1, 
         loading: false, 
         error: null 
@@ -41,6 +43,7 @@ export const useSmartphones = (params = {}) => {
 
   return { 
     smartphones: data.products, 
+    brands: data.brands,
     loading: data.loading, 
     error: data.error, 
     totalPages: data.totalPages, 

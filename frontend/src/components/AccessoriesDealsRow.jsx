@@ -1,7 +1,7 @@
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { Link } from "react-router-dom";
-import { accessoriesDeals } from "../data/smartphones";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -24,11 +24,22 @@ const RatingStars = ({ rating }) => {
   );
 };
 
-const AccessoriesDealsRow = () => {
+const AccessoriesDealsRow = ({ products = [], title = "Accessories Deals" }) => {
+  const deals = products.map(p => ({
+    id: p._id,
+    name: p.product_name,
+    price: p.discounted_price,
+    originalPrice: p.retail_price,
+    discount: p.retail_price > p.discounted_price ? Math.round(((p.retail_price - p.discounted_price) / p.retail_price) * 100) : 0,
+    image: p.image,
+    rating: p.product_rating || 4.0,
+    reviews: p.overall_rating || 0
+  }));
+
   return (
     <div className="bg-white rounded-lg shadow-sm p-4 mb-6">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-xl font-bold text-gray-800">Limited Accessories Deals</h2>
+        <h2 className="text-xl font-bold text-gray-800">{title}</h2>
         <Link to="/smartphones/accessories-deals" className="text-sm text-blue-600 hover:underline">See all offers</Link>
       </div>
       
@@ -46,7 +57,7 @@ const AccessoriesDealsRow = () => {
         }}
         className="pb-8"
       >
-        {accessoriesDeals.map((item) => (
+        {deals.map((item) => (
           <SwiperSlide key={item.id}>
             <Link to={`/product/${item.id}`} className="block group">
               <div className="border rounded p-3 hover:border-orange-400 transition-colors h-full">
@@ -60,7 +71,11 @@ const AccessoriesDealsRow = () => {
                 {/* Image */}
                 <div className="h-24 md:h-28 mb-3 flex items-center justify-center">
                   <img
-                    src={item.image}
+                    src={
+                      item.image?.startsWith('http')
+                        ? item.image
+                        : `http://localhost:5000${item.image}`
+                    }
                     alt={item.name}
                     className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform"
                   />

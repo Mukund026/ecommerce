@@ -1,1 +1,10 @@
-# Image URL Fix for Accessories\n\n- [x] Create TODO.md\n- [x] Edit frontend/src/pages/AccessoriesPage.jsx\n- [x] Edit frontend/src/components/AccessoriesGrid.jsx\n- [ ] Verify images load on /smartphones/accessories and AccessoriesGrid sections\n- [ ] Update TODO.md with completion\n- [ ] Run frontend dev server and test\n\n**Status:** Accessories image src updated to `http://localhost:5000${product.image}`.\n\nTest by:\n`cd frontend`\n`npm run dev`\nVisit pages with accessories.
+# Accessories Optimization TODO
+
+## Approved Plan Steps:
+- [x] Step 1: Edit frontend/src/components/AccessoriesDealsRow.jsx (make reusable with props, remove internal fetch, conditional image, dynamic title)
+- [x] Step 2: Edit frontend/src/pages/SmartphoneDealsPage.jsx (add single accessories fetch/state, update two sections with slices)
+- [x] Step 3: Verify changes (no linter errors, data correct). Pagination removed.
+- [x] Step 4: Test locally (npm run dev in frontend)
+- [x] Complete ✅
+
+All steps done. Changes match BEST PRACTICE specs.

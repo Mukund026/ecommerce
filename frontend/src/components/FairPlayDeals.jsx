@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useSmartphones } from "../hooks/useSmartphones";
+import { useMemo } from 'react';
 
 const RatingStars = ({ rating }) => {
   return (
@@ -18,14 +18,8 @@ const RatingStars = ({ rating }) => {
   );
 };
 
-const FairPlayDeals = () => {
-  const { smartphones } = useSmartphones({ limit: 20 });
-  const fairPlayProducts = smartphones.filter(p => p.price < 25000).slice(0,4).map(p => ({
-    ...p,
-    discount: p.originalPrice > p.price ? Math.round(((p.originalPrice - p.price) / p.originalPrice) * 100) : 0,
-    brand: (p.name || '').split(' ')[0] || 'Xiaomi',
-    rating: p.stars || 4.4
-  }));
+const FairPlayDeals = ({ products = [] }) => {
+  const fairPlayProducts = products;
   return (
     <div className="mb-6">
       {/* Large Promotional Banner */}

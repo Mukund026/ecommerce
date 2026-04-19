@@ -1,14 +1,12 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { Link } from "react-router-dom";
-import { useSmartphones } from "../hooks/useSmartphones";
 
 import "swiper/css";
 import "swiper/css/navigation";
 
-const SuperOverDeals = () => {
-  const { smartphones } = useSmartphones({ limit: 20 });
-  const hotDealsProducts = smartphones.slice(0, 8).map(p => ({
+const SuperOverDeals = ({ products = [] }) => {
+  const hotDealsProducts = products.slice(0, 8).map(p => ({
     ...p,
     discount: p.originalPrice && p.originalPrice > p.price ? Math.round(((p.originalPrice - p.price) / p.originalPrice) * 100) : 0,
     originalPrice: p.originalPrice || p.price * 1.2
