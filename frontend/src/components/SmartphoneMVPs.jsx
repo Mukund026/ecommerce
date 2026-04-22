@@ -60,7 +60,7 @@ const SmartphoneMVPs = ({ products = [] }) => {
       >
         {displayProducts.slice(0, 6).map((phone) => (
           <SwiperSlide key={phone._id || phone.id}>
-            <Link to={`/product/${phone._id || phone.id}`} className="block group">
+            <Link to={`/smartphones/${phone._id || phone.id}`} className="block group">
               <div className="border rounded p-3 hover:border-orange-400 transition-colors h-full">
                 <div className="mb-2">
                 </div>

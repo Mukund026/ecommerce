@@ -2,8 +2,6 @@ import React, { useEffect, useState, useContext } from "react";
 import { useParams, Link } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 import { AuthContext } from "../context/AuthContext";
-import ProductGrid from "../components/ProductGrid";
-import { useProducts } from "../hooks/useProducts";
 import toast from "react-hot-toast";
 import API from "../api/axios";
 import { allFreshProducts } from "../data/products";
@@ -30,51 +28,127 @@ const ProductDetails = () => {
       return;
     }
 
-    // Backend fetch - prefer /smartphones/:id first, fallback to /products/:id
+    // Backend fetch - prefer /products/:id first for reliable data, then /smartphones/:id
     const fetchProduct = async () => {
       try {
         setLoading(true);
+        console.log('Fetching product ID:', id);
+        
         let response;
+        let apiData;
+        
+        // Try products/:id first (raw data, reliable)
         try {
-          response = await API.get(`/smartphones/${id}`);
-        } catch {
           response = await API.get(`/products/${id}`);
+          console.log('Products full response:', response);
+          console.log('Products response.data:', response.data);
+          
+          // Handle successResponse wrapper {success, data, message} - common pattern
+          if (response.data && typeof response.data === 'object') {
+            if (response.data.success !== undefined) {
+              apiData = response.data.data || response.data.product || response.data;
+            } else {
+              apiData = response.data;
+            }
+          } else {
+            apiData = null;
+          }
+          
+          if (!apiData) {
+            throw new Error('No data in products response');
+          }
+          
+          console.log('Products API extracted apiData:', apiData);
+        } catch (productsErr) {
+          console.warn('Products API failed:', productsErr.message);
+          
+          // Always try smartphones fallback
+          try {
+            response = await API.get(`/smartphones/${id}`);
+            console.log('Smartphones full response:', response);
+            apiData = response.data.product || response.data.data || response.data;
+            console.log('Smartphones API extracted apiData:', apiData);
+          } catch (smartphonesErr) {
+            console.error('Both APIs failed:', smartphonesErr.message);
+            throw productsErr;
+          }
         }
-        const apiData = response.data.product || response.data;
-        const { price, originalPrice } = apiData.price_details ? extractPrices(apiData.price_details) : { price: apiData.price || 0, originalPrice: apiData.originalPrice || 0 };
+
+        if (!apiData || !apiData._id) {
+          throw new Error(`No product data received. apiData: ${JSON.stringify(apiData)}`);
+        }
+
+        // Robust price handling (handle price=0)
+        let price = apiData.price || 0;
+        if (price === 0 && apiData.price_details) {
+          // Parse from price_details if available (smartphone format)
+          const priceMatch = apiData.price_details?.match(/₹\\s?([\\d,]+)/);
+          if (priceMatch) price = parseInt(priceMatch[1].replace(/,/g, ''));
+        }
+        price = Math.round(price * 83) || 999;  // INR conversion + round, default fallback
+
+        const originalPrice = apiData.listPrice || apiData.originalPrice || Math.round(price * 1.2);
+        const image = apiData.image || apiData.imgUrl || (Array.isArray(apiData.images_links) ? apiData.images_links[0] : apiData.images_links) || '/api/placeholder-image.jpg';
+        
         const productData = {
           _id: apiData._id,
-          name: apiData.name || apiData.names,
-          image: Array.isArray(apiData.images_links)
-            ? apiData.images_links[0]
-            : apiData.image || apiData.imgUrl,
+          id: apiData._id,
+          name: apiData.title || apiData.name || apiData.names || 'Product',
+          image,
           price,
           originalPrice,
           listPrice: originalPrice,
-          rating: apiData.stars,
-          reviews: apiData.reviews,
+          rating: apiData.stars || 4.3,
+          reviews: apiData.reviews || apiData['rating&reviews'] || 0,
           description: apiData.description,
-          categoryName: apiData.categoryName,
-          id: apiData._id
+          categoryName: (apiData.categoryName || 'Smartphones').toLowerCase().includes('smartphone') ? 'Smartphones' : (apiData.categoryName || 'Electronics')
         };
+        
+        console.log('Mapped productData:', productData);
         setProduct(productData);
 
-        // Fetch similar products
-        const categoryName = productData.categoryName || 'Smartphones';
-        const similarRes = await API.get(`/smartphones?category=${encodeURIComponent(categoryName)}&limit=8`);
-        const similarProductsRaw = similarRes.data?.products || [];
-        const similar = similarProductsRaw.slice(0, 6).filter(p => p._id !== productData._id).map(p => ({
-          ...p,
-          name: p.name || p.names,
-          image: p.image || p.images_links,
-          originalPrice: p.listPrice,
-          id: p._id,
-          rating: p.stars || 4.5,
-          reviews: p.reviews || 127
-        }));
-        setSimilarProducts(similar);
+        // Dynamic similar products by category
+        try {
+          const category = productData.categoryName;
+          let similarRes;
+          if (category && category.toLowerCase() !== 'smartphones') {
+            // Use category filter for non-smartphones (e.g., Jewelry)
+            similarRes = await API.get(`/products?categoryName=${encodeURIComponent(category)}&limit=30`);
+          } else {
+            // Smartphones fallback
+            similarRes = await API.get('/smartphones?limit=30');
+          }
+          let similarProductsRaw = similarRes.data.products || [];
+          
+          // Generic fallback if no category matches
+          if (similarProductsRaw.length === 0 && category) {
+            console.log('No products in category, using generic');
+            similarRes = await API.get('/products?limit=30');
+            similarProductsRaw = similarRes.data.products || [];
+          }
+          
+          const similar = similarProductsRaw
+            .filter(p => p._id !== productData._id)
+            .slice(0, 6)
+            .map(p => ({
+              ...p,
+              image: p.image || p.imgUrl || (Array.isArray(p.images_links) ? p.images_links[0] : p.images_links) || '/api/placeholder-image.jpg',
+              originalPrice: p.originalPrice || p.listPrice || Math.round((p.price || 999) * 1.2),
+              price: p.price || 999 || (p.price_details ? parseInt((p.price_details.match(/₹\\s?([\\d,]+)/) || [])[1]?.replace(/,/g, '') || 999) : 999),
+              id: p._id,
+              rating: p.stars || 4.5,
+              reviews: p['rating&reviews'] || p.reviews || 127,
+              name: p.names || p.name || p.title || p.title
+            }));
+          console.log(`Similar products from ${category || 'generic'}:`, similar.length);
+          setSimilarProducts(similar);
+        } catch (simError) {
+          console.error('Similar products fetch failed:', simError);
+          setSimilarProducts([]);
+        }
       } catch (error) {
         console.error('Product fetch failed:', error);
+        toast.error('Failed to load product details');
       } finally {
         setLoading(false);
       }
@@ -131,10 +205,11 @@ const ProductDetails = () => {
       {/* Product Details */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
         <div className="flex justify-center lg:justify-end">
-          <img
-            src={product.image}
+          <img 
+            src={product.image} 
             alt={product.name}
-            className="w-full max-w-2xl h-[500px] object-contain rounded-xl shadow-2xl"
+            className="w-full max-w-2xl h-[500px] object-contain rounded-xl shadow-2xl bg-gray-50"
+            onError={(e) => { e.target.src = '/src/assets/grocery-apple.jpg'; }}
           />
         </div>
 
@@ -179,7 +254,7 @@ const ProductDetails = () => {
       {similarProducts.length > 0 && (
         <div className="mb-16">
           <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-            Similar Products You Might Like
+            {product.categoryName ? `Similar ${product.categoryName} Products` : 'Similar Products You Might Like'}
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
             {similarProducts.map((similar) => (

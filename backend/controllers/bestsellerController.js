@@ -4,14 +4,30 @@ const asyncHandler = require("../middleware/asyncHandler");
 // GET BESTSELLERS
 exports.getBestsellers = asyncHandler(async (req, res) => {
   const Products = require("../models/Product"); // Move inside if scope issue, but no
-  const { category, page = 1, limit = 10 } = req.query;
+const { category, excludeId, page = 1, limit = 10 } = req.query;
 
-  const query = {};
+  let query = {};
+  const excludeCondition = excludeId ? { _id: { $ne: excludeId } } : {};
 
-  console.log("BESTSELLER CATEGORY RECEIVED:", category);
-  if (category) {
+  console.log("BESTSELLER CATEGORY RECEIVED:", category, "EXCLUDE:", excludeId);
+
+  if (category && category.toLowerCase().includes('smartphone')) {
+    // Smartphone special handling - use name regex like in smartphoneController
+    const brandsRegex = /(iphone|samsung|redmi|realme|vivo|oppo|oneplus|poco|iqoo|infinix|motorola|pixel)/i;
+    query = {
+      $and: [
+        { names: brandsRegex },
+        { names: { $regex: /GB/i } },
+        excludeCondition
+      ]
+    };
+    console.log("Using smartphone regex query");
+  } else if (category) {
     const categories = category.split(",").map(c => c.trim());
     query.categoryName = { $in: categories };
+    query = { ...query, ...excludeCondition };
+  } else {
+    query = excludeCondition;
   }
 
   const pageNum = parseInt(page);

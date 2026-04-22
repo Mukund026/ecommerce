@@ -70,8 +70,7 @@ const SmartphonesListPage = ({ isBudget = false }) => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {filteredPhones.map((phone) => (
             <div key={phone._id} className="bg-white p-4 rounded shadow">
-              <Link to={`/product/${phone._id}`} className="block">
-                <img
+              <Link to={`/smartphones/${phone._id}`} className="block">\n                <img
                   src={phone.image}
                   alt={phone.name}
                   className="h-32 mx-auto object-contain"

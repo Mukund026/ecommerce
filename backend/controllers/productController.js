@@ -62,7 +62,8 @@ exports.getProduct = asyncHandler(async (req, res) => {
     page = 1,
     limit = 20,
     sort = "newest",
-    type
+    type,
+    phoneAccessories
   } = req.query;
 
   const finalCategory = category || categoryName;
@@ -174,6 +175,22 @@ exports.getProduct = asyncHandler(async (req, res) => {
 
   if (subcategory) {
     query.subcategory = subcategory.trim();
+  }
+
+  // ==============================
+  // PHONE ACCESSORIES QUERY ($or regex)
+  // ==============================
+  if (phoneAccessories === 'true') {
+    query.$or = [
+      { name: { $regex: 'charger', $options: 'i' } },
+      { name: { $regex: 'screen.?guard', $options: 'i' } },
+      { name: { $regex: 'headphone', $options: 'i' } },
+      { name: { $regex: 'earphone', $options: 'i' } },
+      { name: { $regex: 'mobile holder', $options: 'i' } },
+      { name: { $regex: 'phone holder', $options: 'i' } },
+      { name: { $regex: 'cleaner', $options: 'i' } },
+      { name: { $regex: 'cleaning kit', $options: 'i' } }
+    ];
   }
 
   // ==============================

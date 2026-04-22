@@ -66,8 +66,7 @@ function App() {
 <Route path="/bestsellers" element={<Bestsellers/>}/>
         <Route path="/bestsellers/:category" element={<BestsellerCategory />} />
         <Route path="/login" element={<Login/>}/>
-        <Route path="/register" element={<Register/>}/>
-        <Route path="/product/:id" element={<ProductDetails/>}/>
+        <Route path="/register" element={<Register/>}/>\n        <Route path="/smartphones/:id" element={<ProductDetails/>}/>\n        <Route path="/product/:id" element={<ProductDetails/>}/>
         <Route path="/cart" element={<Cart/>}/>
         <Route path="/seller/dashboard" element={<SellerDashboard/>}/>
         <Route path="/account" element={<Account/>}/>

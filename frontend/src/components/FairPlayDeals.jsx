@@ -50,10 +50,10 @@ const FairPlayDeals = ({ products = [] }) => {
         </div>
         
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-{fairPlayProducts.map((phone) => (
+          {fairPlayProducts.map((phone) => (
             <Link 
               key={phone._id || phone.id || Math.random()} 
-              to={`/product/${phone._id || phone.id}`}
+              to={`/smartphones/${phone._id || phone.id}`}
               className="border rounded p-3 hover:border-orange-400 transition-colors block"
             >
               {/* Discount Badge */}
@@ -103,4 +103,3 @@ const FairPlayDeals = ({ products = [] }) => {
 };
 
 export default FairPlayDeals;
-

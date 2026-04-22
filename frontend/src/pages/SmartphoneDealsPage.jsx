@@ -11,6 +11,7 @@ import BuyingGuide from '../components/BuyingGuide';
 import API from '../api/axios.js';
 import Pagination from '../components/Pagination';
 import Footer from '../components/Footer';
+import LimitedAccessoriesGrid from '../components/LimitedAccessoriesGrid';
 
 const SmartphoneDealsPage = () => {
   const [searchParams] = useSearchParams();
@@ -23,6 +24,7 @@ const SmartphoneDealsPage = () => {
 
   // Single source of truth for accessories
   const [accessories, setAccessories] = useState([]);
+  const [accessoriesBestsellers, setAccessoriesBestsellers] = useState([]);
 
   useEffect(() => {
     const fetchAccessories = async () => {
@@ -38,6 +40,23 @@ const SmartphoneDealsPage = () => {
 
     fetchAccessories();
   }, []);
+
+  // Fetch bestsellers accessories for grid
+  useEffect(() => {
+    const fetchBestsellersAccessories = async () => {
+      try {
+        const res = await API.get('/bestsellers', {
+          params: { category: 'accessories', limit: 12 }
+        });
+        setAccessoriesBestsellers(res.data.products || res.data || []);
+      } catch (err) {
+        console.error('Bestsellers accessories fetch failed:', err);
+        // Fallback to regular accessories
+        setAccessoriesBestsellers(accessories.slice(0, 12));
+      }
+    };
+    fetchBestsellersAccessories();
+  }, [accessories]);  // Depend on accessories for fallback
 
   // Dynamic grouping from smartphones if no apiBrands (like hot deals)
   const groupBrands = (products) => {
@@ -118,10 +137,7 @@ const SmartphoneDealsPage = () => {
         <SmartphoneHeroCarousel />
         <SmartphoneMVPs products={mvpProducts} />
         <FairPlayDeals products={fairPlayProducts} />
-        <AccessoriesDealsRow
-          title="Limited Accessories Deals"
-          products={accessories.slice(0, 6)}
-        />
+        <LimitedAccessoriesGrid products={accessoriesBestsellers} />
         <SuperOverDeals products={productsWithDiscount.slice(0,8)} />
         <CuratedStores brands={brands} /> 
         <AccessoriesDealsRow
@@ -137,4 +153,3 @@ const SmartphoneDealsPage = () => {
 };
 
 export default SmartphoneDealsPage;
-

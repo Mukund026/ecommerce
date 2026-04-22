@@ -268,8 +268,8 @@ exports.getSmartphoneById = asyncHandler(async (req, res) => {
       listPrice: originalPrice,
       stars: product.stars,
       reviews: product["rating&reviews"],
-      categoryName: product.categoryName,
-      description: product.description,
+      categoryName: product.categoryName || "Smartphones",
+      description: product.description || "Premium smartphone",
     },
   });
 });

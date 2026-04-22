@@ -59,7 +59,7 @@ const AccessoriesDealsRow = ({ products = [], title = "Accessories Deals" }) => 
       >
         {deals.map((item) => (
           <SwiperSlide key={item.id}>
-            <Link to={`/product/${item.id}`} className="block group">
+            <Link to={`/smartphones/${item.id}`} className="block group">
               <div className="border rounded p-3 hover:border-orange-400 transition-colors h-full">
                 {/* Discount Badge */}
                 <div className="mb-2">

@@ -69,7 +69,7 @@ const SuperOverDeals = ({ products = [] }) => {
         >
 {hotDealsProducts.map((item, index) => (
             <SwiperSlide key={`${item.id}-${index}`}>
-              <Link to={`/product/${item._id || item.id}`} className="block group">
+              <Link to={`/smartphones/${item._id || item.id}`} className="block group">
                 <div className="border rounded p-3 hover:border-orange-400 transition-colors h-full">
                   {/* Discount Badge */}
                   <div className="mb-2">
