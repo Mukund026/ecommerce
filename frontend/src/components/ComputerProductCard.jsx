@@ -10,9 +10,9 @@ const ComputerProductCard = ({ product, size = 'normal' }) => {
       {/* Product Image */}
       <div className="relative mb-3">
         <img
-          src={product.image}
-          alt={product.title}
-          className={`w-full ${imageHeight} object-contain rounded`}
+          src={product.image || '/api/placeholder-image.jpg'}
+          alt={product.name}
+          className={`w-full ${imageHeight} aspect-[4/3] object-cover rounded-lg bg-gray-100`}
         />
         {/* Prime Badge */}
         {product.isPrime && (
@@ -26,17 +26,17 @@ const ComputerProductCard = ({ product, size = 'normal' }) => {
 
       {/* Product Title */}
       <h3 className="text-sm font-medium text-gray-800 line-clamp-2 mb-2 min-h-[2.5rem]">
-        {product.title}
+        {product.name}
       </h3>
 
       {/* Rating */}
-      {product.rating && (
+      {product.stars && (
         <div className="flex items-center gap-1 mb-2">
           <div className="flex">
             {[...Array(5)].map((_, i) => (
               <svg
                 key={i}
-                className={`w-3.5 h-3.5 ${i < Math.floor(product.rating) ? 'text-orange-400' : 'text-gray-300'}`}
+                className={`w-3.5 h-3.5 ${i < Math.floor(product.stars) ? 'text-orange-400' : 'text-gray-300'}`}
                 fill="currentColor"
                 viewBox="0 0 20 20"
               >
@@ -75,4 +75,3 @@ const ComputerProductCard = ({ product, size = 'normal' }) => {
 };
 
 export default ComputerProductCard;
-

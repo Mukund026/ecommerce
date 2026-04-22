@@ -7,6 +7,7 @@ const rateLimit = require("express-rate-limit");
 const swaggerUI = require("swagger-ui-express");
 const swaggerSpec = require("./config/swagger");
 const bestsellerRoutes = require("./routes/bestsellerRoutes");
+const computersRoutes = require("./routes/computersRoutes");
 const smartphoneRoutes = require("./routes/smartphoneRoutes");
 
 const app = express();
@@ -64,6 +65,7 @@ app.use("/api/admin", require("./routes/adminRoutes"));
 app.use("/api/cart", require("./routes/cartRoutes"));
 app.use("/api/accessories", require("./routes/accessoriesRoutes"));
 app.use("/api/smartphones", smartphoneRoutes);
+app.use("/api/computers", computersRoutes);
 app.use("/api/bestsellers", bestsellerRoutes);
 
 const errorController = require("./middleware/errorMiddleware");

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useProducts } from '../hooks/useProducts';
+import { useComputers } from '../hooks/useComputers';
 import { categoryMap } from '../data/categoryMap';
 import ComputerSidebar from '../components/ComputerSidebar';
 import ComputerProductCard from '../components/ComputerProductCard';
@@ -8,29 +8,19 @@ import { Link } from 'react-router-dom';
 
 const ComputerAccessories = () => {
   // Dynamic data from backend ✅
-  const mainProducts = useProducts({ 
-    category: 'Computers',
-    subcategory: 'accessories',
-    sort: 'newest',
+  const mainProducts = useComputers({ 
     limit: 100 
   });
   
-  const dealsProducts = useProducts({ 
-    category: 'Computers', 
-    subcategory: 'gaming',
-    sort: 'price:asc',
+  const dealsProducts = useComputers({ 
     limit: 16 
   });
   
-  const audioProductsHook = useProducts({ 
-    category: 'Computers', 
-    subcategory: 'audio',
+  const audioProductsHook = useComputers({ 
     limit: 20 
   });
   
-  const discountProductsHook = useProducts({
-    category: 'Computers',
-    sort: 'price:asc',
+  const discountProductsHook = useComputers({
     limit: 16
   });
   
@@ -44,10 +34,7 @@ const ComputerAccessories = () => {
   });
 
   // Update main query when filters change
-  const filteredProducts = useProducts({
-    category: 'Computers',
-    subcategory: filters.category[0] || 'accessories',
-    ...(filters.price.min && { minPrice: filters.price.min }),
+  const filteredProducts = useComputers({
     ...(filters.price.max && { maxPrice: filters.price.max }),
     page: 1,
     limit: 40
@@ -74,8 +61,8 @@ const ComputerAccessories = () => {
             </div>
 
             {/* Shop by Category Grid - DYNAMIC */}
-            <section className="mb-8">
-              <h2 className="text-lg font-bold text-gray-900 mb-6">Shop by category ({mainProducts.products.length} results)</h2>
+<section className="mb-8">
+  <h2 className="text-lg font-bold text-gray-900 mb-6">Shop by category ({mainProducts.totalCount || mainProducts.products.length} results)</h2>
               {mainProducts.loading ? (
                 <div className="flex items-center justify-center py-12">
                   <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-500"></div>
@@ -91,18 +78,18 @@ const ComputerAccessories = () => {
               ) : (
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
                   {mainProducts.products.slice(0, 8).map((product) => (
-                    <Link key={product.id} to={`/product/${product.slug}`} className="group">
+                    <Link key={product.id} to={`/product/${product.id}`} className="group">
                       <div className="bg-white rounded-lg shadow-sm p-3 hover:shadow-xl transition-all duration-200 hover:-translate-y-1">
                         <img 
-                          src={product.imgUrl} 
-                          alt={product.title}
+                          src={product.imgUrl || '/api/placeholder-image.jpg'} 
+                          alt={product.name}
                           className="w-full h-24 object-cover rounded mb-2 group-hover:scale-105 transition-transform"
                           onError={(e) => {
-                            e.target.src = 'https://via.placeholder.com/200x200/eeeeee?text=Product';
+                            e.target.src = '/api/placeholder-image.jpg';
                           }}
                         />
                         <h3 className="text-sm font-medium text-gray-900 text-center truncate">
-                          {product.title}
+                          {product.name}
                         </h3>
                         <p className="text-xs text-gray-500 text-center">₹{product.price}</p>
                       </div>
@@ -173,18 +160,18 @@ const ComputerAccessories = () => {
 
             {/* Product Grids - DYNAMIC Category Cards */}
             <section className="mb-8">
-              <h2 className="text-lg font-bold text-gray-900 mb-6">Featured products ({mainProducts.total || 0} total)</h2>
+              <h2 className="text-lg font-bold text-gray-900 mb-6">Featured products ({mainProducts.totalCount || 0} total)</h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
                 {mainProducts.products.slice(8, 16).map((product, index) => (
-                  <Link key={product.id || index} to={`/product/${product.slug}`} className="group cursor-pointer">
+                <Link key={product.id || index} to={`/product/${product.id}`} className="group cursor-pointer">
                     <div className="bg-white rounded-lg shadow-sm hover:shadow-xl transition-all p-4">
                       <img 
-                        src={product.imgUrl} 
-                        alt={product.title}
+                        src={product.imgUrl || '/api/placeholder-image.jpg'} 
+                        alt={product.name}
                         className="w-full h-24 object-cover rounded mb-2"
-                        onError={(e) => e.target.src = 'https://via.placeholder.com/200x200/eeeeee?text=Product'}
+                        onError={(e) => e.target.src = '/api/placeholder-image.jpg'}
                       />
-                      <h3 className="text-sm font-medium text-gray-900 line-clamp-1">{product.title}</h3>
+                      <h3 className="text-sm font-medium text-gray-900 line-clamp-1">{product.name}</h3>
                       <p className="text-xs text-gray-500">₹{product.price} | {product.reviews} reviews</p>
                     </div>
                   </Link>
@@ -213,11 +200,11 @@ const ComputerAccessories = () => {
                       <div className="bg-white rounded-lg shadow-sm hover:shadow-xl transition-all p-4">
                         <img 
                           src={product.imgUrl} 
-                          alt={product.title}
+                          alt={product.name}
                           className="w-full h-24 object-cover rounded mb-2" 
-                          onError={(e) => e.target.src = 'https://via.placeholder.com/200x200/eeeeee?text=Product'}
+                          onError={(e) => e.target.src = '/api/placeholder-image.jpg'}
                         />
-                        <h3 className="text-sm font-medium text-gray-900 line-clamp-1">{product.title}</h3>
+                        <h3 className="text-sm font-medium text-gray-900 line-clamp-1">{product.name}</h3>
                         <p className="text-xs text-gray-500">
                           ⭐ {product.stars?.toFixed(1)} ({product.reviews}) | ₹{product.price}
                         </p>
@@ -274,4 +261,3 @@ const ComputerAccessories = () => {
 };
 
 export default ComputerAccessories;
-
