@@ -2,17 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const ComputerProductCard = ({ product, size = 'normal' }) => {
-  const imageHeight = size === 'large' ? 'h-48' : 'h-36 sm:h-44 md:h-40';
+const imageHeight = size === 'large' ? 'h-40' : 'h-28 sm:h-32 md:h-36';
   
   return (
     <Link to={`/product/${product.id}`} className="block hover:no-underline focus:no-underline">
       <div className="bg-white p-3 hover:shadow-lg transition-shadow cursor-pointer border border-gray-100 group hover:-translate-y-1">
       {/* Product Image */}
-      <div className="relative mb-3">
+      <div className={`relative mb-3 ${imageHeight} aspect-[4/3]`}>
         <img
           src={product.image || '/api/placeholder-image.jpg'}
           alt={product.name}
-          className={`w-full ${imageHeight} aspect-[4/3] object-cover rounded-lg bg-gray-100`}
+          className="w-full h-full object-contain rounded-lg bg-gray-100"
         />
         {/* Prime Badge */}
         {product.isPrime && (

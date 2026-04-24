@@ -7,18 +7,49 @@ const asyncHandler = require("../middleware/asyncHandler");
 exports.getComputers = asyncHandler(async (req, res) => {
   const { page = 1, limit = 20, includeBrands = 'false' } = req.query;
 
-const baseQuery = {
-  categoryName: { $regex: /computer/i }
+let query = {
+  categoryName: { $regex: /computer accessories|pc accessories|mouse|keyboard|headset|webcam|monitor|laptop (pad|stand)|gaming (mouse|keyboard|headset)|logitech|razer|corsair/i }
 };
 
-const query = baseQuery;
+// Dynamic filter support
+if (req.query.brands) {
+  const brands = Array.isArray(req.query.brands) ? req.query.brands : req.query.brands.split(',');
+  query.$or = brands.map(brand => ({
+    title: { $regex: new RegExp(brand.trim(), 'i') }
+  }));
+}
+if (req.query.category) {
+  const categories = Array.isArray(req.query.category) ? req.query.category : req.query.category.split(',');
+  const categoryRegexes = categories.map(cat => new RegExp(cat.trim(), 'i'));
+  query.categoryName.$in = categoryRegexes;
+}
+if (req.query.minPrice || req.query.maxPrice) {
+  query.price = {};
+  if (req.query.minPrice) query.price.$gte = parseFloat(req.query.minPrice);
+  if (req.query.maxPrice) query.price.$lte = parseFloat(req.query.maxPrice);
+}
+if (req.query.rating) {
+  query.stars = { $gte: parseFloat(req.query.rating) };
+}
+if (req.query.deals === 'true') {
+  query.$expr = { $lt: ['$price', '$listPrice'] };
+}
+// outOfStock ignored - no stock field
 
   const pageNum = parseInt(page);
   const limitNum = parseInt(limit);
 
+  // Dynamic sort
+  const sortOptions = { _id: -1 };
+  if (req.query.rating) {
+    sortOptions.stars = -1;
+    sortOptions.reviews = -1;
+  }
+
   const totalCount = await Products.countDocuments(query);
 
   const products = await Products.find(query)
+    .sort(sortOptions)
 .select([
   'title',
   'imgUrl',
@@ -63,23 +94,20 @@ const formattedProducts = products.map((p) => {
   };
 
   if (includeBrands === 'true') {
-    const computerBrandsRegex = /(dell|hp|lenovo|acer|apple|asus|msi|lg|samsung|corsair|logitech)/i;
-    const brandProducts = await Products.find({
-      ...baseQuery,
-      title: computerBrandsRegex
-    })
+const computerBrandsRegex = /(logitech|razer|corsair|hyperx|steelseries|redragon|mouse|keyboard|headset)/i;
+    const brandProducts = await Products.find({categoryName: { $regex: /computer/i },title: computerBrandsRegex})
       .select(['title', 'imgUrl', 'price', 'listPrice', 'stars', '_id'])
       .limit(100)
       .lean();
 
-    const targetBrands = {
-      Dell: "DELL|dell",
-      HP: "HP|hewlett",
-      Lenovo: "LENOVO|lenovo",
-      Acer: "ACER|acer",
-      Apple: "APPLE|macbook|imac",
-      ASUS: "ASUS|asus",
-    };
+const targetBrands = {
+  Logitech: "LOGITECH|logitech",
+  Razer: "RAZER|razer",
+  Corsair: "CORSAIR|corsair",
+  HyperX: "HYPERX|hyperx",
+  SteelSeries: "STEELSERIES|steelseries",
+  Redragon: "REDDRAGON|redragon",
+};
 
     const grouped = {};
 

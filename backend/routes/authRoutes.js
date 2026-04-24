@@ -1,7 +1,14 @@
 const express = require("express");
+const rateLimit = require("express-rate-limit");
 const router = express.Router();
 const { register, login, getProfile } = require("../controllers/authController");
 const protect = require("../middleware/authMiddleware");
+
+const loginLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 5,
+  message: "Too many login attempts, please try again later",
+}); 
 
 
 /**
@@ -68,7 +75,7 @@ router.post("/register", register);
  *       500:
  *         description: Server error
  */
-router.post("/login", login);
+router.post("/login", loginLimiter, login); 
 
 /**
  * @swagger

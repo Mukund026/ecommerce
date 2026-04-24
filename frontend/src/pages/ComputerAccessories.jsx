@@ -1,68 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useComputers } from '../hooks/useComputers';
-import { categoryMap } from '../data/categoryMap';
-import ComputerSidebar from '../components/ComputerSidebar';
 import ComputerProductCard from '../components/ComputerProductCard';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
 
 const ComputerAccessories = () => {
-  // Dynamic data from backend ✅
-  const mainProducts = useComputers({ 
-    limit: 100 
-  });
-  
-  const dealsProducts = useComputers({ 
-    limit: 16 
-  });
-  
-  const audioProductsHook = useComputers({ 
-    limit: 20 
-  });
-  
-  const discountProductsHook = useComputers({
-    limit: 16
-  });
-  
-  const [filters, setFilters] = useState({
-    category: [],
-    brands: [],
-    rating: null,
-    price: { min: 0, max: 50000 },
-    deals: [],
-    outOfStock: false,
-  });
-
-  // Update main query when filters change
-  const filteredProducts = useComputers({
-    ...(filters.price.max && { maxPrice: filters.price.max }),
-    page: 1,
-    limit: 40
-  });
+  // Dynamic data from backend - PC Accessories only (backend query: categoryName regex /computer/i)
+  const mainProducts = useComputers({ limit: 100 });
+  const dealsProducts = useComputers({ deals: 'true', limit: 16 });
+  const audioProductsHook = useComputers({ limit: 20 });
+  const discountProductsHook = useComputers({ deals: 'true', limit: 16 });
 
   return (
+    <div className="min-h-screen bg-gray-100 overflow-x-hidden">
     <div className="min-h-screen bg-gray-100">
-      {/* Main Content */}
-      <div className="max-w-screen-2xl mx-auto px-4 py-8">
-        <div className="flex flex-col lg:flex-row gap-6">
-          {/* Left Sidebar */}
-          <div className="hidden lg:block w-80 flex-shrink-0">
-            <ComputerSidebar filters={filters} setFilters={setFilters} />
-          </div>
-
+      <div className="w-full px-4 py-8">
+        <div className="w-full">
           {/* Main Content Area */}
-          <div className="flex-1">
+          <div className="w-full">
             {/* Page Title Bar */}
-            <div className="flex items-center justify-between mb-6">
-              <h1 className="text-2xl font-bold text-gray-900">PC Accessories</h1>
-              <div className="flex items-center gap-2 text-sm font-medium">
-                <span className="text-gray-600">Gaming Accessories</span>
+            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between mb-6 gap-4">
+              <div>
+                <h1 className="text-2xl font-bold text-gray-900">PC Accessories</h1>
+                <div className="flex items-center gap-2 text-sm font-medium">
+                  <span className="text-gray-600">Gaming Accessories</span>
+                </div>
               </div>
             </div>
 
-            {/* Shop by Category Grid - DYNAMIC */}
-<section className="mb-8">
-  <h2 className="text-lg font-bold text-gray-900 mb-6">Shop by category ({mainProducts.totalCount || mainProducts.products.length} results)</h2>
+            {/* Shop by Category Grid */}
+            <section className="mb-8">
+              <h2 className="text-lg font-bold text-gray-900 mb-6">Shop by category ({mainProducts.totalCount || mainProducts.products.length} results)</h2>
               {mainProducts.loading ? (
                 <div className="flex items-center justify-center py-12">
                   <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-500"></div>
@@ -76,19 +44,21 @@ const ComputerAccessories = () => {
                   </button>
                 </div>
               ) : (
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+ <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 w-full">
                   {mainProducts.products.slice(0, 8).map((product) => (
                     <Link key={product.id} to={`/product/${product.id}`} className="group">
-                      <div className="bg-white rounded-lg shadow-sm p-3 hover:shadow-xl transition-all duration-200 hover:-translate-y-1">
-                        <img 
-                          src={product.imgUrl || '/api/placeholder-image.jpg'} 
-                          alt={product.name}
-                          className="w-full h-24 object-cover rounded mb-2 group-hover:scale-105 transition-transform"
-                          onError={(e) => {
-                            e.target.src = '/api/placeholder-image.jpg';
-                          }}
-                        />
-                        <h3 className="text-sm font-medium text-gray-900 text-center truncate">
+                      <div className="bg-white rounded shadow-sm p-1.5 hover:shadow-md transition-all hover:-translate-y-1">
+                        <div className="relative h-60 w-full aspect-square mb-1 rounded">
+                          <img 
+                            src={product.image || product.imgUrl || '/api/placeholder-image.jpg'} 
+                            alt={product.name}
+                            className="w-full h-full object-contain rounded group-hover:scale-105 transition-transform"
+                            onError={(e) => {
+                              e.target.src = '/api/placeholder-image.jpg';
+                            }}
+                          />
+                        </div>
+                        <h3 className="text-xs font-medium text-gray-900 text-center truncate">
                           {product.name}
                         </h3>
                         <p className="text-xs text-gray-500 text-center">₹{product.price}</p>
@@ -99,7 +69,7 @@ const ComputerAccessories = () => {
               )}
             </section>
 
-            {/* New Launches - DYNAMIC */}
+            {/* New Launches */}
             <section className="mb-8">
               <h2 className="text-lg font-bold text-gray-900 mb-6">
                 New launches | Gaming accessories ({mainProducts.products.length} found)
@@ -117,7 +87,7 @@ const ComputerAccessories = () => {
               )}
             </section>
 
-            {/* Deals on Gaming Accessories - DYNAMIC */}
+            {/* Deals on Gaming Accessories */}
             <section className="mb-8 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-lg p-8">
               <h2 className="text-xl font-bold mb-6">
                 Deals on gaming accessories ({dealsProducts.products.length} deals)
@@ -129,7 +99,7 @@ const ComputerAccessories = () => {
               ) : dealsProducts.error ? (
                 <p className="text-orange-200">Loading deals...</p>
               ) : (
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+ <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 w-full">
                   {dealsProducts.products.map(product => (
                     <ComputerProductCard key={product.id} product={product} />
                   ))}
@@ -137,7 +107,7 @@ const ComputerAccessories = () => {
               )}
             </section>
 
-            {/* Audio Products Row - DYNAMIC */}
+            {/* Audio Products Row */}
             <section className="mb-8">
               <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-gray-300">
                 {audioProductsHook.products.slice(0, 10).map(product => (
@@ -146,31 +116,33 @@ const ComputerAccessories = () => {
               </div>
             </section>
 
-            {/* Up to 70% off - DYNAMIC */}
+            {/* Up to 70% off */}
             <section className="mb-8">
               <h2 className="text-lg font-bold text-gray-900 mb-6">
                 Up to 70% off | Gaming Accessories ({discountProductsHook.products.length} items)
               </h2>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 w-full">
                 {discountProductsHook.products.map(product => (
                   <ComputerProductCard key={product.id} product={product} />
                 ))}
               </div>
             </section>
 
-            {/* Product Grids - DYNAMIC Category Cards */}
+            {/* Featured products */}
             <section className="mb-8">
               <h2 className="text-lg font-bold text-gray-900 mb-6">Featured products ({mainProducts.totalCount || 0} total)</h2>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 w-full">
                 {mainProducts.products.slice(8, 16).map((product, index) => (
-                <Link key={product.id || index} to={`/product/${product.id}`} className="group cursor-pointer">
+                  <Link key={product.id || index} to={`/product/${product.id}`} className="group cursor-pointer">
                     <div className="bg-white rounded-lg shadow-sm hover:shadow-xl transition-all p-4">
-                      <img 
-                        src={product.imgUrl || '/api/placeholder-image.jpg'} 
-                        alt={product.name}
-                        className="w-full h-24 object-cover rounded mb-2"
-                        onError={(e) => e.target.src = '/api/placeholder-image.jpg'}
-                      />
+                      <div className="relative h-80 w-full aspect-[4/3] mb-2 rounded">
+                        <img 
+                          src={product.image || product.imgUrl || '/api/placeholder-image.jpg'} 
+                          alt={product.name}
+                          className="w-full h-full object-contain rounded"
+                          onError={(e) => e.target.src = '/api/placeholder-image.jpg'}
+                        />
+                      </div>
                       <h3 className="text-sm font-medium text-gray-900 line-clamp-1">{product.name}</h3>
                       <p className="text-xs text-gray-500">₹{product.price} | {product.reviews} reviews</p>
                     </div>
@@ -181,45 +153,20 @@ const ComputerAccessories = () => {
 
             {/* Featured Large Products */}
             <section className="mb-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full">
                 {mainProducts.products.slice(-3).map(product => (
                   <ComputerProductCard key={product.id} product={product} size="large" />
                 ))}
               </div>
             </section>
 
-            {/* More Product Grids - DYNAMIC */}
-            {filteredProducts.products.length > 0 && (
-              <section className="mb-8">
-                <h2 className="text-lg font-bold text-gray-900 mb-6">
-                  Filtered Results ({filteredProducts.products.length} items)
-                </h2>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                  {filteredProducts.products.map((product, index) => (
-                    <Link key={product.id} to={`/product/${product.slug}`} className="group">
-                      <div className="bg-white rounded-lg shadow-sm hover:shadow-xl transition-all p-4">
-                        <img 
-                          src={product.imgUrl} 
-                          alt={product.name}
-                          className="w-full h-24 object-cover rounded mb-2" 
-                          onError={(e) => e.target.src = '/api/placeholder-image.jpg'}
-                        />
-                        <h3 className="text-sm font-medium text-gray-900 line-clamp-1">{product.name}</h3>
-                        <p className="text-xs text-gray-500">
-                          ⭐ {product.stars?.toFixed(1)} ({product.reviews}) | ₹{product.price}
-                        </p>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </section>
-            )}
 
-            {/* Main Product Grid - DYNAMIC */}
+
+            {/* Main Product Grid */}
             <section className="mb-12">
               <h2 className="text-xl font-bold text-gray-900 mb-6">All Computer Accessories</h2>
               {mainProducts.loading ? (
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 py-20">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4 py-20">
                   {Array(20).fill().map((_, i) => (
                     <div key={i} className="animate-pulse">
                       <div className="bg-gray-200 h-64 rounded-lg"></div>
@@ -227,7 +174,7 @@ const ComputerAccessories = () => {
                   ))}
                 </div>
               ) : (
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 w-full">
                   {mainProducts.products.slice(20).map(product => (
                     <ComputerProductCard key={product.id} product={product} />
                   ))}
@@ -247,7 +194,7 @@ const ComputerAccessories = () => {
               </div>
               {mainProducts.totalPages > 1 && (
                 <div className="mt-8 text-sm text-gray-500 text-center">
-                  Page {mainProducts.currentPage} of {mainProducts.totalPages} | {mainProducts.total} total products
+                  Page {mainProducts.currentPage} of {mainProducts.totalPages} | {mainProducts.totalCount || mainProducts.total} total products
                 </div>
               )}
             </section>
@@ -256,6 +203,7 @@ const ComputerAccessories = () => {
       </div>
 
       <Footer />
+    </div>
     </div>
   );
 };

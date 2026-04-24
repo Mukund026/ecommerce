@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const mongoose = require("mongoose");
 const asyncHandler = require("../middleware/asyncHandler");
 const { successResponse } = require("../utils/successResponse");
 
@@ -17,19 +18,29 @@ function extractOriginalPrice(priceStr) {
   return null;
 }
 
-const formatProduct = (product) => ({
-  _id: product._id,
-  name: product.names,
-  image: Array.isArray(product.images_links) ? product.images_links[0] : product.images_links,
-  price: extractPrice(product.price_details),
-  originalPrice: extractOriginalPrice(product.price_details),
-  rating: product.stars,
-  reviews: product["rating&reviews"]
-});
+const formatProduct = (product) => {
+  if (!product) return null;
+  return {
+    _id: product._id,
+    name: product.names,
+    image: Array.isArray(product.images_links) ? product.images_links[0] : product.images_links,
+    price: extractPrice(product.price_details),
+    originalPrice: extractOriginalPrice(product.price_details),
+    rating: product.stars,
+    reviews: product["rating&reviews"]
+  };
+};
 
 // Get user cart
 exports.getCart = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.user._id).populate("cart.product", "names images_links price_details stars \"rating&reviews\"").lean();
+  if (!req.user || !req.user._id) {
+    return res.status(401).json({ message: "Unauthorized - invalid user" });
+  }
+  const userIdStr = req.user._id.toString();
+  const user = await User.findById(userIdStr).populate("cart.product", "names images_links price_details stars \"rating&reviews\"").lean();
+  if (!user) {
+    return res.status(404).json({ message: "User not found" });
+  }
 
   const formattedCart = user.cart.map(item => ({
     ...item,
@@ -41,8 +52,18 @@ exports.getCart = asyncHandler(async (req, res) => {
 
 // Add item to cart
 exports.addToCart = asyncHandler(async (req, res) => {
+  if (!req.user || !req.user._id) {
+    return res.status(401).json({ message: "Unauthorized - invalid user" });
+  }
   const { productId, quantity = 1 } = req.body;
-  const user = await User.findById(req.user._id);
+  if (!productId || !mongoose.Types.ObjectId.isValid(productId)) {
+    return res.status(400).json({ message: "Invalid productId" });
+  }
+  const userIdStr = req.user._id.toString();
+  const user = await User.findById(userIdStr);
+  if (!user) {
+    return res.status(404).json({ message: "User not found" });
+  }
 
   const existingItem = user.cart.find(
     (item) => item.product.toString() === productId
@@ -68,8 +89,14 @@ exports.addToCart = asyncHandler(async (req, res) => {
 
 // Remove item from cart
 exports.removeFromCart = asyncHandler(async (req, res) => {
+  if (!req.user) {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
   const { productId } = req.params;
   const user = await User.findById(req.user._id);
+  if (!user) {
+    return res.status(404).json({ message: "User not found" });
+  }
 
   user.cart = user.cart.filter(
     (item) => item.product.toString() !== productId
@@ -89,9 +116,15 @@ exports.removeFromCart = asyncHandler(async (req, res) => {
 
 // Update cart item quantity
 exports.updateCartItem = asyncHandler(async (req, res) => {
+  if (!req.user) {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
   const { productId } = req.params;
   const { quantity } = req.body;
   const user = await User.findById(req.user._id);
+  if (!user) {
+    return res.status(404).json({ message: "User not found" });
+  }
 
   const cartItem = user.cart.find(
     (item) => item.product.toString() === productId
@@ -123,7 +156,13 @@ exports.updateCartItem = asyncHandler(async (req, res) => {
 
 // Clear cart
 exports.clearCart = asyncHandler(async (req, res) => {
+  if (!req.user) {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
   const user = await User.findById(req.user._id);
+  if (!user) {
+    return res.status(404).json({ message: "User not found" });
+  }
   user.cart = [];
   await user.save();
   successResponse(res, 200, [], "Cart cleared successfully");

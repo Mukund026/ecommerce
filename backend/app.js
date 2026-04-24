@@ -49,6 +49,10 @@ app.use(
   express.static(path.join(__dirname, 'curatedphoneoffers'))
 );
 
+// Body parsing middleware - FIX for req.body undefined in auth/login
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true }));
+
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 
 const loginLimiter = rateLimit({
@@ -57,8 +61,7 @@ const loginLimiter = rateLimit({
   message: "Too many login attempts, please try again later",
 });
 
-app.use("/api/auth/login", loginLimiter);
-app.use("/api/auth", require("./routes/authRoutes"));
+app.use("/api/auth", require("./routes/authRoutes")); 
 app.use("/api/products", require("./routes/productRoutes"));
 app.use("/api/orders", require("./routes/orderRoutes"));
 app.use("/api/admin", require("./routes/adminRoutes"));
