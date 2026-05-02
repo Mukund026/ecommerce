@@ -1,13 +1,14 @@
 import React from 'react';
 import ToysProductCard from './ToysProductCard';
-import { featuredToys } from '../data/toys';
 
-const FeaturedToys = () => {
+const FeaturedToys = ({ products = [] }) => {
+  const displayProducts = products.length > 0 ? products.slice(0, 3) : [];
+
   return (
     <section className="mb-12">
       <h2 className="text-xl font-bold text-gray-900 mb-8">Featured Toys</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {featuredToys.map(product => (
+        {displayProducts.map(product => (
           <div key={product.id} className="group relative bg-gradient-to-br hover:from-pink-50 hover:to-purple-50 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 border">
             <ToysProductCard product={product} />
             {/* Special badge */}
@@ -22,4 +23,3 @@ const FeaturedToys = () => {
 };
 
 export default FeaturedToys;
-

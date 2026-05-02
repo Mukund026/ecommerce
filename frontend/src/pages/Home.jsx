@@ -1,13 +1,50 @@
-import React, { useState } from 'react';
-import DeliveryBanner from '../components/DeliveryBanner';
+import React, { useState, useEffect } from 'react';
 import HeroCarousel from '../components/HeroCarousel';
 import CategoryGrid from '../components/CategoryGrid';
-import GroceryProductGrid from '../components/GroceryProductGrid';
+import GroceryProductCard from '../components/GroceryProductCard';
 import Footer from '../components/Footer';
 import FreshModal from '../components/FreshModal';
 
 const Home = () => {
   const [showFreshModal, setShowFreshModal] = useState(false);
+  const [bestsellers, setBestsellers] = useState([]);
+  const [freshFruits, setFreshFruits] = useState([]);
+  const [snacksBeverages, setSnacksBeverages] = useState([]);
+  const [houseEssentials, setHouseEssentials] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const baseUrl = 'http://localhost:5000/api/products';
+        
+        const [bestsellerRes, fruitsRes, snacksRes, houseRes] = await Promise.all([
+          fetch(`${baseUrl}/bestsellers`).catch(() => ({ json: () => ({ data: [] }) })),
+          fetch(`${baseUrl}/fresh-fruits`).catch(() => ({ json: () => ({ data: [] }) })),
+          fetch(`${baseUrl}/snacks-beverages`).catch(() => ({ json: () => ({ data: [] }) })),
+          fetch(`${baseUrl}/house-essentials`).catch(() => ({ json: () => ({ data: [] }) }))
+        ]);
+
+        const [bestsellerData, fruitsData, snacksData, houseData] = await Promise.all([
+          bestsellerRes.json(),
+          fruitsRes.json(),
+          snacksRes.json(),
+          houseRes.json()
+        ]);
+
+        setBestsellers(bestsellerData?.data || []);
+        setFreshFruits(fruitsData?.data || []);
+        setSnacksBeverages(snacksData?.data || []);
+        setHouseEssentials(houseData?.data || []);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   const handleFreshClick = () => {
     setShowFreshModal(true);
@@ -25,7 +62,6 @@ const Home = () => {
             <HeroCarousel />
           </div>
           <div className="lg:col-span-1">
-            <DeliveryBanner />
           </div>
         </div>
 
@@ -36,154 +72,102 @@ const Home = () => {
 
         {/* Product Grid */}
         <div className="mb-6">
-          <GroceryProductGrid />
         </div>
 
-        {/* Additional Product Sections */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-          {/* Fresh Fruits Section */}
-          <div className="bg-white rounded-lg shadow-sm p-4">
-            <h3 className="text-lg font-bold text-gray-800 mb-4">Fresh Fruits</h3>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="text-center">
-                <img 
-                  src="https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=150&h=150&fit=crop" 
-                  alt="Apples" 
-                  className="w-full h-24 object-cover rounded mb-2"
-                />
-                <p className="text-sm font-medium">Fresh Apples</p>
-                <p className="text-sm text-orange-600 font-bold">₹199/kg</p>
-              </div>
-              <div className="text-center">
-                <img 
-                  src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=150&h=150&fit=crop" 
-                  alt="Bananas" 
-                  className="w-full h-24 object-cover rounded mb-2"
-                />
-                <p className="text-sm font-medium">Organic Bananas</p>
-                <p className="text-sm text-orange-600 font-bold">₹49/pack</p>
-              </div>
+{/* Best Sellers Section */}
+        <div className="bg-white rounded-lg shadow-sm p-4 mb-6">
+          <h3 className="text-lg font-bold text-gray-800 mb-4">Bestsellers</h3>
+          {loading ? (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {[...Array(4)].map((_, i) => (
+                <div key={i} className="animate-pulse">
+                  <div className="h-32 bg-gray-200 rounded mb-2"></div>
+                  <div className="h-4 bg-gray-200 rounded w-3/4 mb-1"></div>
+                  <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+                </div>
+              ))}
             </div>
-          </div>
-
-          {/* Dairy & Milk Section */}
-          <div className="bg-white rounded-lg shadow-sm p-4">
-            <h3 className="text-lg font-bold text-gray-800 mb-4">Dairy & Milk</h3>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="text-center">
-                <img 
-                  src="https://images.unsplash.com/photo-1563636619-e9143da7973b?w=150&h=150&fit=crop" 
-                  alt="Milk" 
-                  className="w-full h-24 object-cover rounded mb-2"
-                />
-                <p className="text-sm font-medium">Amul Gold Milk</p>
-                <p className="text-sm text-orange-600 font-bold">₹68/L</p>
-              </div>
-              <div className="text-center">
-                <img 
-                  src="https://images.unsplash.com/photo-1559598467-f8b76c8155d0?w=150&h=150&fit=crop" 
-                  alt="Curd" 
-                  className="w-full h-24 object-cover rounded mb-2"
-                />
-                <p className="text-sm font-medium">Fresh Curd</p>
-                <p className="text-sm text-orange-600 font-bold">₹45/pack</p>
-              </div>
+          ) : bestsellers.length > 0 ? (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {bestsellers.slice(0, 4).map((product) => (
+                <GroceryProductCard key={product._id} product={product} />
+              ))}
             </div>
-          </div>
+          ) : (
+            <p className="text-gray-500 text-center py-4">No bestseller products available</p>
+          )}
         </div>
 
-        {/* Snacks Section */}
+        {/* Fresh Fruits Section */}
+        <div className="bg-white rounded-lg shadow-sm p-4 mb-6">
+          <h3 className="text-lg font-bold text-gray-800 mb-4">Fresh Fruits & Vegetables</h3>
+          {loading ? (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {[...Array(4)].map((_, i) => (
+                <div key={i} className="animate-pulse">
+                  <div className="h-32 bg-gray-200 rounded mb-2"></div>
+                  <div className="h-4 bg-gray-200 rounded w-3/4 mb-1"></div>
+                  <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+                </div>
+              ))}
+            </div>
+          ) : freshFruits.length > 0 ? (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {freshFruits.slice(0, 4).map((product) => (
+                <GroceryProductCard key={product._id} product={product} />
+              ))}
+            </div>
+          ) : (
+            <p className="text-gray-500 text-center py-4">No fresh fruits available</p>
+          )}
+        </div>
+
+{/* Snacks & Beverages Section */}
         <div className="bg-white rounded-lg shadow-sm p-4 mb-6">
           <h3 className="text-lg font-bold text-gray-800 mb-4">Snacks & Beverages</h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="text-center p-3 border rounded hover:shadow-md transition-shadow">
-              <img 
-                src="https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=150&h=150&fit=crop" 
-                alt="Chips" 
-                className="w-full h-20 object-contain mb-2"
-              />
-              <p className="text-sm font-medium">Lays Chips</p>
-              <p className="text-sm text-orange-600 font-bold">₹39</p>
+          {loading ? (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {[...Array(4)].map((_, i) => (
+                <div key={i} className="animate-pulse">
+                  <div className="h-32 bg-gray-200 rounded mb-2"></div>
+                  <div className="h-4 bg-gray-200 rounded w-3/4 mb-1"></div>
+                  <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+                </div>
+              ))}
             </div>
-            <div className="text-center p-3 border rounded hover:shadow-md transition-shadow">
-              <img 
-                src="https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=150&h=150&fit=crop" 
-                alt="Juice" 
-                className="w-full h-20 object-contain mb-2"
-              />
-              <p className="text-sm font-medium">Orange Juice</p>
-              <p className="text-sm text-orange-600 font-bold">₹95</p>
+          ) : snacksBeverages.length > 0 ? (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {snacksBeverages.slice(0, 4).map((product) => (
+                <GroceryProductCard key={product._id} product={product} />
+              ))}
             </div>
-            <div className="text-center p-3 border rounded hover:shadow-md transition-shadow">
-              <img 
-                src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=150&h=150&fit=crop" 
-                alt="Chocolate" 
-                className="w-full h-20 object-contain mb-2"
-              />
-              <p className="text-sm font-medium">Dark Chocolate</p>
-              <p className="text-sm text-orange-600 font-bold">₹150</p>
-            </div>
-            <div className="text-center p-3 border rounded hover:shadow-md transition-shadow">
-              <img 
-                src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=150&h=150&fit=crop" 
-                alt="Coffee" 
-                className="w-full h-20 object-contain mb-2"
-              />
-              <p className="text-sm font-medium">Instant Coffee</p>
-              <p className="text-sm text-orange-600 font-bold">₹250</p>
-            </div>
-          </div>
+          ) : (
+            <p className="text-gray-500 text-center py-4">No snacks and beverages available</p>
+          )}
         </div>
 
-        {/* Household Essentials */}
+{/* Household Essentials */}
         <div className="bg-white rounded-lg shadow-sm p-4 mb-6">
           <h3 className="text-lg font-bold text-gray-800 mb-4">Household Essentials</h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="flex items-center gap-3 p-3 border rounded">
-              <img 
-                src="https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=80&h=80&fit=crop" 
-                alt="Detergent" 
-                className="w-16 h-16 object-contain"
-              />
-              <div>
-                <p className="text-sm font-medium">Detergent</p>
-                <p className="text-sm text-orange-600 font-bold">From ₹199</p>
-              </div>
+          {loading ? (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {[...Array(4)].map((_, i) => (
+                <div key={i} className="animate-pulse">
+                  <div className="h-32 bg-gray-200 rounded mb-2"></div>
+                  <div className="h-4 bg-gray-200 rounded w-3/4 mb-1"></div>
+                  <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+                </div>
+              ))}
             </div>
-            <div className="flex items-center gap-3 p-3 border rounded">
-              <img 
-                src="https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=80&h=80&fit=crop" 
-                alt="Sanitizer" 
-                className="w-16 h-16 object-contain"
-              />
-              <div>
-                <p className="text-sm font-medium">Sanitizer</p>
-                <p className="text-sm text-orange-600 font-bold">From ₹49</p>
-              </div>
+          ) : houseEssentials.length > 0 ? (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {houseEssentials.slice(0, 4).map((product) => (
+                <GroceryProductCard key={product._id} product={product} />
+              ))}
             </div>
-            <div className="flex items-center gap-3 p-3 border rounded">
-              <img 
-                src="https://images.unsplash.com/photo-1563453392212-326f5e854473?w=80&h=80&fit=crop" 
-                alt="Tissues" 
-                className="w-16 h-16 object-contain"
-              />
-              <div>
-                <p className="text-sm font-medium">Tissues</p>
-                <p className="text-sm text-orange-600 font-bold">From ₹99</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3 p-3 border rounded">
-              <img 
-                src="https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=80&h=80&fit=crop" 
-                alt="Cleaner" 
-                className="w-16 h-16 object-contain"
-              />
-              <div>
-                <p className="text-sm font-medium">Floor Cleaner</p>
-                <p className="text-sm text-orange-600 font-bold">From ₹149</p>
-              </div>
-            </div>
-          </div>
+          ) : (
+            <p className="text-gray-500 text-center py-4">No household essentials available</p>
+          )}
         </div>
       </main>
 
@@ -193,4 +177,3 @@ const Home = () => {
 };
 
 export default Home;
-

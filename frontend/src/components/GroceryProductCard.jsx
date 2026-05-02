@@ -74,4 +74,3 @@ const GroceryProductCard = ({ product }) => {
 };
 
 export default GroceryProductCard;
-

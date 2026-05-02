@@ -1,13 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const BooksProductCard = ({ book }) => {
+  const navigate = useNavigate();
+  const [imageError, setImageError] = useState(false);
+
+  const handleCardClick = () => {
+    navigate(`/books/${book.id}`);
+  };
+
+  // Use placeholder if image is missing, empty, or failed to load
+  const hasValidImage = book.image && book.image.trim() && book.image.startsWith('http');
+  const imageSrc = !hasValidImage || imageError ? '/api/placeholder-image.jpg' : book.image;
+
   return (
-    <div className="bg-white border border-gray-200 rounded p-3 hover:shadow-lg transition-shadow cursor-pointer">
+    <div 
+      onClick={handleCardClick}
+      className="bg-white border border-gray-200 rounded p-3 hover:shadow-lg transition-shadow cursor-pointer"
+    >
       {/* Book Image */}
       <div className="relative mb-3">
         <img
-          src={book.image}
+          src={imageSrc}
           alt={book.title}
+          onError={() => setImageError(true)}
           className="w-full h-36 sm:h-44 md:h-48 object-contain rounded"
         />
         {/* Prime Badge */}
@@ -61,7 +77,10 @@ const BooksProductCard = ({ book }) => {
       </p>
 
       {/* Add to Cart Button */}
-      <button className="w-full bg-orange-500 hover:bg-orange-600 text-white font-medium py-1.5 rounded text-sm transition-colors">
+      <button 
+        onClick={(e) => e.stopPropagation()}
+        className="w-full bg-orange-500 hover:bg-orange-600 text-white font-medium py-1.5 rounded text-sm transition-colors"
+      >
         Add to Cart
       </button>
     </div>
@@ -69,4 +88,3 @@ const BooksProductCard = ({ book }) => {
 };
 
 export default BooksProductCard;
-

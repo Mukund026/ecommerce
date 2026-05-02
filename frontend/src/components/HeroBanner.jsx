@@ -1,6 +1,8 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const HeroBanner = ({ title = 'Toy Vehicles | Remote Control Jeep | Children Toys', bgClass = 'bg-gradient-to-r from-yellow-400 to-orange-400', ctaText = 'Shop Now' }) => {
+  const navigate = useNavigate();
   return (
     <section className={`relative overflow-hidden rounded-xl shadow-2xl mb-12 h-64 md:h-80 lg:h-96 ${bgClass}`}>
       <div className="absolute inset-0 bg-gradient-to-br from-yellow-400 via-orange-300 to-pink-400 opacity-90"></div>
@@ -17,7 +19,7 @@ const HeroBanner = ({ title = 'Toy Vehicles | Remote Control Jeep | Children Toy
             {title.split(' | ').slice(1).join(' | ')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-            <button className="bg-white text-orange-500 font-bold px-8 py-3 rounded-full text-lg shadow-2xl hover:shadow-3xl hover:scale-105 transition-all duration-300 hover:bg-orange-50">
+            <button onClick={() => navigate('/toys/remote-cars')} className="bg-white text-orange-500 font-bold px-8 py-3 rounded-full text-lg shadow-2xl hover:shadow-3xl hover:scale-105 transition-all duration-300 hover:bg-orange-50">
               {ctaText} →
             </button>
             <button className="border-2 border-white text-white font-bold px-8 py-3 rounded-full text-lg hover:bg-white hover:text-orange-500 transition-all duration-300">
@@ -26,11 +28,11 @@ const HeroBanner = ({ title = 'Toy Vehicles | Remote Control Jeep | Children Toy
           </div>
         </div>
         
-        <div className="lg:w-1/2 mt-8 lg:mt-0">
+        <div className="lg:w-1/2 mt-4 lg:mt-0 h-full flex items-center justify-center overflow-hidden">
           <img 
-            src="https://images.unsplash.com/photo-1541781774459-9d5a3fe17d34?w=500&h=400&fit=crop" 
+            src="https://m.media-amazon.com/images/I/71OIquAx6ML._AC_UL320_.jpg" 
             alt="Toy Vehicles"
-            className="w-full max-w-md mx-auto lg:max-w-none drop-shadow-2xl animate-pulse hover:scale-105 transition-transform"
+className="h-full w-full object-contain rounded-2xl border-2 border-orange-300/50 drop-shadow-2xl animate-pulse hover:scale-105 transition-transform"
           />
         </div>
       </div>
@@ -51,4 +53,3 @@ const HeroBanner = ({ title = 'Toy Vehicles | Remote Control Jeep | Children Toy
 };
 
 export default HeroBanner;
-

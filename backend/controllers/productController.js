@@ -1,4 +1,4 @@
-const Products = require("../models/Product");
+ const Products = require("../models/Product");
 const asyncHandler = require("../middleware/asyncHandler");
 const { successResponse } = require("../utils/successResponse");
 
@@ -76,15 +76,17 @@ exports.getProduct = asyncHandler(async (req, res) => {
   // ==============================
   // GROCERY TYPE MAP (NEW ADDITION)
   // ==============================
-  const groceryTypeMap = {
+const groceryTypeMap = {
     fruits: /fruit|vegetables|apple|banana|tomato|carrot|veg/i,
-    "oil-ghee": /oil|ghee|mustard oil|sunflower oil|refined oil|desi ghee/i,
+    "fruits-vegetables": /fruit|vegetables|apple|banana|tomato|carrot|potato|onion|greens|spinach|mango/i,
     "rice-atta-dal": /rice|atta|flour|dal|lentil|basmati|wheat/i,
     "milk-dairy": /milk|curd|butter|paneer|cheese|yogurt|dairy/i,
     "bakery-bread": /bread|cake|bun|bakery|rusk|toast|cookies/i,
     "eggs-meat-fish": /egg|chicken|mutton|fish|meat|poultry/i,
     "spices-seasonings": /spice|masala|salt|pepper|turmeric|chilli|cumin/i,
-    "snacks-biscuits": /snack|chips|biscuit|namkeen|kurkure|lays|cracker/i
+    "snacks-biscuits": /snack|chips|biscuit|namkeen|kurkure|lays|cracker/i,
+    "household": /household|cleaning|detergent|soap|mop|broom|brush|toilet cleaner|floor cleaner/i,
+    "tea-coffee-drinks": /tea|coffee|juice|drink|beverage/i
   };
 
   // ==============================
@@ -222,8 +224,8 @@ exports.getProduct = asyncHandler(async (req, res) => {
     "newest": { createdAt: -1 }
   };
 
-  const products = await Products.find(query)
-    .select("title name price imgUrl image stars reviews categoryName")
+const products = await Products.find(query)
+    .select("_id title name price imgUrl image stars reviews categoryName")
     .sort(sortMap[sort] || { createdAt: -1 })
     .skip((pageNum - 1) * limitNum)
     .limit(limitNum)

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const BookBazaarBanner = () => {
   return (
@@ -19,9 +20,12 @@ const BookBazaarBanner = () => {
           <p className="text-xl md:text-2xl mb-8 opacity-95 drop-shadow-lg">
             Explore thousands of books at unbeatable prices
           </p>
-          <button className="bg-white text-red-600 font-bold px-12 py-4 rounded-full text-xl shadow-2xl hover:shadow-3xl hover:scale-105 transition-all duration-300 hover:bg-red-50">
+          <Link
+            to="/books"
+            className="inline-block bg-white text-red-600 font-bold px-12 py-4 rounded-full text-xl shadow-2xl hover:shadow-3xl hover:scale-105 transition-all duration-300 hover:bg-red-50"
+          >
             Shop Books →
-          </button>
+          </Link>
         </div>
         
         {/* Right: Books Stack */}

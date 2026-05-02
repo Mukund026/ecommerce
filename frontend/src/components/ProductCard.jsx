@@ -2,17 +2,29 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const ProductCard = ({ product }) => {
-  const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
+  // Safely calculate discount, handle edge cases
+  const originalPrice = product.originalPrice || product.price || 0;
+  const currentPrice = product.price || 0;
+  const discount = (originalPrice > 0 && currentPrice > 0 && originalPrice > currentPrice) 
+    ? Math.round(((originalPrice - currentPrice) / originalPrice) * 100) 
+    : 0;
 
   const getImageSrc = () => {
     const img = product.imgUrl || product.image;
     if (!img) return '/api/placeholder-image.jpg';
     if (typeof img === 'string' && img.startsWith('http')) return img;
-    return `http://localhost:5000${typeof img === 'string' ? img : ''}`;
+    // Relative paths starting with / are served by the frontend (e.g. placeholder)
+    if (typeof img === 'string' && img.startsWith('/')) return img;
+    return `http://localhost:5000${img}`;
   };
 
+// Use /books/ route for books, otherwise use /product/
+  // Use _id from MongoDB, fallback to id for compatibility
+  const productId = product._id || product.id;
+  const productLink = product.isBook ? `/books/${productId}` : `/product/${productId}`;
+
   return (
-    <Link to={`/product/${product.id}`} className="block hover:no-underline focus:no-underline">
+    <Link to={productLink} className="block hover:no-underline focus:no-underline">
       <div className="group bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border hover:border-orange-200">
         {/* Image */}
         <div className="relative h-56 lg:h-60 p-4 flex items-center justify-center bg-gray-50 group-hover:bg-gray-50">
@@ -92,4 +104,3 @@ const ProductCard = ({ product }) => {
 };
 
 export default ProductCard;
-

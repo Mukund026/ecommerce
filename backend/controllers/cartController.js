@@ -20,14 +20,40 @@ function extractOriginalPrice(priceStr) {
 
 const formatProduct = (product) => {
   if (!product) return null;
+
+  // Support both old CSV-style field names and the Product model field names
+  const name = product.names || product.name || product.title || 'Product';
+  const image = Array.isArray(product.images_links)
+    ? product.images_links[0]
+    : (product.images_links || product.image || product.imgUrl || '/api/placeholder-image.jpg');
+
+  // Price may already be a Number (Product model) or a string (CSV data)
+  let price = 0;
+  if (typeof product.price === 'number') {
+    price = product.price;
+  } else if (product.price) {
+    price = parseFloat(product.price);
+  } else {
+    price = extractPrice(product.price_details);
+  }
+
+  let originalPrice = null;
+  if (typeof product.listPrice === 'number') {
+    originalPrice = product.listPrice;
+  } else if (product.listPrice) {
+    originalPrice = parseFloat(product.listPrice);
+  } else {
+    originalPrice = extractOriginalPrice(product.price_details);
+  }
+
   return {
     _id: product._id,
-    name: product.names,
-    image: Array.isArray(product.images_links) ? product.images_links[0] : product.images_links,
-    price: extractPrice(product.price_details),
-    originalPrice: extractOriginalPrice(product.price_details),
+    name,
+    image,
+    price,
+    originalPrice,
     rating: product.stars,
-    reviews: product["rating&reviews"]
+    reviews: product["rating&reviews"] || product.reviews
   };
 };
 
@@ -37,7 +63,7 @@ exports.getCart = asyncHandler(async (req, res) => {
     return res.status(401).json({ message: "Unauthorized - invalid user" });
   }
   const userIdStr = req.user._id.toString();
-  const user = await User.findById(userIdStr).populate("cart.product", "names images_links price_details stars \"rating&reviews\"").lean();
+  const user = await User.findById(userIdStr).populate("cart.product", "name title image imgUrl price listPrice stars reviews").lean();
   if (!user) {
     return res.status(404).json({ message: "User not found" });
   }
@@ -77,7 +103,7 @@ exports.addToCart = asyncHandler(async (req, res) => {
 
   await user.save();
 
-  const updatedUser = await User.findById(req.user._id).populate("cart.product", "names images_links price_details stars \"rating&reviews\"").lean();
+  const updatedUser = await User.findById(req.user._id).populate("cart.product", "name title image imgUrl price listPrice stars reviews").lean();
 
   const formattedCart = updatedUser.cart.map(item => ({
     ...item,
@@ -104,7 +130,7 @@ exports.removeFromCart = asyncHandler(async (req, res) => {
 
   await user.save();
 
-  const updatedUser = await User.findById(req.user._id).populate("cart.product", "names images_links price_details stars \"rating&reviews\"").lean();
+  const updatedUser = await User.findById(req.user._id).populate("cart.product", "name title image imgUrl price listPrice stars reviews").lean();
 
   const formattedCart = updatedUser.cart.map(item => ({
     ...item,
@@ -144,7 +170,7 @@ exports.updateCartItem = asyncHandler(async (req, res) => {
 
   await user.save();
 
-  const updatedUser = await User.findById(req.user._id).populate("cart.product", "names images_links price_details stars \"rating&reviews\"").lean();
+  const updatedUser = await User.findById(req.user._id).populate("cart.product", "name title image imgUrl price listPrice stars reviews").lean();
 
   const formattedCart = updatedUser.cart.map(item => ({
     ...item,

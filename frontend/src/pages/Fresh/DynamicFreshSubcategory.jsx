@@ -10,7 +10,7 @@ const DynamicFreshSubcategory = () => {
   const { subcategory } = useParams();
 
   // Map subcategory slug to API type and title
-  const subcategoryMap = {
+const subcategoryMap = {
     'millets': { type: 'millet', title: 'Millets & Flour' },
     'millet-other-flours': { type: 'millet', title: 'Millet & Other Flours' },
     'atta-flours': { type: 'atta', title: 'Atta & Flours' },
@@ -31,7 +31,8 @@ const DynamicFreshSubcategory = () => {
     'bakery-bread': { type: 'bakery-bread', title: 'Bakery & Bread' },
     'eggs-meat-fish': { type: 'eggs-meat-fish', title: 'Eggs, Meat & Fish' },
     'spices-seasonings': { type: 'spices-seasonings', title: 'Spices & Seasonings' },
-    'snacks-biscuits': { type: 'snacks-biscuits', title: 'Snacks & Biscuits' }
+    'snacks-biscuits': { type: 'snacks-biscuits', title: 'Snacks & Biscuits' },
+    'household': { type: 'household', title: 'Household Essentials' }
   };
 
   const config = subcategoryMap[subcategory] || { type: subcategory, title: subcategory.replace(/-/g, ' ').toUpperCase() };

@@ -39,9 +39,10 @@ const ToysProductCard = ({ product }) => {
       {/* Image */}
       <div className="relative overflow-hidden aspect-[3/4]">
         <img
-          src={product.image}
-          alt={product.title}
+          src={product.image || '/api/placeholder-image.jpg'}
+          alt={product.title || 'Toy'}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+          onError={(e) => { e.target.src = '/api/placeholder-image.jpg'; }}
         />
         {/* Discount Badge */}
         {product.discount && (
@@ -102,4 +103,3 @@ const ToysProductCard = ({ product }) => {
 };
 
 export default ToysProductCard;
-

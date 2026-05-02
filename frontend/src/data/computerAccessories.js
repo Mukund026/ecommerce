@@ -13,9 +13,15 @@ export const computerCategories = [
 
 export const filterSections = {
   category: [
-    { id: 'computer-accessories', label: 'Computer Accessories', count: 12500 },
-    { id: 'pc-accessories', label: 'PC Accessories', count: 8900 },
-    { id: 'gaming-accessories', label: 'Gaming Accessories', count: 5600 },
+    { id: 'Computer Accessories', label: 'Computer Accessories', count: 1339 },
+    { id: 'Computer Audio  Video Accessories', label: 'Computer Audio  Video Accessories', count: 7388 },
+    { id: 'Computer Cable Adapters', label: 'Computer Cable Adapters', count: 9204 },
+    { id: 'Computer Components', label: 'Computer Components', count: 9529 },
+    { id: 'Computer Hard Drive Accessories', label: 'Computer Hard Drive Accessories', count: 7112 },
+    { id: 'Computer Monitor Accessories', label: 'Computer Monitor Accessories', count: 9021 },
+    { id: 'Computer Monitors', label: 'Computer Monitors', count: 9069 },
+    { id: 'Computer Security Cables', label: 'Computer Security Cables', count: 1672 },
+    { id: 'Computer Uninterrupted Power Supply', label: 'Computer Uninterrupted Power Supply', count: 9458 },
   ],
   reviews: [
     { id: 4, label: '4★ & Up' },
@@ -367,4 +373,3 @@ export const moreProducts = [
     discount: 64,
   },
 ];
-

@@ -70,6 +70,8 @@ app.use("/api/accessories", require("./routes/accessoriesRoutes"));
 app.use("/api/smartphones", smartphoneRoutes);
 app.use("/api/computers", computersRoutes);
 app.use("/api/bestsellers", bestsellerRoutes);
+app.use("/api/toys", require("./routes/toysRoutes"));
+app.use("/api/books", require("./routes/booksRoutes"));
 
 const errorController = require("./middleware/errorMiddleware");
 app.use(errorController);

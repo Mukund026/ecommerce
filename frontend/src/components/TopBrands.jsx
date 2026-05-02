@@ -1,11 +1,48 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { topToyBrands } from '../data/toys';
+import API from '../api/axios';
 
 const TopBrands = () => {
+  const [brands, setBrands] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchBrands = async () => {
+      try {
+        setLoading(true);
+        const res = await API.get('/toys/brands');
+        setBrands(res.data.brands || []);
+      } catch (err) {
+        console.error('Failed to fetch top brands:', err);
+        setError('Failed to load brands');
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchBrands();
+  }, []);
+
+  if (loading) {
+    return (
+      <section className="mb-12 bg-white rounded-lg shadow-sm p-8">
+        <h2 className="text-xl font-bold text-gray-900 mb-8 text-center">Toys from top brands</h2>
+        <div className="flex gap-6 overflow-hidden">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <div key={i} className="flex-1 min-w-[120px] h-24 bg-gray-200 animate-pulse rounded-xl" />
+          ))}
+        </div>
+      </section>
+    );
+  }
+
+  if (error || brands.length === 0) {
+    return null;
+  }
+
   return (
     <section className="mb-12 bg-white rounded-lg shadow-sm p-8">
       <h2 className="text-xl font-bold text-gray-900 mb-8 text-center">Toys from top brands</h2>
@@ -25,13 +62,14 @@ const TopBrands = () => {
           }}
           className="brands-swiper"
         >
-          {topToyBrands.map(brand => (
+          {brands.map(brand => (
             <SwiperSlide key={brand.id}>
               <a href={brand.link} className="block group p-4 hover:bg-gray-50 rounded-xl transition-all">
                 <img 
                   src={brand.image}
                   alt={brand.name}
                   className="w-full h-20 object-contain mx-auto group-hover:scale-105 transition-transform"
+                  onError={(e) => { e.target.src = '/api/placeholder-image.jpg'; }}
                 />
                 <p className="text-center text-sm font-semibold text-gray-900 mt-2 group-hover:text-blue-600">
                   {brand.name}

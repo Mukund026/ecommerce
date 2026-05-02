@@ -19,6 +19,7 @@ import PrimePage from "./pages/PrimePage";
 import BooksBazaar from "./pages/BooksBazaar";
 import ComputerAccessories from "./pages/ComputerAccessories";
 import Toys from "./pages/Toys";
+import ToysCategory from "./pages/ToysCategory";
 import HomeKitchen from "./pages/HomeKitchen";
 import HotNewReleases from "./pages/HotNewReleases";
 import AmazonFashion from "./pages/amazon-fashion";
@@ -32,6 +33,7 @@ import DynamicFreshSubcategory from "./pages/Fresh/DynamicFreshSubcategory.jsx";
 import Millets from "./pages/Fresh/Millets.jsx";
 import AccessoriesPage from "./pages/AccessoriesPage.jsx";
 import LimitedAccessoriesDeals from "./pages/LimitedAccessoriesDeals.jsx";
+import FashionCategory from "./pages/FashionCategory.jsx";
 
 import { AuthProvider } from "./context/AuthContext.jsx";
 import LocationProvider from "./context/LocationContext.jsx";
@@ -46,7 +48,8 @@ function App() {
           <Routes>
 
         <Route path="/" element={<Home/>}/>
-        <Route path="/books" element={<BooksBazaar/>}/>
+<Route path="/books" element={<BooksBazaar/>}/>
+        <Route path="/books/:id" element={<ProductDetails/>}/>
         <Route path="/smartphones" element={<SmartphoneDealsPage />} />
         <Route path="/smartphones/budget" element={<SmartphonesListPage isBudget={true} />} />
         <Route path="/smartphones/accessories" element={<AccessoriesPage />} />
@@ -71,12 +74,38 @@ function App() {
         <Route path="/seller/dashboard" element={<SellerDashboard/>}/>
         <Route path="/account" element={<Account/>}/>
         <Route path="/dashboard" element={<Dashboard/>}/>
+        <Route path="/toys/:category" element={<ToysCategory />} />
         <Route path="/toys" element={<Toys />} />
         <Route path="/home-kitchen" element={<HomeKitchen />} />
         <Route path="/hot-new-releases" element={<HotNewReleases />} />
         <Route path="/fashion" element={<AmazonFashion />} />
-        <Route path="/electronics" element={<Electronics />} />
+<Route path="/electronics" element={<Electronics />} />
         <Route path="/help" element={<Help />} />
+        
+        {/* Fashion Category Routes */}
+        <Route path="/fashion/women" element={<FashionCategory />} />
+        <Route path="/fashion/women-accessories" element={<FashionCategory />} />
+        <Route path="/fashion/women-clothing" element={<FashionCategory />} />
+        <Route path="/fashion/women-handbags" element={<FashionCategory />} />
+        <Route path="/fashion/women-health" element={<FashionCategory />} />
+        <Route path="/fashion/women-jewelry" element={<FashionCategory />} />
+        <Route path="/fashion/women-shoes" element={<FashionCategory />} />
+        <Route path="/fashion/women-watches" element={<FashionCategory />} />
+        <Route path="/fashion/men" element={<FashionCategory />} />
+        <Route path="/fashion/men-accessories" element={<FashionCategory />} />
+        <Route path="/fashion/men-clothing" element={<FashionCategory />} />
+        <Route path="/fashion/men-jewelry" element={<FashionCategory />} />
+        <Route path="/fashion/men-shoes" element={<FashionCategory />} />
+        <Route path="/fashion/men-watches" element={<FashionCategory />} />
+        <Route path="/fashion/sporting-apparel" element={<FashionCategory />} />
+        <Route path="/fashion/sport-clothing" element={<FashionCategory />} />
+        <Route path="/fashion/shaving-hair-removal" element={<FashionCategory />} />
+        <Route path="/fashion/shelf-brackets" element={<FashionCategory />} />
+<Route path="/fashion/jewelry-accessories" element={<FashionCategory />} />
+        <Route path="/fashion/perfume" element={<FashionCategory />} />
+        <Route path="/fashion/kids" element={<FashionCategory />} />
+        <Route path="/fashion/bags-luggage" element={<FashionCategory />} />
+        <Route path="/fashion/deals" element={<FashionCategory />} />
       </Routes>
         </LocationProvider>
       </AuthProvider>

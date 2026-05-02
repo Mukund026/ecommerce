@@ -1,7 +1,55 @@
-import React from 'react';
-import { hotPress } from '../data/books';
+import React, { useState, useEffect } from 'react';
+import { fetchBooks } from '../api/booksApi';
 
 const BooksHotPress = () => {
+  const [books, setBooks] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadNewReleases = async () => {
+      try {
+        // Fetch newest books (sorted by newest)
+        const data = await fetchBooks({ 
+          sort: 'newest', 
+          limit: 8 
+        });
+        setBooks(data.products || []);
+      } catch (err) {
+        console.error('Error fetching new releases:', err);
+        setBooks([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadNewReleases();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="bg-white mx-4 mt-4 rounded-lg shadow-sm p-4">
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-xl font-bold text-gray-900">
+            Hot Off The Press – <span className="text-orange-600">Up To 45% Off</span>
+          </h2>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="border border-gray-100 rounded p-3 h-64 animate-pulse">
+              <div className="h-40 bg-gray-200 rounded mb-3"></div>
+              <div className="h-4 bg-gray-200 rounded w-full mb-2"></div>
+              <div className="h-3 bg-gray-200 rounded w-2/3"></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (books.length === 0) {
+    return null;
+  }
+
   return (
     <div className="bg-white mx-4 mt-4 rounded-lg shadow-sm p-4">
       <div className="flex items-center justify-between mb-4">
@@ -12,7 +60,7 @@ const BooksHotPress = () => {
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {hotPress.map((book) => (
+        {books.map((book) => (
           <div
             key={book.id}
             className="border border-gray-100 rounded p-3 hover:shadow-lg transition-shadow cursor-pointer"
@@ -22,13 +70,16 @@ const BooksHotPress = () => {
                 src={book.image}
                 alt={book.title}
                 className="w-full h-40 object-cover rounded"
+                onError={(e) => {
+                  e.target.src = '/api/placeholder-image.jpg';
+                }}
               />
               <div className="absolute top-2 left-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">
                 NEW
               </div>
             </div>
             <h3 className="text-sm font-medium text-gray-800 line-clamp-2 mb-1">{book.title}</h3>
-            <p className="text-xs text-gray-500 mb-2">by {book.author}</p>
+            <p className="text-xs text-gray-500 mb-2">by {book.author || 'Unknown'}</p>
             <div className="flex items-center gap-2">
               <span className="text-lg font-bold text-orange-600">₹{book.price}</span>
               <span className="text-sm text-gray-400 line-through">₹{book.originalPrice}</span>
@@ -41,4 +92,3 @@ const BooksHotPress = () => {
 };
 
 export default BooksHotPress;
-

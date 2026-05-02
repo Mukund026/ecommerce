@@ -1,19 +1,145 @@
 import React, { useEffect, useState, useContext } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 import { AuthContext } from "../context/AuthContext";
 import toast from "react-hot-toast";
 import API from "../api/axios";
+import { fetchBookById } from "../api/booksApi";
 import { allFreshProducts } from "../data/products";
 
 const ProductDetails = () => {
   const { id } = useParams();
+  const location = useLocation();
   const [product, setProduct] = useState(null);
   const [similarProducts, setSimilarProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const { addToCart, user } = useContext(AuthContext);
 
   useEffect(() => {
+    // Check if we're on the books route
+    const isBooksRoute = location.pathname.startsWith('/books');
+
+    // If on books route, fetch from books API
+    if (isBooksRoute) {
+      const fetchBook = async () => {
+        try {
+          setLoading(true);
+          console.log('Fetching book ID:', id);
+          
+const response = await fetchBookById(id);
+          console.log('Book response:', response);
+          
+          // fetchBookById returns response.data directly (axios interceptors), so the API response is already unwrapped
+          // The API returns {success: true, product: {...}}, so response IS the API data, not response.data
+          const bookData = response.product || response;
+          
+          if (!bookData || !bookData._id) {
+            throw new Error('Book not found');
+          }
+
+          const formattedBook = {
+            _id: bookData._id,
+            id: bookData._id,
+            name: bookData.title || bookData.name,
+            title: bookData.title || bookData.name,
+            image: bookData.image || bookData.imgUrl || '/api/placeholder-image.jpg',
+            price: bookData.price || 0,
+            originalPrice: bookData.originalPrice || bookData.listPrice,
+            listPrice: bookData.listPrice,
+            discount: bookData.discount,
+            rating: bookData.rating || bookData.stars || 0,
+            stars: bookData.stars || bookData.rating || 0,
+            reviews: bookData.reviews || 0,
+            categoryName: bookData.categoryName || 'Books',
+            description: bookData.description || bookData.title || '',
+            author: bookData.author || ''
+          };
+
+          console.log('Formatted book:', formattedBook);
+          setProduct(formattedBook);
+
+// Fetch similar books - with more logging
+          console.log('=== FETCHING SIMILAR BOOKS ===');
+          try {
+            // Get category for filtering similar products
+            const bookCategory = formattedBook.categoryName || 'Books';
+            const categoryParam = bookCategory !== 'Books' ? `&category=${encodeURIComponent(bookCategory)}` : '';
+            console.log('Making API request to /books?limit=30' + categoryParam);
+            
+const booksRes = await API.get(`/books?limit=30${categoryParam}`);
+            
+            console.log('API Response received:', booksRes ? 'yes' : 'no');
+            console.log('booksRes type:', typeof booksRes);
+            if (booksRes) {
+              console.log('booksRes keys:', Object.keys(booksRes));
+              console.log('booksRes.data.products:', booksRes.data?.products ? `array(${booksRes.data.products.length})` : 'undefined');
+            }
+            
+            // axios returns response at .data, so products are at booksRes.data.products
+            const allBooks = booksRes?.data?.products || [];
+            console.log('All books from API:', allBooks.length);
+            
+            // Current book ID
+            const currentBookId = formattedBook._id;
+            console.log('Current book ID to exclude:', currentBookId);
+            
+            // Filter by category first, then exclude current book
+            const filtered = allBooks.filter(p => {
+              const matches = p._id !== currentBookId;
+              return matches;
+            });
+            console.log('After filter (excluded self):', filtered.length);
+            
+            // Get up to 6 similar products
+            const similarBooks = filtered.slice(0, 6);
+            console.log('Similar books count:', similarBooks.length);
+            
+            const similar = similarBooks.map((p, i) => {
+              const safePrice = p.price || 0;
+              const safeListPrice = p.listPrice || p.originalPrice || safePrice;
+              return {
+                _id: p._id,
+                id: p._id,
+                name: p.title || p.name || 'Untitled Book',
+                title: p.title || p.name || 'Untitled Book',
+                image: p.imgUrl || p.image || '/api/placeholder-image.jpg',
+                imgUrl: p.imgUrl || p.image || '/api/placeholder-image.jpg',
+                price: safePrice,
+                originalPrice: safeListPrice,
+                listPrice: safeListPrice,
+                discount: p.discount || 0,
+                rating: p.rating || p.stars || 0,
+                stars: p.stars || p.rating || 0,
+                reviews: p.reviews || 0,
+                categoryName: p.categoryName || 'Books',
+                description: p.description || '',
+                author: p.author || '',
+                isBook: true
+              };
+            });
+            
+            console.log('=== FINAL SIMILAR BOOKS ===');
+            console.log('Count:', similar.length);
+            console.log('Sample:', JSON.stringify(similar.slice(0,2), null, 2));
+            
+            setSimilarProducts(similar);
+          } catch (simError) {
+            console.error('Similar books fetch FAILED:', simError.message || simError);
+            console.error('Error details:', simError);
+            setSimilarProducts([]);
+          }
+        } catch (error) {
+          console.error('Book fetch failed:', error);
+          toast.error('Failed to load book details');
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      fetchBook();
+      return;
+    }
+
     // Fallback to static data for frontend slugs (like original behavior)
     const staticProduct = allFreshProducts.find(p => p.slug === id || p.id.toString() === id);
     if (staticProduct) {
@@ -154,8 +280,8 @@ const ProductDetails = () => {
       }
     };
 
-    fetchProduct();
-  }, [id]);
+fetchProduct();
+  }, [id, location]);
 
   const handleAddToCart = async () => {
     if (!user) {
@@ -250,19 +376,26 @@ const ProductDetails = () => {
         </div>
       </div>
 
-      {/* Similar Products */}
-      {similarProducts.length > 0 && (
-        <div className="mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-            {product.categoryName ? `Similar ${product.categoryName} Products` : 'Similar Products You Might Like'}
-          </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
-            {similarProducts.map((similar) => (
-              <ProductCard key={similar._id || similar.id} product={similar} />
-            ))}
-          </div>
+{/* Similar Products - always render section if similarProducts has items */}
+      <div className="mb-16">
+        <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+          {product.categoryName ? `Similar ${product.categoryName} Products` : 'Similar Products You Might Like'}
+        </h2>
+        {/* Use flex wrap instead of grid for better compatibility */}
+        <div className="flex flex-wrap gap-4 justify-center">
+          {similarProducts.length > 0 ? (
+            similarProducts.map((similar) => (
+              <div key={similar._id || similar.id} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 max-w-[200px]">
+                <ProductCard product={similar} />
+              </div>
+            ))
+          ) : (
+            <p className="text-center text-gray-500 w-full py-8">
+              No similar products found
+            </p>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 };

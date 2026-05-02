@@ -30,7 +30,7 @@ const imageHeight = size === 'large' ? 'h-40' : 'h-28 sm:h-32 md:h-36';
       </h3>
 
       {/* Rating */}
-      {product.stars && (
+      {product.stars > 0 && (
         <div className="flex items-center gap-1 mb-2">
           <div className="flex">
             {[...Array(5)].map((_, i) => (
@@ -75,3 +75,4 @@ const imageHeight = size === 'large' ? 'h-40' : 'h-28 sm:h-32 md:h-36';
 };
 
 export default ComputerProductCard;
+

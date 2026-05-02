@@ -1,14 +1,14 @@
 // Mock data for Amazon Fashion page
 export const fashionCategories = [
-  { name: "Women", active: true, href: "#" },
-  { name: "Men", active: false, href: "#" },
-  { name: "Kids", active: false, href: "#" },
-  { name: "Bags & Luggage", active: false, href: "#" },
-  { name: "Sportswear", active: false, href: "#" },
-  { name: "Sales & Deals", active: false, href: "#" },
-  { name: "Jewellery", active: false, href: "#" },
-  { name: "Watches", active: false, href: "#" },
-  { name: "Handbags", active: false, href: "#" }
+  { name: "Women", active: true, href: "/fashion/women" },
+  { name: "Men", active: false, href: "/fashion/men" },
+  { name: "Kids", active: false, href: "/fashion/kids" },
+  { name: "Bags & Luggage", active: false, href: "/fashion/bags-luggage" },
+  { name: "Sportswear", active: false, href: "/fashion/sporting-apparel" },
+  { name: "Sales & Deals", active: false, href: "/fashion/deals" },
+  { name: "Jewellery", active: false, href: "/fashion/jewelry-accessories" },
+  { name: "Watches", active: false, href: "/fashion/women-watches" },
+  { name: "Handbags", active: false, href: "/fashion/women-handbags" }
 ];
 
 export const offerCards = [
@@ -41,7 +41,7 @@ export const offerCards = [
 
 export const heroSlides = [
   {
-    image: "https://images.unsplash.com/photo-1483985988355-763728e01a71?w=800&h=320&fit=crop",
+    image: "https://tse3.mm.bing.net/th/id/OIP.mxXv3LUHnZNXRjTKTfV5QwHaEO?w=1006&h=575&rs=1&pid=ImgDetMain&o=7&rm=3",
     title: "Under ₹699",
     subtitle: "Bags & backpacks",
     cta: "Shop now"

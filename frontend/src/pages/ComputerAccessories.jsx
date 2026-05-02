@@ -1,211 +1,198 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useComputers } from '../hooks/useComputers';
 import ComputerProductCard from '../components/ComputerProductCard';
+import ComputerSidebar from '../components/ComputerSidebar';
 import Footer from '../components/Footer';
-import { Link } from 'react-router-dom';
 
-const ComputerAccessories = () => {
-  // Dynamic data from backend - PC Accessories only (backend query: categoryName regex /computer/i)
-  const mainProducts = useComputers({ limit: 100 });
-  const dealsProducts = useComputers({ deals: 'true', limit: 16 });
-  const audioProductsHook = useComputers({ limit: 20 });
-  const discountProductsHook = useComputers({ deals: 'true', limit: 16 });
+const categories = [
+  { name: 'Computer Accessories', limit: 12 },
+  { name: 'Computer Audio  Video Accessories', limit: 12 },
+  { name: 'Computer Cable Adapters', limit: 12 },
+  { name: 'Computer Components', limit: 12 },
+  { name: 'Computer Hard Drive Accessories', limit: 12 },
+  { name: 'Computer Monitor Accessories', limit: 12 },
+  { name: 'Computer Monitors', limit: 12 },
+  { name: 'Computer Security Cables', limit: 12 },
+  { name: 'Computer Uninterrupted Power Supply', limit: 12 },
+];
+
+const CategorySection = ({ categoryName, limit }) => {
+  const { products, loading, error, refetch } = useComputers({ category: categoryName, limit });
 
   return (
-    <div className="min-h-screen bg-gray-100 overflow-x-hidden">
-    <div className="min-h-screen bg-gray-100">
-      <div className="w-full px-4 py-8">
-        <div className="w-full">
-          {/* Main Content Area */}
-          <div className="w-full">
-            {/* Page Title Bar */}
-            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between mb-6 gap-4">
-              <div>
-                <h1 className="text-2xl font-bold text-gray-900">PC Accessories</h1>
-                <div className="flex items-center gap-2 text-sm font-medium">
-                  <span className="text-gray-600">Gaming Accessories</span>
-                </div>
+    <section className="mb-10">
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-xl font-bold text-gray-900">{categoryName}</h2>
+        {products.length > 0 && (
+          <span className="text-sm text-gray-500">{products.length} results</span>
+        )}
+      </div>
+
+      {loading ? (
+        <div className="flex items-center justify-center py-8">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-500"></div>
+          <span className="ml-2 text-gray-500">Loading...</span>
+        </div>
+      ) : error ? (
+        <div className="text-center py-8">
+          <p className="text-red-500 mb-2">{error}</p>
+          <button
+            onClick={refetch}
+            className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded text-sm font-medium transition-colors"
+          >
+            Retry
+          </button>
+        </div>
+      ) : products.length === 0 ? (
+        <p className="text-gray-500 text-sm py-4">No products found in this category.</p>
+      ) : (
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+          {products.map((product) => (
+            <ComputerProductCard key={product.id} product={product} />
+          ))}
+        </div>
+      )}
+    </section>
+  );
+};
+
+const ComputerAccessories = () => {
+  const [filters, setFilters] = useState({
+    category: [],
+    brands: [],
+    deals: [],
+    price: null,
+    rating: null,
+    outOfStock: false,
+  });
+  const [showSidebarMobile, setShowSidebarMobile] = useState(false);
+
+  const {
+    products: mainProducts,
+    loading: mainLoading,
+    error: mainError,
+    refetch: mainRefetch,
+    totalCount,
+    totalPages,
+    currentPage,
+  } = useComputers({ limit: 40 });
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <div className="max-w-[1440px] mx-auto px-2 sm:px-4 lg:px-8">
+        {/* Mobile Sidebar Toggle */}
+        <div className="lg:hidden mb-4 p-4 bg-white border rounded-lg shadow-sm">
+          <button
+            onClick={() => setShowSidebarMobile(!showSidebarMobile)}
+            className="w-full flex items-center justify-between text-left font-semibold"
+          >
+            <span>Filters</span>
+            <svg
+              className={`w-5 h-5 transition-transform ${showSidebarMobile ? 'rotate-180' : ''}`}
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+        </div>
+
+        <div className="flex flex-col lg:grid lg:grid-cols-[minmax(0,280px)_1fr] lg:gap-6 py-6 lg:py-8">
+          {/* Sidebar */}
+          <div
+            className={`lg:sticky lg:top-20 lg:h-[calc(100vh-5rem)] lg:overflow-y-auto order-2 lg:order-1 ${
+              showSidebarMobile
+                ? 'block absolute z-50 top-0 left-0 right-0 bottom-0 bg-white shadow-2xl p-4 overflow-y-auto'
+                : 'hidden lg:block lg:w-full lg:flex-shrink-0'
+            }`}
+          >
+            <ComputerSidebar filters={filters} setFilters={setFilters} />
+          </div>
+
+          {/* Main Content */}
+          <main className="order-1 lg:order-2 flex-1 min-w-0">
+            {/* Header */}
+            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between mb-6 pb-4 border-b">
+              <div className="mb-4 lg:mb-0">
+                <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1">
+                  Computers & Accessories
+                </h1>
+                <p className="text-lg text-gray-600">
+                  {mainLoading ? 'Loading...' : `${(totalCount || 0).toLocaleString()}+ results`}
+                </p>
               </div>
             </div>
 
-            {/* Shop by Category Grid */}
-            <section className="mb-8">
-              <h2 className="text-lg font-bold text-gray-900 mb-6">Shop by category ({mainProducts.totalCount || mainProducts.products.length} results)</h2>
-              {mainProducts.loading ? (
-                <div className="flex items-center justify-center py-12">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-500"></div>
-                  <span className="ml-2 text-gray-500">Loading categories...</span>
+            {/* 9 Dedicated Category Sections */}
+            {categories.map((cat) => (
+              <CategorySection
+                key={cat.name}
+                categoryName={cat.name}
+                limit={cat.limit}
+              />
+            ))}
+
+            {/* All Computer Accessories Grid */}
+            <section className="mb-12">
+              <h2 className="text-xl font-bold text-gray-900 mb-6">All Computer Accessories</h2>
+              {mainLoading ? (
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 py-20">
+                  {Array(20)
+                    .fill()
+                    .map((_, i) => (
+                      <div key={i} className="animate-pulse">
+                        <div className="bg-gray-200 h-64 rounded-lg"></div>
+                      </div>
+                    ))}
                 </div>
-              ) : mainProducts.error ? (
-                <div className="text-center py-12 text-red-500">
-                  {mainProducts.error}
-                  <button onClick={mainProducts.refetch} className="ml-4 bg-orange-500 text-white px-4 py-1 rounded text-sm">
+              ) : mainError ? (
+                <div className="text-center py-12">
+                  <p className="text-red-500 mb-4">{mainError}</p>
+                  <button
+                    onClick={mainRefetch}
+                    className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-full text-sm font-medium transition-colors"
+                  >
                     Retry
                   </button>
                 </div>
               ) : (
- <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 w-full">
-                  {mainProducts.products.slice(0, 8).map((product) => (
-                    <Link key={product.id} to={`/product/${product.id}`} className="group">
-                      <div className="bg-white rounded shadow-sm p-1.5 hover:shadow-md transition-all hover:-translate-y-1">
-                        <div className="relative h-60 w-full aspect-square mb-1 rounded">
-                          <img 
-                            src={product.image || product.imgUrl || '/api/placeholder-image.jpg'} 
-                            alt={product.name}
-                            className="w-full h-full object-contain rounded group-hover:scale-105 transition-transform"
-                            onError={(e) => {
-                              e.target.src = '/api/placeholder-image.jpg';
-                            }}
-                          />
-                        </div>
-                        <h3 className="text-xs font-medium text-gray-900 text-center truncate">
-                          {product.name}
-                        </h3>
-                        <p className="text-xs text-gray-500 text-center">₹{product.price}</p>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </section>
+                <>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+                    {mainProducts.map((product) => (
+                      <ComputerProductCard key={product.id} product={product} />
+                    ))}
+                  </div>
 
-            {/* New Launches */}
-            <section className="mb-8">
-              <h2 className="text-lg font-bold text-gray-900 mb-6">
-                New launches | Gaming accessories ({mainProducts.products.length} found)
-              </h2>
-              {mainProducts.loading ? (
-                <div className="flex items-center justify-center py-12">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-500"></div>
-                </div>
-              ) : (
-                <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-gray-300">
-                  {mainProducts.products.slice(0, 10).map(product => (
-                    <ComputerProductCard key={product.id} product={product} />
-                  ))}
-                </div>
-              )}
-            </section>
+                  <div className="mt-12 text-center">
+                    <button
+                      onClick={mainRefetch}
+                      disabled={mainLoading}
+                      className="bg-orange-500 hover:bg-orange-600 disabled:opacity-50 text-white font-medium px-12 py-3 rounded-full transition-all shadow-sm text-sm"
+                    >
+                      {mainLoading ? 'Loading...' : 'Load More Products'}
+                    </button>
+                    {mainError && (
+                      <p className="text-red-500 mt-2 text-sm">{mainError}</p>
+                    )}
+                  </div>
 
-            {/* Deals on Gaming Accessories */}
-            <section className="mb-8 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-lg p-8">
-              <h2 className="text-xl font-bold mb-6">
-                Deals on gaming accessories ({dealsProducts.products.length} deals)
-              </h2>
-              {dealsProducts.loading ? (
-                <div className="flex items-center justify-center py-12">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-500"></div>
-                </div>
-              ) : dealsProducts.error ? (
-                <p className="text-orange-200">Loading deals...</p>
-              ) : (
- <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 w-full">
-                  {dealsProducts.products.map(product => (
-                    <ComputerProductCard key={product.id} product={product} />
-                  ))}
-                </div>
-              )}
-            </section>
-
-            {/* Audio Products Row */}
-            <section className="mb-8">
-              <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-gray-300">
-                {audioProductsHook.products.slice(0, 10).map(product => (
-                  <ComputerProductCard key={product.id} product={product} />
-                ))}
-              </div>
-            </section>
-
-            {/* Up to 70% off */}
-            <section className="mb-8">
-              <h2 className="text-lg font-bold text-gray-900 mb-6">
-                Up to 70% off | Gaming Accessories ({discountProductsHook.products.length} items)
-              </h2>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 w-full">
-                {discountProductsHook.products.map(product => (
-                  <ComputerProductCard key={product.id} product={product} />
-                ))}
-              </div>
-            </section>
-
-            {/* Featured products */}
-            <section className="mb-8">
-              <h2 className="text-lg font-bold text-gray-900 mb-6">Featured products ({mainProducts.totalCount || 0} total)</h2>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 w-full">
-                {mainProducts.products.slice(8, 16).map((product, index) => (
-                  <Link key={product.id || index} to={`/product/${product.id}`} className="group cursor-pointer">
-                    <div className="bg-white rounded-lg shadow-sm hover:shadow-xl transition-all p-4">
-                      <div className="relative h-80 w-full aspect-[4/3] mb-2 rounded">
-                        <img 
-                          src={product.image || product.imgUrl || '/api/placeholder-image.jpg'} 
-                          alt={product.name}
-                          className="w-full h-full object-contain rounded"
-                          onError={(e) => e.target.src = '/api/placeholder-image.jpg'}
-                        />
-                      </div>
-                      <h3 className="text-sm font-medium text-gray-900 line-clamp-1">{product.name}</h3>
-                      <p className="text-xs text-gray-500">₹{product.price} | {product.reviews} reviews</p>
+                  {totalPages > 1 && (
+                    <div className="mt-8 text-sm text-gray-500 text-center">
+                      Page {currentPage} of {totalPages} | {totalCount || 0} total products
                     </div>
-                  </Link>
-                ))}
-              </div>
-            </section>
-
-            {/* Featured Large Products */}
-            <section className="mb-8">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full">
-                {mainProducts.products.slice(-3).map(product => (
-                  <ComputerProductCard key={product.id} product={product} size="large" />
-                ))}
-              </div>
-            </section>
-
-
-
-            {/* Main Product Grid */}
-            <section className="mb-12">
-              <h2 className="text-xl font-bold text-gray-900 mb-6">All Computer Accessories</h2>
-              {mainProducts.loading ? (
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4 py-20">
-                  {Array(20).fill().map((_, i) => (
-                    <div key={i} className="animate-pulse">
-                      <div className="bg-gray-200 h-64 rounded-lg"></div>
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 w-full">
-                  {mainProducts.products.slice(20).map(product => (
-                    <ComputerProductCard key={product.id} product={product} />
-                  ))}
-                </div>
-              )}
-              <div className="mt-12 text-center">
-                <button 
-                  onClick={mainProducts.refetch}
-                  disabled={mainProducts.loading}
-                  className="bg-orange-500 hover:bg-orange-600 disabled:opacity-50 text-white font-medium px-12 py-3 rounded-full transition-all shadow-sm text-sm"
-                >
-                  {mainProducts.loading ? 'Loading...' : 'Load More Products'}
-                </button>
-                {mainProducts.error && (
-                  <p className="text-red-500 mt-2 text-sm">{mainProducts.error}</p>
-                )}
-              </div>
-              {mainProducts.totalPages > 1 && (
-                <div className="mt-8 text-sm text-gray-500 text-center">
-                  Page {mainProducts.currentPage} of {mainProducts.totalPages} | {mainProducts.totalCount || mainProducts.total} total products
-                </div>
+                  )}
+                </>
               )}
             </section>
-          </div>
+          </main>
         </div>
       </div>
 
       <Footer />
     </div>
-    </div>
   );
 };
 
 export default ComputerAccessories;
+

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { fashionCategories } from '../data/amazonFashion';
 
 const FashionCategoryNav = () => {
@@ -6,9 +7,9 @@ const FashionCategoryNav = () => {
     <nav className="bg-white border-b border-gray-200 px-4 lg:px-8">
       <div className="flex overflow-x-auto scrollbar-hide py-3 gap-6 text-sm font-medium text-gray-700">
         {fashionCategories.map((category, index) => (
-          <a
+          <Link
             key={index}
-            href={category.href}
+            to={category.href}
             className={`whitespace-nowrap pb-3 border-b-2 flex-shrink-0 ${
               category.active
                 ? 'border-orange-500 text-orange-600 font-bold'
@@ -16,7 +17,7 @@ const FashionCategoryNav = () => {
             }`}
           >
             {category.name}
-          </a>
+          </Link>
         ))}
       </div>
     </nav>
