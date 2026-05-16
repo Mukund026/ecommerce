@@ -1,2 +1,4 @@
 backend/amazondataset/*.csv
 backend/amazondataset/*.csv
+node_modules
+.env
